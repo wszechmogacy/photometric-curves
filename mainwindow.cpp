@@ -36,3 +36,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_cutButton_clicked()
+{
+    ui->dataTable->setItem(2, 2, new QTableWidgetItem(QString(QString::number(3))));
+}
