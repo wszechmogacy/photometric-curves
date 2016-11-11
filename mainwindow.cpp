@@ -1,3 +1,4 @@
+#include "polar-graph-window.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -40,4 +41,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_cutButton_clicked()
 {
     ui->dataTable->setItem(2, 2, new QTableWidgetItem(QString(QString::number(3))));
+    PolarGraphWindow polar_graph_window;
+    polar_graph_window.resize( 800, 600 );
+    polar_graph_window.show();
 }
