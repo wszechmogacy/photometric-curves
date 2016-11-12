@@ -9,14 +9,6 @@ class QwtPolarCurve;
 class PolarGraphPlotSettings
 {
 public:
-    enum Curve
-    {
-        Spiral,
-        Rose,
-
-        NumCurves
-    };
-
     enum Flag
     {
         MajorGridBegin,
@@ -31,7 +23,7 @@ public:
 
         CurveBegin,
 
-        NumFlags = CurveBegin + NumCurves
+        NumFlags = CurveBegin,
     };
 
     bool flags[NumFlags];
@@ -49,10 +41,10 @@ public Q_SLOTS:
     void applySettings( const PolarGraphPlotSettings & );
 
 private:
-    QwtPolarCurve *createCurve( int id ) const;
+    QwtPolarCurve *createCurve() const;
 
     QwtPolarGrid *d_grid;
-    QwtPolarCurve *d_curve[PolarGraphPlotSettings::NumCurves];
+    QwtPolarCurve *d_curve;
 };
 
 #endif

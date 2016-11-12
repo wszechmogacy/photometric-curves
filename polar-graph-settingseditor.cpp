@@ -124,10 +124,8 @@ QString PolarGraphSettingsEditor::label( int flag ) const
             return "Logarithmic";
         case PolarGraphPlotSettings::Antialiasing:
             return "Antialiasing";
-        case PolarGraphPlotSettings::CurveBegin + PolarGraphPlotSettings::Spiral:
+        case PolarGraphPlotSettings::CurveBegin:
             return "Spiral Curve";
-        case PolarGraphPlotSettings::CurveBegin + PolarGraphPlotSettings::Rose:
-            return "Rose Curve";
     }
     return QString();
 }

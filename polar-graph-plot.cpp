@@ -62,36 +62,6 @@ public:
     }
 };
 
-class RoseData: public Data
-{
-public:
-    RoseData( const QwtInterval &radialInterval,
-            const QwtInterval &azimuthInterval, size_t size ):
-        Data( radialInterval, azimuthInterval, size )
-    {
-    }
-
-    virtual QwtPointPolar sample( size_t i ) const
-    {
-        const double stepA = d_azimuthInterval.width() / d_size;
-        const double a = d_azimuthInterval.minValue() + i * stepA;
-
-        const double d = a / 360.0 * M_PI;
-        const double r = d_radialInterval.maxValue() * qAbs( qSin( 4 * d ) );
-
-        return QwtPointPolar( a, r );
-    }
-
-    virtual QRectF boundingRect() const
-    {
-        if ( d_boundingRect.width() < 0.0 )
-            d_boundingRect = qwtBoundingRect( *this );
-
-        return d_boundingRect;
-    }
-};
-
-
 PolarGraphPlot::PolarGraphPlot( QWidget *parent ):
     QwtPolarPlot( QwtText( "Polar Plot Demo" ), parent )
 {
@@ -134,12 +104,8 @@ PolarGraphPlot::PolarGraphPlot( QWidget *parent ):
     d_grid->attach( this );
 
     // curves
-
-    for ( int curveId = 0; curveId < PolarGraphPlotSettings::NumCurves; curveId++ )
-    {
-        d_curve[curveId] = createCurve( curveId );
-        d_curve[curveId]->attach( this );
-    }
+    d_curve = createCurve();
+    d_curve->attach( this );
 
     // markers
     QwtPolarMarker *marker = new QwtPolarMarker();
@@ -189,11 +155,7 @@ PolarGraphPlotSettings PolarGraphPlot::settings() const
     s.flags[PolarGraphPlotSettings::Antialiasing] =
         d_grid->testRenderHint( QwtPolarItem::RenderAntialiased );
 
-    for ( int curveId = 0; curveId < PolarGraphPlotSettings::NumCurves; curveId++ )
-    {
-        s.flags[PolarGraphPlotSettings::CurveBegin + curveId] =
-            d_curve[curveId]->isVisible();
-    }
+    s.flags[PolarGraphPlotSettings::CurveBegin] = d_curve->isVisible();
 
     return s;
 }
@@ -242,47 +204,25 @@ void PolarGraphPlot::applySettings( const PolarGraphPlotSettings& s )
     d_grid->setRenderHint( QwtPolarItem::RenderAntialiased,
         s.flags[PolarGraphPlotSettings::Antialiasing] );
 
-    for ( int curveId = 0; curveId < PolarGraphPlotSettings::NumCurves; curveId++ )
-    {
-        d_curve[curveId]->setRenderHint( QwtPolarItem::RenderAntialiased,
-                                         s.flags[PolarGraphPlotSettings::Antialiasing] );
-        d_curve[curveId]->setVisible(
-            s.flags[PolarGraphPlotSettings::CurveBegin + curveId] );
-    }
+    d_curve->setRenderHint( QwtPolarItem::RenderAntialiased,
+                            s.flags[PolarGraphPlotSettings::Antialiasing] );
+    d_curve->setVisible(
+                s.flags[PolarGraphPlotSettings::CurveBegin] );
 
     replot();
 }
 
-QwtPolarCurve *PolarGraphPlot::createCurve( int id ) const
+QwtPolarCurve *PolarGraphPlot::createCurve() const
 {
     const int numPoints = 200;
 
     QwtPolarCurve *curve = new QwtPolarCurve();
     curve->setStyle( QwtPolarCurve::Lines );
-    //curve->setLegendAttribute( QwtPolarCurve::LegendShowLine, true );
-    //curve->setLegendAttribute( QwtPolarCurve::LegendShowSymbol, true );
-    switch( id )
-    {
-        case PolarGraphPlotSettings::Spiral:
-        {
-            curve->setTitle( "Spiral" );
-            curve->setPen( QPen( Qt::yellow, 2 ) );
-            curve->setSymbol( new QwtSymbol( QwtSymbol::Rect,
-                QBrush( Qt::cyan ), QPen( Qt::white ), QSize( 3, 3 ) ) );
-            curve->setData(
-                new SpiralData( radialInterval, azimuthInterval, numPoints ) );
-            break;
-        }
-        case PolarGraphPlotSettings::Rose:
-        {
-            curve->setTitle( "Rose" );
-            curve->setPen( QPen( Qt::red, 2 ) );
-            curve->setSymbol( new QwtSymbol( QwtSymbol::Rect,
-                QBrush( Qt::cyan ), QPen( Qt::white ), QSize( 3, 3 ) ) );
-            curve->setData(
-                new RoseData( radialInterval, azimuthInterval, numPoints ) );
-            break;
-        }
-    }
+    curve->setTitle( "Spiral" );
+    curve->setPen( QPen( Qt::yellow, 2 ) );
+    curve->setSymbol( new QwtSymbol( QwtSymbol::Rect,
+                                     QBrush( Qt::cyan ), QPen( Qt::white ), QSize( 3, 3 ) ) );
+    curve->setData( new SpiralData( radialInterval, azimuthInterval, numPoints ) );
+
     return curve;
 }
