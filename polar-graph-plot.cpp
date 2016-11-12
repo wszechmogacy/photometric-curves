@@ -203,7 +203,7 @@ QwtPolarCurve *PolarGraphPlot::createCurve() const
     QwtPolarCurve *curve = new QwtPolarCurve();
     curve->setStyle( QwtPolarCurve::Lines );
     curve->setTitle( "Spiral" );
-    curve->setPen( QPen( Qt::yellow, 2 ) );
+    curve->setPen( QPen( Qt::red, 2 ) );
     curve->setSymbol( new QwtSymbol( QwtSymbol::Rect,
                                      QBrush( Qt::cyan ), QPen( Qt::white ), QSize( 3, 3 ) ) );
     curve->setData( new PolarData( radialInterval, azimuthInterval, numPoints ) );
