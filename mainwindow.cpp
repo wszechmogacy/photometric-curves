@@ -1,6 +1,9 @@
-#include "polar-graph-window.h"
+#include <QWidget>
+#include <QDialog>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "polar-graph-window.h"
 
 #define ROW_COUNT 18
 #define COLUMN_COUNT 18
@@ -8,7 +11,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
-{
+{setWindowTitle("WIlcze okno");
     ui->setupUi(this);
     ui->dataTable->setRowCount(ROW_COUNT);
     ui->dataTable->setColumnCount(COLUMN_COUNT);
@@ -40,8 +43,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_cutButton_clicked()
 {
-    ui->dataTable->setItem(2, 2, new QTableWidgetItem(QString(QString::number(3))));
-    PolarGraphWindow polar_graph_window;
-    polar_graph_window.resize( 800, 600 );
-    polar_graph_window.show();
+    PolarGraphWindow *polar_graph = new PolarGraphWindow();
+    polar_graph->resize(800,600);
+    polar_graph->show();
 }

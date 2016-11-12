@@ -1,4 +1,10 @@
 #include <qmainwindow.h>
+#include <QWidget>
+
+
+namespace Ui {
+class MainWindow;
+}
 
 class PolarGraphPlot;
 class PolarGraphSettingsEditor;

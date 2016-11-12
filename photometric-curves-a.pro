@@ -24,7 +24,8 @@ HEADERS  += mainwindow.h \
     polar-graph-settingseditor.h \
     polar-graph-window.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    polar-graph-window.ui
 
 QWR_PATH = /usr/local/qwt-6.1.2/
 
@@ -36,5 +37,4 @@ LIBS += -L/usr/local/qwtpolar-1.1.1-svn/lib/ -lqwtpolar
 INCLUDEPATH += /usr/local/qwtpolar-1.1.1-svn/include/
 DEPENDPATH += /usr/local/qwtpolar-1.1.1-svn/include/
 
-DISTFILES += \
-    polar.css
+DISTFILES +=

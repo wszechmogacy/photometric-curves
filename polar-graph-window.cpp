@@ -17,6 +17,7 @@
 #include "polar-graph-plot.h"
 #include "polar-graph-settingseditor.h"
 #include "polar-graph-pixmaps.h"
+#include "ui_polar-graph-window.h"
 
 PolarGraphWindow::PolarGraphWindow( QWidget *parent ):
     QMainWindow( parent )
