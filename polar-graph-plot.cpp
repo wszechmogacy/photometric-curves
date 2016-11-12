@@ -33,10 +33,10 @@ protected:
     size_t d_size;
 };
 
-class SpiralData: public Data
+class PolarData: public Data
 {
 public:
-    SpiralData( const QwtInterval &radialInterval,
+    PolarData( const QwtInterval &radialInterval,
             const QwtInterval &azimuthInterval, size_t size ):
         Data( radialInterval, azimuthInterval, size )
     {
@@ -206,7 +206,7 @@ QwtPolarCurve *PolarGraphPlot::createCurve() const
     curve->setPen( QPen( Qt::yellow, 2 ) );
     curve->setSymbol( new QwtSymbol( QwtSymbol::Rect,
                                      QBrush( Qt::cyan ), QPen( Qt::white ), QSize( 3, 3 ) ) );
-    curve->setData( new SpiralData( radialInterval, azimuthInterval, numPoints ) );
+    curve->setData( new PolarData( radialInterval, azimuthInterval, numPoints ) );
 
     return curve;
 }
