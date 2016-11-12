@@ -4,7 +4,7 @@
 #include <qwt_legend.h>
 #include <qwt_polar_grid.h>
 #include <qwt_polar_curve.h>
-#include <qwt_polar_marker.h>
+
 #include <qwt_scale_engine.h>
 #include "polar-graph-plot.h"
 
@@ -106,22 +106,6 @@ PolarGraphPlot::PolarGraphPlot( QWidget *parent ):
     // curves
     d_curve = createCurve();
     d_curve->attach( this );
-
-    // markers
-    QwtPolarMarker *marker = new QwtPolarMarker();
-    marker->setPosition( QwtPointPolar( 57.3, 4.72 ) );
-    marker->setSymbol( new QwtSymbol( QwtSymbol::Ellipse,
-        QBrush( Qt::white ), QPen( Qt::green ), QSize( 9, 9 ) ) );
-    marker->setLabelAlignment( Qt::AlignHCenter | Qt::AlignTop );
-
-    QwtText text( "Marker" );
-    text.setColor( Qt::black );
-    QColor bg( Qt::white );
-    bg.setAlpha( 200 );
-    text.setBackgroundBrush( QBrush( bg ) );
-
-    marker->setLabel( text );
-    marker->attach( this );
 
     QwtLegend *legend = new QwtLegend;
     insertLegend( legend,  QwtPolarPlot::BottomLegend );
