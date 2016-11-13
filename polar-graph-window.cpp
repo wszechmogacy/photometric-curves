@@ -19,12 +19,12 @@
 #include "polar-graph-pixmaps.h"
 #include "ui_polar-graph-window.h"
 
-PolarGraphWindow::PolarGraphWindow( QWidget *parent ):
+PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data, QWidget *parent ):
     QMainWindow( parent )
 {
     QWidget *w = new QWidget( this );
 
-    d_plot = new PolarGraphPlot( w );
+    d_plot = new PolarGraphPlot( plot_data, w  );
 
     d_panner = new QwtPolarPanner( d_plot->canvas() );
     d_panner->setEnabled( false );
