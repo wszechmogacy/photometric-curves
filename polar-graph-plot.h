@@ -2,6 +2,8 @@
 #define _PLOT_H_ 1
 
 #include <qwt_polar_plot.h>
+#include <QList>
+#include <QPointF>
 
 class QwtPolarGrid;
 class QwtPolarCurve;
@@ -34,8 +36,9 @@ class PolarGraphPlot: public QwtPolarPlot
     Q_OBJECT
 
 public:
-    PolarGraphPlot( QWidget * = NULL );
+    PolarGraphPlot( QList<QPointF> &plot_data, QWidget * = NULL );
     PolarGraphPlotSettings settings() const;
+    QList<QPointF> d_data;
 
 public Q_SLOTS:
     void applySettings( const PolarGraphPlotSettings & );
@@ -45,8 +48,7 @@ private:
 
     QwtPolarGrid *d_grid;
     QwtPolarCurve *d_curve;
+
 };
 
 #endif
-
-

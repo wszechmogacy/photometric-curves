@@ -1,5 +1,7 @@
 #include <QWidget>
 #include <QDialog>
+#include <QPointF>
+#include <QVector2D>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -43,7 +45,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_cutButton_clicked()
 {
-    PolarGraphWindow *polar_graph = new PolarGraphWindow();
+    QList<QPointF> vec;
+    for (int i = 0; i < ROW_COUNT; i++) {
+        QString txt = ui->dataTable->item(i, 0)->text();
+        QLocale c(QLocale::C);
+        double d = c.toDouble(txt);
+
+        vec.append(QPointF(d, 360 / ROW_COUNT * i));
+
+     }
+
+    PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
     polar_graph->resize(800,600);
     polar_graph->show();
 }

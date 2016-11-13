@@ -14,11 +14,9 @@ const QwtInterval azimuthInterval( 0.0, 360.0 );
 class Data: public QwtSeriesData<QwtPointPolar>
 {
 public:
-    Data( const QwtInterval &radialInterval,
-          const QwtInterval &azimuthInterval, size_t size ):
-        d_radialInterval( radialInterval ),
-        d_azimuthInterval( azimuthInterval ),
-        d_size( size )
+    Data( QList<QPointF> plot_data ):
+        d_size( plot_data.size() ),
+        d_data( plot_data )
     {
     }
 
@@ -27,30 +25,25 @@ public:
         return d_size;
     }
 
+
 protected:
-    QwtInterval d_radialInterval;
-    QwtInterval d_azimuthInterval;
     size_t d_size;
+    QList<QPointF> d_data;
 };
 
 class PolarData: public Data
 {
 public:
-    PolarData( const QwtInterval &radialInterval,
-            const QwtInterval &azimuthInterval, size_t size ):
-        Data( radialInterval, azimuthInterval, size )
+    PolarData( QList<QPointF> plot_data ):
+        Data( plot_data ),
+        d_data( plot_data )
     {
     }
+    QList<QPointF> d_data;
 
     virtual QwtPointPolar sample( size_t i ) const
     {
-        const double stepA = 4 * d_azimuthInterval.width() / d_size;
-        const double a = d_azimuthInterval.minValue() + i * stepA;
-
-        const double stepR = d_radialInterval.width() / d_size;
-        const double r = d_radialInterval.minValue() + i * stepR;
-
-        return QwtPointPolar( a, r );
+        return QwtPointPolar( d_data[i].y(), d_data[i].x() );
     }
 
     virtual QRectF boundingRect() const
@@ -62,9 +55,11 @@ public:
     }
 };
 
-PolarGraphPlot::PolarGraphPlot( QWidget *parent ):
+PolarGraphPlot::PolarGraphPlot( QList<QPointF> &plot_data, QWidget *parent ):
     QwtPolarPlot( QwtText( "Polar Plot Demo" ), parent )
 {
+    d_data = plot_data;
+
     setAutoReplot( false );
     setPlotBackground( Qt::darkBlue );
 
@@ -198,15 +193,15 @@ void PolarGraphPlot::applySettings( const PolarGraphPlotSettings& s )
 
 QwtPolarCurve *PolarGraphPlot::createCurve() const
 {
-    const int numPoints = 200;
-
     QwtPolarCurve *curve = new QwtPolarCurve();
     curve->setStyle( QwtPolarCurve::Lines );
     curve->setTitle( "Spiral" );
     curve->setPen( QPen( Qt::red, 2 ) );
     curve->setSymbol( new QwtSymbol( QwtSymbol::Rect,
                                      QBrush( Qt::cyan ), QPen( Qt::white ), QSize( 3, 3 ) ) );
-    curve->setData( new PolarData( radialInterval, azimuthInterval, numPoints ) );
+
+    PolarData *polar_data = new PolarData( d_data );
+    curve->setData( polar_data );
 
     return curve;
 }

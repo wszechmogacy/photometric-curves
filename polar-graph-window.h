@@ -16,7 +16,7 @@ class PolarGraphWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    PolarGraphWindow( QWidget *parent = NULL );
+    PolarGraphWindow(QList<QPointF> &plot_data, QWidget *parent = NULL );
 
 private Q_SLOTS:
     void enableZoomMode( bool on );
