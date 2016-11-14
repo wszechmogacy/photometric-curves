@@ -18,6 +18,8 @@ public:
 private slots:
     void on_horizontalSectionButton_clicked();
 
+    void on_verticalSectionButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

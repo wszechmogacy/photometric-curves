@@ -67,3 +67,25 @@ void MainWindow::on_horizontalSectionButton_clicked()
         polar_graph->show();
     }
 }
+
+void MainWindow::on_verticalSectionButton_clicked()
+{
+    QModelIndexList selection = ui->dataTable->selectionModel()->selectedRows();
+
+    for(int i=0; i< selection.count(); i++)
+    {
+        QModelIndex index = selection.at(i);
+
+        QList<QPointF> vec;
+        for (int j = 0; j < COLUMN_COUNT; j++) {
+            QString txt = ui->dataTable->item(index.row(), j)->text();
+            QLocale c(QLocale::C);
+            double d = c.toDouble(txt);
+
+            vec.append(QPointF(d, 180 / COLUMN_COUNT * j));
+        }
+        PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
+        polar_graph->resize(800,600);
+        polar_graph->show();
+    }
+}
