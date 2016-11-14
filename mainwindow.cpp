@@ -17,10 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {setWindowTitle("WIlcze okno");
     ui->setupUi(this);
     ui->dataTable->setRowCount(ROW_COUNT);
-    ui->dataTable->setColumnCount(COLUMN_COUNT);
+    ui->dataTable->setColumnCount(COLUMN_COUNT + 1);
 
     QStringList horizontal_label;
-    for(size_t col = 0; col < COLUMN_COUNT; col++) {
+    for(size_t col = 0; col <= COLUMN_COUNT; col++) {
         horizontal_label.append(QString::number(180*col/COLUMN_COUNT));
     }
     ui->dataTable->setHorizontalHeaderLabels(horizontal_label);
@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     ui->dataTable->setVerticalHeaderLabels(vertical_label);
 
-    for(size_t col = 0; col < COLUMN_COUNT; col++) {
+    for(size_t col = 0; col <= COLUMN_COUNT; col++) {
         for(size_t row = 0; row < ROW_COUNT; row++) {
             ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
         }
@@ -77,7 +77,7 @@ void MainWindow::on_verticalSectionButton_clicked()
         QModelIndex index = selection.at(i);
 
         QList<QPointF> vec;
-        for (int j = 0; j < COLUMN_COUNT; j++) {
+        for (int j = 0; j <= COLUMN_COUNT; j++) {
             QString txt = ui->dataTable->item(index.row(), j)->text();
             QLocale c(QLocale::C);
             double d = c.toDouble(txt);
