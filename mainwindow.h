@@ -16,7 +16,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_cutButton_clicked();
+    void on_horizontalSectionButton_clicked();
 
 private:
     Ui::MainWindow *ui;

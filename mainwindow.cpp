@@ -1,3 +1,4 @@
+#include <QDebug>
 #include <QWidget>
 #include <QDialog>
 #include <QPointF>
@@ -17,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->dataTable->setRowCount(ROW_COUNT);
     ui->dataTable->setColumnCount(COLUMN_COUNT);
-
 
     QStringList horizontal_label;
     for(size_t col = 0; col < COLUMN_COUNT; col++) {
@@ -43,19 +43,27 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_cutButton_clicked()
+void MainWindow::on_horizontalSectionButton_clicked()
 {
-    QList<QPointF> vec;
-    for (int i = 0; i < ROW_COUNT; i++) {
-        QString txt = ui->dataTable->item(i, 0)->text();
-        QLocale c(QLocale::C);
-        double d = c.toDouble(txt);
+    QModelIndexList selection = ui->dataTable->selectionModel()->selectedColumns();
 
-        vec.append(QPointF(d, 360 / ROW_COUNT * i));
+    for(int i=0; i< selection.count(); i++)
+    {
+        QModelIndex index = selection.at(i);
 
-     }
+        QList<QPointF> vec;
+        for (int j = 0; j < ROW_COUNT; j++) {
+            QString txt = ui->dataTable->item(j, index.column())->text();
+            QLocale c(QLocale::C);
+            double d = c.toDouble(txt);
 
-    PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
-    polar_graph->resize(800,600);
-    polar_graph->show();
+            vec.append(QPointF(d, 360 / ROW_COUNT * j));
+        }
+        QLocale n(QLocale::C);
+        double first_raw_item_value = n.toDouble(ui->dataTable->item(0, index.column())->text());
+        vec.append(QPointF(first_raw_item_value, 0));
+        PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
+        polar_graph->resize(800,600);
+        polar_graph->show();
+    }
 }

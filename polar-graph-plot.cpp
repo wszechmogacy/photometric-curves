@@ -8,7 +8,7 @@
 #include <qwt_scale_engine.h>
 #include "polar-graph-plot.h"
 
-const QwtInterval radialInterval( 0.0, 10.0 );
+
 const QwtInterval azimuthInterval( 0.0, 360.0 );
 
 class Data: public QwtSeriesData<QwtPointPolar>
@@ -68,7 +68,14 @@ PolarGraphPlot::PolarGraphPlot( QList<QPointF> &plot_data, QWidget *parent ):
         azimuthInterval.minValue(), azimuthInterval.maxValue(),
         azimuthInterval.width() / 12 );
 
+    double max = 0.0;
+    for(size_t i = 0; i < plot_data.size(); i++) {
+        if (plot_data[i].x() > max) max = plot_data[i].x();
+    }
+
     setScaleMaxMinor( QwtPolar::Azimuth, 2 );
+    const double scale_factor = 1.1;
+    const QwtInterval radialInterval( 0.0, max * scale_factor );
     setScale( QwtPolar::Radius,
         radialInterval.minValue(), radialInterval.maxValue() );
 
