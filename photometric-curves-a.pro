@@ -16,13 +16,15 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     polar-graph-plot.cpp \
     polar-graph-settingseditor.cpp \
-    polar-graph-window.cpp
+    polar-graph-window.cpp \
+    point.cpp
 
 HEADERS  += mainwindow.h \
     polar-graph-pixmaps.h \
     polar-graph-plot.h \
     polar-graph-settingseditor.h \
-    polar-graph-window.h
+    polar-graph-window.h \
+    point.h
 
 FORMS    += mainwindow.ui \
     polar-graph-window.ui

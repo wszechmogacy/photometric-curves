@@ -20,6 +20,8 @@ private slots:
 
     void on_verticalSectionButton_clicked();
 
+    void on_calculateAreaButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

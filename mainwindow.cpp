@@ -7,6 +7,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "polar-graph-window.h"
+#include "point.h"
 
 #define ROW_COUNT 18
 #define COLUMN_COUNT 18
@@ -88,4 +89,21 @@ void MainWindow::on_verticalSectionButton_clicked()
         polar_graph->resize(800,600);
         polar_graph->show();
     }
+}
+
+void MainWindow::on_calculateAreaButton_clicked()
+{
+    int row_count = ui->dataTable->rowCount();
+    int column_count = ui->dataTable->columnCount();
+
+    for(size_t row = 0; row < row_count; row++) {
+        for(size_t column = 0; column < column_count; column++) {
+            qDebug() << ui->dataTable->item(row, column)->text();
+        }
+    }
+
+
+    ui->dataTable->setCurrentCell(0, 0);
+    ui->dataTable->row();
+
 }
