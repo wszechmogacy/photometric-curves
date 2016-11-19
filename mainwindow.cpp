@@ -1,8 +1,10 @@
+#include <algorithm>
 #include <QDebug>
 #include <QWidget>
 #include <QDialog>
 #include <QPointF>
 #include <QVector2D>
+#include <vector>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -93,17 +95,36 @@ void MainWindow::on_verticalSectionButton_clicked()
 
 void MainWindow::on_calculateAreaButton_clicked()
 {
-    int row_count = ui->dataTable->rowCount();
-    int column_count = ui->dataTable->columnCount();
+    std::vector<Point> table_data;
+    size_t row_count = ui->dataTable->rowCount();
+    size_t column_count = ui->dataTable->columnCount();
 
     for(size_t row = 0; row < row_count; row++) {
         for(size_t column = 0; column < column_count; column++) {
-            qDebug() << ui->dataTable->item(row, column)->text();
+            QString horizontalName = ui->dataTable->horizontalHeaderItem(column)->text();
+            QString verticalName = ui->dataTable->verticalHeaderItem(row)->text();
+            QString valueName =  ui->dataTable->item(row, column)->text();
+            //TODO: handle return values from toDouble (
+            table_data.emplace_back(horizontalName.toDouble(),
+                                    verticalName.toDouble(),
+                                    valueName.toDouble()
+                                    );
         }
+
+     //return table_data;
+    }
+    //print unsolted data
+    for(Point zm : table_data)
+    {
+        qDebug() << "x=" << QString::number(zm.x) << " y=" << QString::number(zm.y) << " z=" << QString::number(zm.z) << endl;
     }
 
+    std::sort(table_data.begin(), table_data.end());
 
-    ui->dataTable->setCurrentCell(0, 0);
-    ui->dataTable->row();
+    qDebug() << "============================================" << endl;
 
+    for(Point zm : table_data)
+    {
+        qDebug() << "x=" << QString::number(zm.x) << " y=" << QString::number(zm.y) << " z=" << QString::number(zm.z) << endl;
+    }
 }
