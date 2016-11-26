@@ -1,6 +1,8 @@
 #ifndef POINT_H
 #define POINT_H
 
+#include <cmath>
+
 namespace ConstNumbers {
     constexpr double pi = std::acos(-1);
 }
