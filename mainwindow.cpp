@@ -11,7 +11,7 @@
 #include "polar-graph-window.h"
 #include "point.h"
 
-#define ROW_COUNT 18
+#define PARALLEL_POINTS_COUNT 18
 #define COLUMN_COUNT 18
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {setWindowTitle("WIlcze okno");
     ui->setupUi(this);
-    ui->dataTable->setRowCount(ROW_COUNT);
+    ui->dataTable->setRowCount(PARALLEL_POINTS_COUNT);
     ui->dataTable->setColumnCount(COLUMN_COUNT + 1);
 
     QStringList horizontal_label;
@@ -29,13 +29,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dataTable->setHorizontalHeaderLabels(horizontal_label);
 
     QStringList vertical_label;
-    for(size_t row = 0; row < ROW_COUNT; row++) {
-        vertical_label.append(QString::number(360*row/ROW_COUNT));
+    for(size_t row = 0; row < PARALLEL_POINTS_COUNT; row++) {
+        vertical_label.append(QString::number(360*row/PARALLEL_POINTS_COUNT));
     }
     ui->dataTable->setVerticalHeaderLabels(vertical_label);
 
     for(size_t col = 0; col <= COLUMN_COUNT; col++) {
-        for(size_t row = 0; row < ROW_COUNT; row++) {
+        for(size_t row = 0; row < PARALLEL_POINTS_COUNT; row++) {
             ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
         }
     }
@@ -55,12 +55,12 @@ void MainWindow::on_horizontalSectionButton_clicked()
         QModelIndex index = selection.at(i);
 
         QList<QPointF> vec;
-        for (int j = 0; j < ROW_COUNT; j++) {
+        for (int j = 0; j < PARALLEL_POINTS_COUNT; j++) {
             QString txt = ui->dataTable->item(j, index.column())->text();
             QLocale c(QLocale::C);
             double d = c.toDouble(txt);
 
-            vec.append(QPointF(d, 360 / ROW_COUNT * j));
+            vec.append(QPointF(d, 360 / PARALLEL_POINTS_COUNT * j));
         }
         QLocale n(QLocale::C);
         double first_raw_item_value = n.toDouble(ui->dataTable->item(0, index.column())->text());
