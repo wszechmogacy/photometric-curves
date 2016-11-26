@@ -13,7 +13,7 @@ public:
     double lon_angle_deg;
     double zx_angle_deg;
     double radial;
-    double xy_angle_rad;
+    double lon_angle_rad;
     double zx_angle_rad;
     double x;
     double y;

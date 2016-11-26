@@ -7,7 +7,7 @@
 
 Point::Point() :
     lon_angle_deg(0), zx_angle_deg(0), radial(0),
-    xy_angle_rad(0),
+    lon_angle_rad(0),
     zx_angle_rad(0),
     x(0), y(0), z(0)
 {
@@ -17,10 +17,10 @@ Point::Point() :
 
 Point::Point(double lon_angle_deg, double zx_angle_deg, double radial) :
     lon_angle_deg(lon_angle_deg), zx_angle_deg(zx_angle_deg), radial(radial),
-    xy_angle_rad(lon_angle_deg * 2 * ConstNumbers::pi / 360),
+    lon_angle_rad(lon_angle_deg * 2 * ConstNumbers::pi / 360),
     zx_angle_rad(zx_angle_deg * 2 * ConstNumbers::pi / 360),
-    x(radial * cos(zx_angle_rad) * cos(xy_angle_rad)),
-    y(radial * cos(zx_angle_rad) * sin(xy_angle_rad)),
+    x(radial * cos(zx_angle_rad) * cos(lon_angle_rad)),
+    y(radial * cos(zx_angle_rad) * sin(lon_angle_rad)),
     z(radial * sin(zx_angle_rad))
 {
     //obslugla bledow. czy wszystkie sie dalo skonwertowac do double/double. Wybrac odpowiedni typ
