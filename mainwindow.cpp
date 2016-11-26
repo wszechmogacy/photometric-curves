@@ -13,7 +13,7 @@
 #include "point.h"
 
 const int PARALLEL_POINTS_COUNT = 36;
-const int MERIDIAN_POINTS_COUNT = 18;
+const int MERIDIAN_POINTS_COUNT = 9;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
