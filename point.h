@@ -11,7 +11,7 @@ class Point {
 
 public:
     double lon_angle_deg;
-    double zx_angle_deg;
+    double lat_angle_deg;
     double radial;
     double lon_angle_rad;
     double zx_angle_rad;
@@ -20,7 +20,7 @@ public:
     double z;
 
 public:
-    Point(double lon_angle_deg, double zx_angle_deg, double radial);
+    Point(double lon_angle_deg, double lat_angle_deg, double radial);
     Point();
     bool operator<(const Point &o) const;
 };
