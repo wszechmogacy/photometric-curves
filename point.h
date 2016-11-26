@@ -1,6 +1,10 @@
 #ifndef POINT_H
 #define POINT_H
 
+namespace ConstNumbers {
+    constexpr double pi = std::acos(-1);
+}
+
 class Point {
 
 public:

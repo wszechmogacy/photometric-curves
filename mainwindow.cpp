@@ -95,6 +95,31 @@ void MainWindow::on_verticalSectionButton_clicked()
 
 void MainWindow::on_calculateAreaButton_clicked()
 {
+    //get data from table
+    auto table_data = MainWindow::getTableData();
+
+    //calculate
+    const double radius = 1.0;
+    const double half_meridian_length = 0.5 * ConstNumbers::pi * radius;
+    const double d_meridian = half_meridian_length / COLUMN_COUNT;
+
+    for (auto arg : table_data)
+        qDebug() << arg.xy_angle_deg << " " << arg.zx_angle_deg;
+
+    auto it = std::find_if(
+                table_data.begin(),
+                table_data.end(),
+                [](const Point &arg){ return (arg.xy_angle_deg == 0.0 && arg.zx_angle_deg == 90.0); }
+    );
+    if (it != table_data.end()) {
+        qDebug() << "value of found: " << (*it).xy_angle_deg << " " <<  (*it).xy_angle_deg << " " << (*it).radial;
+    } else {
+        //wyjatek
+    }
+}
+
+std::vector<Point> MainWindow::getTableData()
+{
     std::vector<Point> table_data;
     size_t row_count = ui->dataTable->rowCount();
     size_t column_count = ui->dataTable->columnCount();
@@ -110,21 +135,7 @@ void MainWindow::on_calculateAreaButton_clicked()
                                     valueName.toDouble()
                                     );
         }
-
-     //return table_data;
     }
-    //print unsolted data
-    for(Point zm : table_data)
-    {
-        qDebug() << "x=" << QString::number(zm.x) << " y=" << QString::number(zm.y) << " z=" << QString::number(zm.z) << endl;
-    }
+    return table_data;
 
-    std::sort(table_data.begin(), table_data.end());
-
-    qDebug() << "============================================" << endl;
-
-    for(Point zm : table_data)
-    {
-        qDebug() << "x=" << QString::number(zm.x) << " y=" << QString::number(zm.y) << " z=" << QString::number(zm.z) << endl;
-    }
 }

@@ -3,7 +3,7 @@
 #include "point.h"
 
 
-const double pi = std::acos(-1);
+
 
 Point::Point() :
     xy_angle_deg(0), zx_angle_deg(0), radial(0),
@@ -17,8 +17,8 @@ Point::Point() :
 
 Point::Point(double xy_angle_deg, double zx_angle_deg, double radial) :
     xy_angle_deg(xy_angle_deg), zx_angle_deg(zx_angle_deg), radial(radial),
-    xy_angle_rad(xy_angle_deg * 2 * pi / 360),
-    zx_angle_rad(zx_angle_deg * 2 * pi / 360),
+    xy_angle_rad(xy_angle_deg * 2 * ConstNumbers::pi / 360),
+    zx_angle_rad(zx_angle_deg * 2 * ConstNumbers::pi / 360),
     x(radial * cos(zx_angle_rad) * cos(xy_angle_rad)),
     y(radial * cos(zx_angle_rad) * sin(xy_angle_rad)),
     z(radial * sin(zx_angle_rad))
