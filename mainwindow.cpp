@@ -7,6 +7,8 @@
 #include <vector>
 
 #include "luminous-flux-calculator.h"
+#include "luminous-flux-window.h"
+#include "ui_luminous-flux-window.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "polar-graph-window.h"
@@ -103,6 +105,12 @@ void MainWindow::on_calculateAreaButton_clicked()
     double luminous_flux = flux_calculator(table_data, MERIDIAN_POINTS_COUNT, PARALLEL_POINTS_COUNT);
     //show window with value
     qDebug() << "calculated flux =  " << QString::number(luminous_flux);
+    QString units = "W/m^2";
+
+    LuminousFluxWindow window;
+    window.set_luminous_flux_value(luminous_flux);
+    window.set_luminous_flux_units(units);
+    window.exec();
 }
 
 std::vector<Point> MainWindow::getTableData()
