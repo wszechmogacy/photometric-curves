@@ -18,7 +18,7 @@ SOURCES += main.cpp\
     polar-graph-settingseditor.cpp \
     polar-graph-window.cpp \
     point.cpp \
-    luminousfluxcalculator.cpp
+    luminous-flux-calculator.cpp
 
 HEADERS  += mainwindow.h \
     polar-graph-pixmaps.h \
