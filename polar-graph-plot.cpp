@@ -56,7 +56,7 @@ public:
 };
 
 PolarGraphPlot::PolarGraphPlot( QList<QPointF> &plot_data, QWidget *parent ):
-    QwtPolarPlot( QwtText( "Polar Plot Demo" ), parent )
+    QwtPolarPlot( QwtText( "Name of curve, parameters, author" ), parent )
 {
     d_data = plot_data;
 
@@ -202,7 +202,7 @@ QwtPolarCurve *PolarGraphPlot::createCurve() const
 {
     QwtPolarCurve *curve = new QwtPolarCurve();
     curve->setStyle( QwtPolarCurve::Lines );
-    curve->setTitle( "Spiral" );
+    curve->setTitle( "Params of curve" );
     curve->setPen( QPen( Qt::red, 2 ) );
     curve->setSymbol( new QwtSymbol( QwtSymbol::Rect,
                                      QBrush( Qt::cyan ), QPen( Qt::white ), QSize( 3, 3 ) ) );

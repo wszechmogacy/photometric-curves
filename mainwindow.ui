@@ -34,7 +34,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Vertical Section</string>
+           <string>Through meridian Section</string>
           </property>
          </widget>
         </item>
@@ -63,7 +63,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Horizontal Section</string>
+           <string>Through parallel Section</string>
           </property>
          </widget>
         </item>
@@ -92,7 +92,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Calculate Area</string>
+           <string>Calculate Luminous Flux</string>
           </property>
          </widget>
         </item>
@@ -121,7 +121,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>draw 3D plot</string>
+           <string>Draw 3D Plot</string>
           </property>
          </widget>
         </item>

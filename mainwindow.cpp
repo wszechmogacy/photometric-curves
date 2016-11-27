@@ -20,7 +20,7 @@ const int MERIDIAN_POINTS_COUNT = 9;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
-{setWindowTitle("WIlcze okno");
+{setWindowTitle("Photometric Curves Calculator");
     ui->setupUi(this);
     ui->dataTable->setRowCount(PARALLEL_POINTS_COUNT);
     ui->dataTable->setColumnCount(MERIDIAN_POINTS_COUNT + 1);

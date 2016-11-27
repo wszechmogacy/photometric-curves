@@ -51,7 +51,7 @@ PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data, QWidget *parent ):
     const QString zoomHelp =
         "Use the wheel to zoom in/out.\n"
         "When the plot is zoomed in,\n"
-        "use the left mouse button to m~/devel/qt/polardemo/ove it.";
+        "use the left mouse button to ove it.";
 
     btnZoom->setText( "Zoom" );
     btnZoom->setIcon( QPixmap( zoom_xpm ) );
@@ -92,7 +92,7 @@ void PolarGraphWindow::printDocument()
         printer.setDocName ( docName );
     }
 
-    printer.setCreator( "polar plot demo example" );
+    printer.setCreator( "polar plot" );
     printer.setOrientation( QPrinter::Landscape );
 
     QPrintDialog dialog( &printer );
