@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     polar-graph-window.cpp \
     point.cpp \
     luminous-flux-calculator.cpp \
-    luminous-flux-window.cpp
+    luminous-flux-window.cpp \
+    introduction-dialog-window.cpp
 
 HEADERS  += mainwindow.h \
     polar-graph-pixmaps.h \
@@ -28,11 +29,13 @@ HEADERS  += mainwindow.h \
     polar-graph-window.h \
     point.h \
     luminous-flux-calculator.h \
-    luminous-flux-window.h
+    luminous-flux-window.h \
+    introduction-dialog-window.h
 
 FORMS    += mainwindow.ui \
     polar-graph-window.ui \
-    luminous-flux-window.ui
+    luminous-flux-window.ui \
+    introduction-dialog-window.ui
 
 QWR_PATH = /usr/local/qwt-6.1.2/
 
