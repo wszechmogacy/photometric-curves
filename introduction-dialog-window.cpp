@@ -1,4 +1,5 @@
 #include "introduction-dialog-window.h"
+#include "setup-project-dialog-window.h"
 #include "ui_introduction-dialog-window.h"
 
 IntroductionDialogWindow::IntroductionDialogWindow(QWidget *parent) :
@@ -11,4 +12,10 @@ IntroductionDialogWindow::IntroductionDialogWindow(QWidget *parent) :
 IntroductionDialogWindow::~IntroductionDialogWindow()
 {
     delete ui;
+}
+
+void IntroductionDialogWindow::on_createProjectButton_clicked()
+{
+    SetupProjectDialogWindow window;
+    window.exec();
 }

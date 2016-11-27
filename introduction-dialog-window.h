@@ -15,6 +15,9 @@ public:
     explicit IntroductionDialogWindow(QWidget *parent = 0);
     ~IntroductionDialogWindow();
 
+private slots:
+    void on_createProjectButton_clicked();
+
 private:
     Ui::IntroductionDialogWindow *ui;
 };
