@@ -23,6 +23,8 @@ private slots:
 
     void on_calculateAreaButton_clicked();
 
+    void on_draw3DplotButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::vector<Point> getTableData();

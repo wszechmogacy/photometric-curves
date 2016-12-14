@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui svg printsupport
+QT       += core gui svg printsupport datavisualization
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     luminous-flux-calculator.cpp \
     luminous-flux-window.cpp \
     introduction-dialog-window.cpp \
-    setup-project-dialog-window.cpp
+    setup-project-dialog-window.cpp \
+    surface-window.cpp \
+    surface-graph.cpp
 
 HEADERS  += mainwindow.h \
     polar-graph-pixmaps.h \
@@ -32,7 +34,9 @@ HEADERS  += mainwindow.h \
     luminous-flux-calculator.h \
     luminous-flux-window.h \
     introduction-dialog-window.h \
-    setup-project-dialog-window.h
+    setup-project-dialog-window.h \
+    surface-window.h \
+    surface-graph.h
 
 FORMS    += mainwindow.ui \
     polar-graph-window.ui \

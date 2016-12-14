@@ -6,6 +6,7 @@
 #include <QVector2D>
 #include <vector>
 
+
 #include "luminous-flux-calculator.h"
 #include "luminous-flux-window.h"
 #include "ui_luminous-flux-window.h"
@@ -13,6 +14,7 @@
 #include "ui_mainwindow.h"
 #include "polar-graph-window.h"
 #include "point.h"
+#include "surface-window.h"
 
 const int PARALLEL_POINTS_COUNT = 36;
 const int MERIDIAN_POINTS_COUNT = 9;
@@ -133,4 +135,9 @@ std::vector<Point> MainWindow::getTableData()
     }
     return table_data;
 
+}
+
+void MainWindow::on_draw3DplotButton_clicked()
+{
+    SurfaceWindow *window = new SurfaceWindow();
 }
