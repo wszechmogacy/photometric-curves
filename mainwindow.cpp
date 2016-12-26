@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
     for(size_t col = 0; col <= MERIDIAN_POINTS_COUNT; col++) {
         for(size_t row = 0; row < PARALLEL_POINTS_COUNT; row++) {
             ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
+             ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
         }
     }
 }
@@ -139,5 +140,6 @@ std::vector<Point> MainWindow::getTableData()
 
 void MainWindow::on_draw3DplotButton_clicked()
 {
-    SurfaceWindow *window = new SurfaceWindow();
+    auto table_data = MainWindow::getTableData();
+    SurfaceWindow *window = new SurfaceWindow(table_data);
 }

@@ -7,13 +7,16 @@
 #include <QtDataVisualization/QSurface3DSeries>
 #include <QtWidgets/QSlider>
 
+#include <point.h>
+#include <vector>
+
 using namespace QtDataVisualization;
 
 class SurfaceGraph : public QObject
 {
     Q_OBJECT
 public:
-    explicit SurfaceGraph(Q3DSurface *surface);
+    explicit SurfaceGraph(Q3DSurface *surface, std::vector<Point> data);
     ~SurfaceGraph();
 
     void enableHeightMapModel(bool enable);
@@ -40,6 +43,8 @@ public:
     void adjustXMax(int max);
     void adjustZMin(int min);
     void adjustZMax(int max);
+    void set_data(std::vector<Point> &data_table);
+    std::vector<Point> data_table;
 
 public Q_SLOTS:
     void changeTheme(int theme);

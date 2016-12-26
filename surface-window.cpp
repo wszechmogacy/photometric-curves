@@ -15,7 +15,7 @@
 #include "surface-window.h"
 #include "surface-graph.h"
 
-SurfaceWindow::SurfaceWindow()
+SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
 {
     Q3DSurface *graph = new Q3DSurface();
     QWidget *container = QWidget::createWindowContainer(graph);
@@ -157,7 +157,7 @@ SurfaceWindow::SurfaceWindow()
 
     widget->show();
 
-    SurfaceGraph *modifier = new SurfaceGraph(graph);
+    SurfaceGraph *modifier = new SurfaceGraph(graph, data_table);
 
     QObject::connect(heightMapModelRB, &QRadioButton::toggled,
                      modifier, &SurfaceGraph::enableHeightMapModel);

@@ -32,11 +32,11 @@ Point::Point(double lon_angle_deg, double lat_angle_deg, double radial) :
 }
 
 bool Point::operator<(const Point &o) const {
-         if (x != o.x) {
-             return x < o.x;
+         if (lon_angle_deg != o.lon_angle_deg) {
+             return lon_angle_deg < o.lon_angle_deg;
          }
-         if (y != o.y) {
-             return y < o.y;
+         if (lat_angle_deg != o.lat_angle_deg) {
+             return lat_angle_deg < o.lat_angle_deg;
          }
-         return z < o.z;
+         return radial < o.radial;
 }
