@@ -20,7 +20,7 @@ public:
     ~SurfaceGraph();
 
     //void enableHeightMapModel(bool enable);
-    void enableSqrtSinModel(bool enable);
+    void set_graph_details(bool enable);
 
     //! [0]
     void toggleModeNone() { m_graph->setSelectionMode(QAbstract3DGraph::SelectionNone); }

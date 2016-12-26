@@ -102,7 +102,7 @@ void SurfaceGraph::fillSqrtSinProxy()
 }
 //! [1]
 
-void SurfaceGraph::enableSqrtSinModel(bool enable)
+void SurfaceGraph::set_graph_details(bool enable)
 {
     if (enable) {
         //! [3]

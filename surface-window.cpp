@@ -171,7 +171,7 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     modifier->setAxisMinSliderZ(axisMinSliderZ);
     modifier->setAxisMaxSliderZ(axisMaxSliderZ);
 
-    modifier->enableSqrtSinModel(true);
+    modifier->set_graph_details(true);
     modeItemRB->setChecked(true);
     themeList->setCurrentIndex(2);
 }
