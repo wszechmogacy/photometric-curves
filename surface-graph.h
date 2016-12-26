@@ -19,7 +19,7 @@ public:
     explicit SurfaceGraph(Q3DSurface *surface, std::vector<Point> data);
     ~SurfaceGraph();
 
-    void enableHeightMapModel(bool enable);
+    //void enableHeightMapModel(bool enable);
     void enableSqrtSinModel(bool enable);
 
     //! [0]

@@ -140,45 +140,6 @@ void SurfaceGraph::enableSqrtSinModel(bool enable)
     }
 }
 
-void SurfaceGraph::enableHeightMapModel(bool enable)
-{
-    if (enable) {
-        //! [4]
-        m_heightMapSeries->setDrawMode(QSurface3DSeries::DrawSurface);
-        m_heightMapSeries->setFlatShadingEnabled(false);
-
-        m_graph->axisX()->setLabelFormat("%.1f N");
-        m_graph->axisZ()->setLabelFormat("%.1f E");
-        m_graph->axisX()->setRange(34.0f, 40.0f);
-        m_graph->axisY()->setAutoAdjustRange(true);
-        m_graph->axisZ()->setRange(18.0f, 24.0f);
-
-        m_graph->axisX()->setTitle(QStringLiteral("Latitude"));
-        m_graph->axisY()->setTitle(QStringLiteral("Height"));
-        m_graph->axisZ()->setTitle(QStringLiteral("Longitude"));
-
-        m_graph->removeSeries(m_sqrtSinSeries);
-        m_graph->addSeries(m_heightMapSeries);
-        //! [4]
-
-        // Reset range sliders for height map
-        int mapGridCountX = m_heightMapWidth / heightMapGridStepX;
-        int mapGridCountZ = m_heightMapHeight / heightMapGridStepZ;
-        m_rangeMinX = 34.0f;
-        m_rangeMinZ = 18.0f;
-        m_stepX = 6.0f / float(mapGridCountX - 1);
-        m_stepZ = 6.0f / float(mapGridCountZ - 1);
-        m_axisMinSliderX->setMaximum(mapGridCountX - 2);
-        m_axisMinSliderX->setValue(0);
-        m_axisMaxSliderX->setMaximum(mapGridCountX - 1);
-        m_axisMaxSliderX->setValue(mapGridCountX - 1);
-        m_axisMinSliderZ->setMaximum(mapGridCountZ - 2);
-        m_axisMinSliderZ->setValue(0);
-        m_axisMaxSliderZ->setMaximum(mapGridCountZ - 1);
-        m_axisMaxSliderZ->setValue(mapGridCountZ - 1);
-    }
-}
-
 void SurfaceGraph::adjustXMin(int min)
 {
     float minX = m_stepX * float(min) + m_rangeMinX;

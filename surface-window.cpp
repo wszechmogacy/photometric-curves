@@ -44,21 +44,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
 
     widget->setWindowTitle(QStringLiteral("Surface example"));
 
-    QGroupBox *modelGroupBox = new QGroupBox(QStringLiteral("Model"));
-
-    QRadioButton *sqrtSinModelRB = new QRadioButton(widget);
-    sqrtSinModelRB->setText(QStringLiteral("Sqrt && Sin"));
-    sqrtSinModelRB->setChecked(false);
-
-    QRadioButton *heightMapModelRB = new QRadioButton(widget);
-    heightMapModelRB->setText(QStringLiteral("Height Map"));
-    heightMapModelRB->setChecked(false);
-
-    QVBoxLayout *modelVBox = new QVBoxLayout;
-    modelVBox->addWidget(sqrtSinModelRB);
-    modelVBox->addWidget(heightMapModelRB);
-    modelGroupBox->setLayout(modelVBox);
-
     QGroupBox *selectionGroupBox = new QGroupBox(QStringLiteral("Selection Mode"));
 
     QRadioButton *modeNoneRB = new QRadioButton(widget);
@@ -143,7 +128,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     colorHBox->addWidget(gradientGtoRPB);
     colorGroupBox->setLayout(colorHBox);
 
-    vLayout->addWidget(modelGroupBox);
     vLayout->addWidget(selectionGroupBox);
     vLayout->addWidget(new QLabel(QStringLiteral("Column range")));
     vLayout->addWidget(axisMinSliderX);
@@ -159,10 +143,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
 
     SurfaceGraph *modifier = new SurfaceGraph(graph, data_table);
 
-    QObject::connect(heightMapModelRB, &QRadioButton::toggled,
-                     modifier, &SurfaceGraph::enableHeightMapModel);
-    QObject::connect(sqrtSinModelRB, &QRadioButton::toggled,
-                     modifier, &SurfaceGraph::enableSqrtSinModel);
     QObject::connect(modeNoneRB, &QRadioButton::toggled,
                      modifier, &SurfaceGraph::toggleModeNone);
     QObject::connect(modeItemRB,  &QRadioButton::toggled,
@@ -191,7 +171,7 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     modifier->setAxisMinSliderZ(axisMinSliderZ);
     modifier->setAxisMaxSliderZ(axisMaxSliderZ);
 
-    sqrtSinModelRB->setChecked(true);
+    modifier->enableSqrtSinModel(true);
     modeItemRB->setChecked(true);
     themeList->setCurrentIndex(2);
 }
