@@ -102,21 +102,6 @@ void SurfaceGraph::changeTheme(int theme)
     m_graph->activeTheme()->setType(Q3DTheme::Theme(theme));
 }
 
-
-void SurfaceGraph::setBlackToYellowGradient()
-{
-    //! [7]
-    QLinearGradient gr;
-    gr.setColorAt(0.0, Qt::black);
-    gr.setColorAt(0.33, Qt::blue);
-    gr.setColorAt(0.67, Qt::red);
-    gr.setColorAt(1.0, Qt::yellow);
-
-    m_graph->seriesList().at(0)->setBaseGradient(gr);
-    m_graph->seriesList().at(0)->setColorStyle(Q3DTheme::ColorStyleRangeGradient);
-    //! [7]
-}
-
 void SurfaceGraph::setGreenToRedGradient()
 {
     QLinearGradient gr;
