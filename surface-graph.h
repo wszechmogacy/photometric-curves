@@ -22,8 +22,6 @@ public:
 
     void set_graph_details(bool enable);
 
-    void adjustZMin(int min);
-    void adjustZMax(int max);
     void set_data(std::vector<Point> &data_table);
     std::vector<Point> data_table;
 
