@@ -18,7 +18,7 @@ public:
     explicit SurfaceGraph(Q3DSurface *surface, std::vector<Point> data);
     ~SurfaceGraph();
 
-    void set_graph_details(bool enable);
+    void set_graph_details();
 
     void set_data(std::vector<Point> &data_table);
     std::vector<Point> data_table;

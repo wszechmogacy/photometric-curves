@@ -60,23 +60,21 @@ SurfaceGraph::~SurfaceGraph()
     delete m_graph;
 }
 
-void SurfaceGraph::set_graph_details(bool enable)
+void SurfaceGraph::set_graph_details()
 {
     const float sampleMin = -8.0f;
     const float sampleMax = 8.0f;
-    if (enable) {
-        m_sqrtSinSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
-        m_sqrtSinSeries->setFlatShadingEnabled(true);
+    m_sqrtSinSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
+    m_sqrtSinSeries->setFlatShadingEnabled(true);
 
-        m_graph->axisX()->setLabelFormat("%.2f");
-        m_graph->axisZ()->setLabelFormat("%.2f");
-        m_graph->axisX()->setRange(sampleMin, sampleMax);
-        m_graph->axisY()->setRange(0.0f, 2.0f);
-        m_graph->axisZ()->setRange(sampleMin, sampleMax);
-        m_graph->axisX()->setLabelAutoRotation(30);
-        m_graph->axisY()->setLabelAutoRotation(90);
-        m_graph->axisZ()->setLabelAutoRotation(30);
+    m_graph->axisX()->setLabelFormat("%.2f");
+    m_graph->axisZ()->setLabelFormat("%.2f");
+    m_graph->axisX()->setRange(sampleMin, sampleMax);
+    m_graph->axisY()->setRange(0.0f, 2.0f);
+    m_graph->axisZ()->setRange(sampleMin, sampleMax);
+    m_graph->axisX()->setLabelAutoRotation(30);
+    m_graph->axisY()->setLabelAutoRotation(90);
+    m_graph->axisZ()->setLabelAutoRotation(30);
 
-        m_graph->addSeries(m_sqrtSinSeries);
-    }
+    m_graph->addSeries(m_sqrtSinSeries);
 }
