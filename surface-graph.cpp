@@ -39,7 +39,6 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
     m_heightMapSeries->setItemLabelFormat(QStringLiteral("(@xLabel, @zLabel): @yLabel"));
     m_heightMapProxy->setValueRanges(34.0f, 40.0f, 18.0f, 24.0f);
     //! [2]
-    m_heightMapWidth = heightMapImage.width();
 
     m_graph->activeTheme()->setType(Q3DTheme::ThemeQt);
 }

@@ -38,7 +38,6 @@ private:
     float m_rangeMinZ;
     float m_stepX;
     float m_stepZ;
-    int m_heightMapWidth;
 };
 
 #endif // SURFACEGRAPH_H
