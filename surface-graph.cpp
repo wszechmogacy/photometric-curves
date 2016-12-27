@@ -11,7 +11,6 @@
 
 using namespace QtDataVisualization;
 
-const int sampleCountX = 18;
 const int sampleCountZ = 18;
 const int heightMapGridStepX = 6;
 const int heightMapGridStepZ = 6;
@@ -51,7 +50,7 @@ void SurfaceGraph::set_data(std::vector<Point> &data_table)
     for (int i = 0 ; i < sampleCountZ ; i++) {
         QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);
         int index = 0;
-        for (int j = 0; j < sampleCountX; j++) {
+        for (size_t j = 0; j < sampleCountX; j++) {
             (*newRow)[index++].setPosition(QVector3D(data[i].x, data[i].y, data[i].z));
         }
         *dataArray << newRow;
