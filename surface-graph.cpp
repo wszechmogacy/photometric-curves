@@ -101,8 +101,8 @@ void SurfaceGraph::set_graph_details(bool enable)
         m_rangeMinZ = sampleMin;
         m_stepX = (sampleMax - sampleMin) / float(sampleCountX - 1);
         m_stepZ = (sampleMax - sampleMin) / float(sampleCountZ - 1);
-        m_axisMinSliderX->setMaximum(sampleCountX - 2);
-        m_axisMinSliderX->setValue(0);
+      //  m_axisMinSliderX->setMaximum(sampleCountX - 2);
+     //   m_axisMinSliderX->setValue(0);
         m_axisMaxSliderX->setMaximum(sampleCountX - 1);
         m_axisMaxSliderX->setValue(sampleCountX - 1);
         m_axisMinSliderZ->setMaximum(sampleCountZ - 2);
@@ -111,20 +111,6 @@ void SurfaceGraph::set_graph_details(bool enable)
         m_axisMaxSliderZ->setValue(sampleCountZ - 1);
         //! [8]
     }
-}
-
-void SurfaceGraph::adjustXMax(int max)
-{
-    float maxX = m_stepX * float(max) + m_rangeMinX;
-
-    int min = m_axisMinSliderX->value();
-    if (max <= min) {
-        min = max - 1;
-        m_axisMinSliderX->setValue(min);
-    }
-    float minX = m_stepX * min + m_rangeMinX;
-
-    setAxisXRange(minX, maxX);
 }
 
 void SurfaceGraph::adjustZMin(int min)

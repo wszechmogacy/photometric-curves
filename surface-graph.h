@@ -20,7 +20,6 @@ public:
     explicit SurfaceGraph(Q3DSurface *surface, std::vector<Point> data);
     ~SurfaceGraph();
 
-    //void enableHeightMapModel(bool enable);
     void set_graph_details(bool enable);
 
     //! [0]
@@ -35,12 +34,10 @@ public:
     void setBlackToYellowGradient();
     void setGreenToRedGradient();
 
-    void setAxisMinSliderX(QSlider *slider) { m_axisMinSliderX = slider; }
     void setAxisMaxSliderX(QSlider *slider) { m_axisMaxSliderX = slider; }
     void setAxisMinSliderZ(QSlider *slider) { m_axisMinSliderZ = slider; }
     void setAxisMaxSliderZ(QSlider *slider) { m_axisMaxSliderZ = slider; }
 
-    void adjustXMax(int max);
     void adjustZMin(int min);
     void adjustZMax(int max);
     void set_data(std::vector<Point> &data_table);
@@ -56,7 +53,6 @@ private:
     QSurface3DSeries *m_heightMapSeries;
     QSurface3DSeries *m_sqrtSinSeries;
 
-    QSlider *m_axisMinSliderX;
     QSlider *m_axisMaxSliderX;
     QSlider *m_axisMinSliderZ;
     QSlider *m_axisMaxSliderZ;

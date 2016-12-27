@@ -69,8 +69,7 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     selectionVBox->addWidget(modeSliceColumnRB);
     selectionGroupBox->setLayout(selectionVBox);
 
-    QSlider *axisMinSliderX = new QSlider(Qt::Horizontal, widget);
-    axisMinSliderX->setMinimum(0);
+
     QSlider *axisMaxSliderX = new QSlider(Qt::Horizontal, widget);
     axisMaxSliderX->setMinimum(1);
     axisMaxSliderX->setTickInterval(1);
@@ -128,7 +127,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
 
     vLayout->addWidget(selectionGroupBox);
     vLayout->addWidget(new QLabel(QStringLiteral("Column range")));
-    vLayout->addWidget(axisMinSliderX);
     vLayout->addWidget(axisMaxSliderX);
     vLayout->addWidget(new QLabel(QStringLiteral("Row range")));
     vLayout->addWidget(axisMinSliderZ);
@@ -149,8 +147,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
                      modifier, &SurfaceGraph::toggleModeSliceRow);
     QObject::connect(modeSliceColumnRB,  &QRadioButton::toggled,
                      modifier, &SurfaceGraph::toggleModeSliceColumn);
-    QObject::connect(axisMaxSliderX, &QSlider::valueChanged,
-                     modifier, &SurfaceGraph::adjustXMax);
     QObject::connect(axisMinSliderZ, &QSlider::valueChanged,
                      modifier, &SurfaceGraph::adjustZMin);
     QObject::connect(axisMaxSliderZ, &QSlider::valueChanged,
@@ -162,7 +158,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     QObject::connect(gradientGtoRPB, &QPushButton::pressed,
                      modifier, &SurfaceGraph::setGreenToRedGradient);
 
-    modifier->setAxisMinSliderX(axisMinSliderX);
     modifier->setAxisMaxSliderX(axisMaxSliderX);
     modifier->setAxisMinSliderZ(axisMinSliderZ);
     modifier->setAxisMaxSliderZ(axisMaxSliderZ);
