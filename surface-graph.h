@@ -3,7 +3,6 @@
 
 #include <QtDataVisualization/Q3DSurface>
 #include <QtDataVisualization/QSurfaceDataProxy>
-#include <QtDataVisualization/QHeightMapSurfaceDataProxy>
 #include <QtDataVisualization/QSurface3DSeries>
 
 #include <algorithm>
@@ -26,9 +25,7 @@ public:
 
 private:
     Q3DSurface *m_graph;
-    QHeightMapSurfaceDataProxy *m_heightMapProxy;
     QSurfaceDataProxy *m_sqrtSinProxy;
-    QSurface3DSeries *m_heightMapSeries;
     QSurface3DSeries *m_sqrtSinSeries;
 };
 
