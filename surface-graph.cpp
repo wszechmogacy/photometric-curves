@@ -32,10 +32,6 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
     //! [0]
     set_data(data_table);
 
-    //! [2]
-    QImage heightMapImage(":/maps/mountain");
-    m_heightMapProxy = new QHeightMapSurfaceDataProxy(heightMapImage);
-
     m_graph->activeTheme()->setType(Q3DTheme::ThemeQt);
 }
 
