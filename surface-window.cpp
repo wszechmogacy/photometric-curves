@@ -42,95 +42,11 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     vLayout->setAlignment(Qt::AlignTop);
     //! [1]
 
-    widget->setWindowTitle(QStringLiteral("Surface example"));
-
-    QGroupBox *selectionGroupBox = new QGroupBox(QStringLiteral("Selection Mode"));
-
-    QRadioButton *modeNoneRB = new QRadioButton(widget);
-    modeNoneRB->setText(QStringLiteral("No selection"));
-    modeNoneRB->setChecked(false);
-
-    QRadioButton *modeItemRB = new QRadioButton(widget);
-    modeItemRB->setText(QStringLiteral("Item"));
-    modeItemRB->setChecked(false);
-
-    QRadioButton *modeSliceRowRB = new QRadioButton(widget);
-    modeSliceRowRB->setText(QStringLiteral("Row Slice"));
-    modeSliceRowRB->setChecked(false);
-
-    QRadioButton *modeSliceColumnRB = new QRadioButton(widget);
-    modeSliceColumnRB->setText(QStringLiteral("Column Slice"));
-    modeSliceColumnRB->setChecked(false);
-
-    QVBoxLayout *selectionVBox = new QVBoxLayout;
-    selectionVBox->addWidget(modeNoneRB);
-    selectionVBox->addWidget(modeItemRB);
-    selectionVBox->addWidget(modeSliceRowRB);
-    selectionVBox->addWidget(modeSliceColumnRB);
-    selectionGroupBox->setLayout(selectionVBox);
-
-    QComboBox *themeList = new QComboBox(widget);
-    themeList->addItem(QStringLiteral("Qt"));
-    themeList->addItem(QStringLiteral("Primary Colors"));
-    themeList->addItem(QStringLiteral("Digia"));
-    themeList->addItem(QStringLiteral("Stone Moss"));
-    themeList->addItem(QStringLiteral("Army Blue"));
-    themeList->addItem(QStringLiteral("Retro"));
-    themeList->addItem(QStringLiteral("Ebony"));
-    themeList->addItem(QStringLiteral("Isabelle"));
-
-    QGroupBox *colorGroupBox = new QGroupBox(QStringLiteral("Custom gradient"));
-
-    QLinearGradient grBtoY(0, 0, 1, 100);
-    grBtoY.setColorAt(1.0, Qt::black);
-    grBtoY.setColorAt(0.67, Qt::blue);
-    grBtoY.setColorAt(0.33, Qt::red);
-    grBtoY.setColorAt(0.0, Qt::yellow);
-    QPixmap pm(24, 100);
-    QPainter pmp(&pm);
-    pmp.setBrush(QBrush(grBtoY));
-    pmp.setPen(Qt::NoPen);
-    pmp.drawRect(0, 0, 24, 100);
-    QPushButton *gradientBtoYPB = new QPushButton(widget);
-    gradientBtoYPB->setIcon(QIcon(pm));
-    gradientBtoYPB->setIconSize(QSize(24, 100));
-
-    QLinearGradient grGtoR(0, 0, 1, 100);
-    grGtoR.setColorAt(1.0, Qt::darkGreen);
-    grGtoR.setColorAt(0.5, Qt::yellow);
-    grGtoR.setColorAt(0.2, Qt::red);
-    grGtoR.setColorAt(0.0, Qt::darkRed);
-    pmp.setBrush(QBrush(grGtoR));
-    pmp.drawRect(0, 0, 24, 100);
-    QPushButton *gradientGtoRPB = new QPushButton(widget);
-    gradientGtoRPB->setIcon(QIcon(pm));
-    gradientGtoRPB->setIconSize(QSize(24, 100));
-
-    QHBoxLayout *colorHBox = new QHBoxLayout;
-    colorHBox->addWidget(gradientBtoYPB);
-    colorHBox->addWidget(gradientGtoRPB);
-    colorGroupBox->setLayout(colorHBox);
+    widget->setWindowTitle(QStringLiteral("Photometric surface"));
 
     widget->show();
 
     SurfaceGraph *modifier = new SurfaceGraph(graph, data_table);
 
-    QObject::connect(modeNoneRB, &QRadioButton::toggled,
-                     modifier, &SurfaceGraph::toggleModeNone);
-    QObject::connect(modeItemRB,  &QRadioButton::toggled,
-                     modifier, &SurfaceGraph::toggleModeItem);
-    QObject::connect(modeSliceRowRB,  &QRadioButton::toggled,
-                     modifier, &SurfaceGraph::toggleModeSliceRow);
-    QObject::connect(modeSliceColumnRB,  &QRadioButton::toggled,
-                     modifier, &SurfaceGraph::toggleModeSliceColumn);
-    QObject::connect(themeList, SIGNAL(currentIndexChanged(int)),
-                     modifier, SLOT(changeTheme(int)));
-    QObject::connect(gradientBtoYPB, &QPushButton::pressed,
-                     modifier, &SurfaceGraph::setBlackToYellowGradient);
-    QObject::connect(gradientGtoRPB, &QPushButton::pressed,
-                     modifier, &SurfaceGraph::setGreenToRedGradient);
-
     modifier->set_graph_details(true);
-    modeItemRB->setChecked(true);
-    themeList->setCurrentIndex(2);
 }
