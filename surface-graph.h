@@ -30,11 +30,6 @@ private:
     QSurfaceDataProxy *m_sqrtSinProxy;
     QSurface3DSeries *m_heightMapSeries;
     QSurface3DSeries *m_sqrtSinSeries;
-
-    float m_rangeMinX;
-    float m_rangeMinZ;
-    float m_stepX;
-    float m_stepZ;
 };
 
 #endif // SURFACEGRAPH_H

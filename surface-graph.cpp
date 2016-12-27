@@ -35,10 +35,6 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
     //! [2]
     QImage heightMapImage(":/maps/mountain");
     m_heightMapProxy = new QHeightMapSurfaceDataProxy(heightMapImage);
-    m_heightMapSeries = new QSurface3DSeries(m_heightMapProxy);
-    m_heightMapSeries->setItemLabelFormat(QStringLiteral("(@xLabel, @zLabel): @yLabel"));
-    m_heightMapProxy->setValueRanges(34.0f, 40.0f, 18.0f, 24.0f);
-    //! [2]
 
     m_graph->activeTheme()->setType(Q3DTheme::ThemeQt);
 }
@@ -91,7 +87,6 @@ void SurfaceGraph::set_graph_details(bool enable)
         m_graph->axisY()->setLabelAutoRotation(90);
         m_graph->axisZ()->setLabelAutoRotation(30);
 
-        m_graph->removeSeries(m_heightMapSeries);
         m_graph->addSeries(m_sqrtSinSeries);
     }
 }
