@@ -37,6 +37,4 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     widget->show();
 
     SurfaceGraph *modifier = new SurfaceGraph(graph, data_table);
-
-    modifier->set_graph_details();
 }

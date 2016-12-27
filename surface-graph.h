@@ -18,12 +18,12 @@ public:
     explicit SurfaceGraph(Q3DSurface *surface, std::vector<Point> data);
     ~SurfaceGraph();
 
-    void set_graph_details();
-
-    void set_data(std::vector<Point> &data_table);
-    std::vector<Point> data_table;
 
 private:
+    void set_graph_details();
+    void set_data(std::vector<Point> &data_table);
+
+    std::vector<Point> data_table;
     Q3DSurface *m_graph;
     QSurfaceDataProxy *m_sqrtSinProxy;
     QSurface3DSeries *m_sqrtSinSeries;

@@ -26,6 +26,7 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
     set_data(data_table);
 
     m_graph->activeTheme()->setType(Q3DTheme::ThemeQt);
+    set_graph_details();
 }
 
 void SurfaceGraph::set_data(std::vector<Point> &data_table)
