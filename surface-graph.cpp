@@ -11,11 +11,6 @@
 
 using namespace QtDataVisualization;
 
-const int sampleCountZ = 18;
-const int heightMapGridStepX = 6;
-const int heightMapGridStepZ = 6;
-const float sampleMin = -8.0f;
-const float sampleMax = 8.0f;
 
 SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
     : m_graph(surface),
@@ -47,7 +42,7 @@ void SurfaceGraph::set_data(std::vector<Point> &data_table)
 
     QSurfaceDataArray *dataArray = new QSurfaceDataArray;
     dataArray->reserve(sampleCountZ);
-    for (int i = 0 ; i < sampleCountZ ; i++) {
+    for (size_t i = 0 ; i < sampleCountZ ; i++) {
         QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);
         int index = 0;
         for (size_t j = 0; j < sampleCountX; j++) {
@@ -67,6 +62,8 @@ SurfaceGraph::~SurfaceGraph()
 
 void SurfaceGraph::set_graph_details(bool enable)
 {
+    const float sampleMin = -8.0f;
+    const float sampleMax = 8.0f;
     if (enable) {
         m_sqrtSinSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
         m_sqrtSinSeries->setFlatShadingEnabled(true);
