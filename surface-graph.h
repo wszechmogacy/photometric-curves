@@ -7,6 +7,7 @@
 #include <QtDataVisualization/QSurface3DSeries>
 #include <QtWidgets/QSlider>
 
+#include <algorithm>
 #include <point.h>
 #include <vector>
 
@@ -39,7 +40,6 @@ public:
     void setAxisMinSliderZ(QSlider *slider) { m_axisMinSliderZ = slider; }
     void setAxisMaxSliderZ(QSlider *slider) { m_axisMaxSliderZ = slider; }
 
-    void adjustXMin(int min);
     void adjustXMax(int max);
     void adjustZMin(int min);
     void adjustZMax(int max);

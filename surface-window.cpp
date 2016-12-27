@@ -71,8 +71,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
 
     QSlider *axisMinSliderX = new QSlider(Qt::Horizontal, widget);
     axisMinSliderX->setMinimum(0);
-    axisMinSliderX->setTickInterval(1);
-    axisMinSliderX->setEnabled(true);
     QSlider *axisMaxSliderX = new QSlider(Qt::Horizontal, widget);
     axisMaxSliderX->setMinimum(1);
     axisMaxSliderX->setTickInterval(1);
@@ -151,8 +149,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
                      modifier, &SurfaceGraph::toggleModeSliceRow);
     QObject::connect(modeSliceColumnRB,  &QRadioButton::toggled,
                      modifier, &SurfaceGraph::toggleModeSliceColumn);
-    QObject::connect(axisMinSliderX, &QSlider::valueChanged,
-                     modifier, &SurfaceGraph::adjustXMin);
     QObject::connect(axisMaxSliderX, &QSlider::valueChanged,
                      modifier, &SurfaceGraph::adjustXMax);
     QObject::connect(axisMinSliderZ, &QSlider::valueChanged,

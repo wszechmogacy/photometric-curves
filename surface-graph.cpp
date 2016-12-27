@@ -113,20 +113,6 @@ void SurfaceGraph::set_graph_details(bool enable)
     }
 }
 
-void SurfaceGraph::adjustXMin(int min)
-{
-    float minX = m_stepX * float(min) + m_rangeMinX;
-
-    int max = m_axisMaxSliderX->value();
-    if (min >= max) {
-        max = min + 1;
-        m_axisMaxSliderX->setValue(max);
-    }
-    float maxX = m_stepX * max + m_rangeMinX;
-
-    setAxisXRange(minX, maxX);
-}
-
 void SurfaceGraph::adjustXMax(int max)
 {
     float maxX = m_stepX * float(max) + m_rangeMinX;
