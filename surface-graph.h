@@ -5,7 +5,6 @@
 #include <QtDataVisualization/QSurfaceDataProxy>
 #include <QtDataVisualization/QHeightMapSurfaceDataProxy>
 #include <QtDataVisualization/QSurface3DSeries>
-#include <QtWidgets/QSlider>
 
 #include <algorithm>
 #include <point.h>
@@ -32,8 +31,6 @@ private:
     QSurface3DSeries *m_heightMapSeries;
     QSurface3DSeries *m_sqrtSinSeries;
 
-    QSlider *m_axisMaxSliderX;
-    QSlider *m_axisMaxSliderZ;
     float m_rangeMinX;
     float m_rangeMinZ;
     float m_stepX;
