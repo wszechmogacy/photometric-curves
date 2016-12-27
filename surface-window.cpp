@@ -33,14 +33,12 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     container->setFocusPolicy(Qt::StrongFocus);
 
-    //! [1]
     QWidget *widget = new QWidget;
     QHBoxLayout *hLayout = new QHBoxLayout(widget);
     QVBoxLayout *vLayout = new QVBoxLayout();
     hLayout->addWidget(container, 1);
     hLayout->addLayout(vLayout);
     vLayout->setAlignment(Qt::AlignTop);
-    //! [1]
 
     widget->setWindowTitle(QStringLiteral("Photometric surface"));
 

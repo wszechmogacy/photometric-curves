@@ -26,10 +26,9 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
     m_graph->setAxisY(new QValue3DAxis);
     m_graph->setAxisZ(new QValue3DAxis);
 
-    //! [0]
     m_sqrtSinProxy = new QSurfaceDataProxy();
     m_sqrtSinSeries = new QSurface3DSeries(m_sqrtSinProxy);
-    //! [0]
+
     set_data(data_table);
 
     m_graph->activeTheme()->setType(Q3DTheme::ThemeQt);
@@ -70,7 +69,6 @@ SurfaceGraph::~SurfaceGraph()
 void SurfaceGraph::set_graph_details(bool enable)
 {
     if (enable) {
-        //! [3]
         m_sqrtSinSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
         m_sqrtSinSeries->setFlatShadingEnabled(true);
 
