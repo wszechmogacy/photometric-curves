@@ -93,72 +93,15 @@ void SurfaceGraph::set_graph_details(bool enable)
 
         m_graph->removeSeries(m_heightMapSeries);
         m_graph->addSeries(m_sqrtSinSeries);
-        //! [3]
-
-        //! [8]
-        // Reset range sliders for Sqrt&Sin
-        m_rangeMinX = sampleMin;
-        m_rangeMinZ = sampleMin;
-        m_stepX = (sampleMax - sampleMin) / float(sampleCountX - 1);
-        m_stepZ = (sampleMax - sampleMin) / float(sampleCountZ - 1);
-      //  m_axisMinSliderX->setMaximum(sampleCountX - 2);
-     //   m_axisMinSliderX->setValue(0);
-        m_axisMaxSliderX->setMaximum(sampleCountX - 1);
-        m_axisMaxSliderX->setValue(sampleCountX - 1);
-        m_axisMinSliderZ->setMaximum(sampleCountZ - 2);
-        m_axisMinSliderZ->setValue(0);
-        m_axisMaxSliderZ->setMaximum(sampleCountZ - 1);
-        m_axisMaxSliderZ->setValue(sampleCountZ - 1);
-        //! [8]
     }
 }
 
-void SurfaceGraph::adjustZMin(int min)
-{
-    float minZ = m_stepZ * float(min) + m_rangeMinZ;
 
-    int max = m_axisMaxSliderZ->value();
-    if (min >= max) {
-        max = min + 1;
-        m_axisMaxSliderZ->setValue(max);
-    }
-    float maxZ = m_stepZ * max + m_rangeMinZ;
-
-    setAxisZRange(minZ, maxZ);
-}
-
-void SurfaceGraph::adjustZMax(int max)
-{
-    float maxX = m_stepZ * float(max) + m_rangeMinZ;
-
-    int min = m_axisMinSliderZ->value();
-    if (max <= min) {
-        min = max - 1;
-        m_axisMinSliderZ->setValue(min);
-    }
-    float minX = m_stepZ * min + m_rangeMinZ;
-
-    setAxisZRange(minX, maxX);
-}
-
-//! [5]
-void SurfaceGraph::setAxisXRange(float min, float max)
-{
-    m_graph->axisX()->setRange(min, max);
-}
-
-void SurfaceGraph::setAxisZRange(float min, float max)
-{
-    m_graph->axisZ()->setRange(min, max);
-}
-//! [5]
-
-//! [6]
 void SurfaceGraph::changeTheme(int theme)
 {
     m_graph->activeTheme()->setType(Q3DTheme::Theme(theme));
 }
-//! [6]
+
 
 void SurfaceGraph::setBlackToYellowGradient()
 {

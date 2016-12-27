@@ -69,20 +69,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     selectionVBox->addWidget(modeSliceColumnRB);
     selectionGroupBox->setLayout(selectionVBox);
 
-
-    QSlider *axisMaxSliderX = new QSlider(Qt::Horizontal, widget);
-    axisMaxSliderX->setMinimum(1);
-    axisMaxSliderX->setTickInterval(1);
-    axisMaxSliderX->setEnabled(true);
-    QSlider *axisMinSliderZ = new QSlider(Qt::Horizontal, widget);
-    axisMinSliderZ->setMinimum(0);
-    axisMinSliderZ->setTickInterval(1);
-    axisMinSliderZ->setEnabled(true);
-    QSlider *axisMaxSliderZ = new QSlider(Qt::Horizontal, widget);
-    axisMaxSliderZ->setMinimum(1);
-    axisMaxSliderZ->setTickInterval(1);
-    axisMaxSliderZ->setEnabled(true);
-
     QComboBox *themeList = new QComboBox(widget);
     themeList->addItem(QStringLiteral("Qt"));
     themeList->addItem(QStringLiteral("Primary Colors"));
@@ -125,16 +111,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
     colorHBox->addWidget(gradientGtoRPB);
     colorGroupBox->setLayout(colorHBox);
 
-    vLayout->addWidget(selectionGroupBox);
-    vLayout->addWidget(new QLabel(QStringLiteral("Column range")));
-    vLayout->addWidget(axisMaxSliderX);
-    vLayout->addWidget(new QLabel(QStringLiteral("Row range")));
-    vLayout->addWidget(axisMinSliderZ);
-    vLayout->addWidget(axisMaxSliderZ);
-    vLayout->addWidget(new QLabel(QStringLiteral("Theme")));
-    vLayout->addWidget(themeList);
-    vLayout->addWidget(colorGroupBox);
-
     widget->show();
 
     SurfaceGraph *modifier = new SurfaceGraph(graph, data_table);
@@ -147,20 +123,12 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
                      modifier, &SurfaceGraph::toggleModeSliceRow);
     QObject::connect(modeSliceColumnRB,  &QRadioButton::toggled,
                      modifier, &SurfaceGraph::toggleModeSliceColumn);
-    QObject::connect(axisMinSliderZ, &QSlider::valueChanged,
-                     modifier, &SurfaceGraph::adjustZMin);
-    QObject::connect(axisMaxSliderZ, &QSlider::valueChanged,
-                     modifier, &SurfaceGraph::adjustZMax);
     QObject::connect(themeList, SIGNAL(currentIndexChanged(int)),
                      modifier, SLOT(changeTheme(int)));
     QObject::connect(gradientBtoYPB, &QPushButton::pressed,
                      modifier, &SurfaceGraph::setBlackToYellowGradient);
     QObject::connect(gradientGtoRPB, &QPushButton::pressed,
                      modifier, &SurfaceGraph::setGreenToRedGradient);
-
-    modifier->setAxisMaxSliderX(axisMaxSliderX);
-    modifier->setAxisMinSliderZ(axisMinSliderZ);
-    modifier->setAxisMaxSliderZ(axisMaxSliderZ);
 
     modifier->set_graph_details(true);
     modeItemRB->setChecked(true);
