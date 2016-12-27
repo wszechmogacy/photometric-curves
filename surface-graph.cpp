@@ -20,8 +20,8 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
     m_graph->setAxisY(new QValue3DAxis);
     m_graph->setAxisZ(new QValue3DAxis);
 
-    m_sqrtSinProxy = new QSurfaceDataProxy();
-    m_sqrtSinSeries = new QSurface3DSeries(m_sqrtSinProxy);
+    m_PhotoLayerProxy = new QSurfaceDataProxy();
+    m_PhotoLayerSeries = new QSurface3DSeries(m_PhotoLayerProxy);
 
     set_data(data_table);
 
@@ -52,7 +52,7 @@ void SurfaceGraph::set_data(std::vector<Point> &data_table)
         *dataArray << newRow;
     }
 
-    m_sqrtSinProxy->resetArray(dataArray);
+    m_PhotoLayerProxy->resetArray(dataArray);
 
 }
 
@@ -65,8 +65,8 @@ void SurfaceGraph::set_graph_details()
 {
     const float sampleMin = -8.0f;
     const float sampleMax = 8.0f;
-    m_sqrtSinSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
-    m_sqrtSinSeries->setFlatShadingEnabled(true);
+    m_PhotoLayerSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
+    m_PhotoLayerSeries->setFlatShadingEnabled(true);
 
     m_graph->axisX()->setLabelFormat("%.2f");
     m_graph->axisZ()->setLabelFormat("%.2f");
@@ -77,5 +77,5 @@ void SurfaceGraph::set_graph_details()
     m_graph->axisY()->setLabelAutoRotation(90);
     m_graph->axisZ()->setLabelAutoRotation(30);
 
-    m_graph->addSeries(m_sqrtSinSeries);
+    m_graph->addSeries(m_PhotoLayerSeries);
 }
