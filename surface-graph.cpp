@@ -40,7 +40,8 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
     m_heightMapProxy->setValueRanges(34.0f, 40.0f, 18.0f, 24.0f);
     //! [2]
     m_heightMapWidth = heightMapImage.width();
-    m_heightMapHeight = heightMapImage.height();
+
+    m_graph->activeTheme()->setType(Q3DTheme::ThemeQt);
 }
 
 void SurfaceGraph::set_data(std::vector<Point> &data_table)
@@ -94,10 +95,4 @@ void SurfaceGraph::set_graph_details(bool enable)
         m_graph->removeSeries(m_heightMapSeries);
         m_graph->addSeries(m_sqrtSinSeries);
     }
-}
-
-
-void SurfaceGraph::changeTheme(int theme)
-{
-    m_graph->activeTheme()->setType(Q3DTheme::Theme(theme));
 }

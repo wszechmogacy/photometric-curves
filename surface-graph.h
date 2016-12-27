@@ -25,9 +25,6 @@ public:
     void set_data(std::vector<Point> &data_table);
     std::vector<Point> data_table;
 
-public Q_SLOTS:
-    void changeTheme(int theme);
-
 private:
     Q3DSurface *m_graph;
     QHeightMapSurfaceDataProxy *m_heightMapProxy;
@@ -42,8 +39,6 @@ private:
     float m_stepX;
     float m_stepZ;
     int m_heightMapWidth;
-    int m_heightMapHeight;
-
 };
 
 #endif // SURFACEGRAPH_H
