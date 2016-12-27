@@ -4,6 +4,7 @@
 #include <QtDataVisualization/Q3DTheme>
 #include <QtGui/QImage>
 #include <QtCore/qmath.h>
+#include <utility>
 #include <vector>
 #include <string>
 
@@ -63,16 +64,26 @@ SurfaceGraph::~SurfaceGraph()
 
 void SurfaceGraph::set_graph_details()
 {
-    const float sampleMin = -8.0f;
+    auto el_x = std::minmax_element(data_table.begin(), data_table.end(),
+          [](const Point &px, const Point &py){
+              return px.x < py.x;
+          }
+    );
+    const float sampleMinX = el_x.first()->x;
+    //const float sampleMinX = min_el_x->x;
+
+
+
+    const float sampleMinZ = -8.0f;
     const float sampleMax = 8.0f;
     m_PhotoLayerSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
     m_PhotoLayerSeries->setFlatShadingEnabled(true);
 
     m_graph->axisX()->setLabelFormat("%.2f");
     m_graph->axisZ()->setLabelFormat("%.2f");
-    m_graph->axisX()->setRange(sampleMin, sampleMax);
+    m_graph->axisX()->setRange(sampleMinX, sampleMax);
     m_graph->axisY()->setRange(0.0f, 2.0f);
-    m_graph->axisZ()->setRange(sampleMin, sampleMax);
+    m_graph->axisZ()->setRange(sampleMinZ, sampleMax);
     m_graph->axisX()->setLabelAutoRotation(30);
     m_graph->axisY()->setLabelAutoRotation(90);
     m_graph->axisZ()->setLabelAutoRotation(30);
