@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QGroupBox" name="classesInformationGroupBox">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -27,54 +27,66 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="studentNameLayout">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="studentNameLabel">
           <property name="text">
            <string>Student Name</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="studentNameField">
+          <property name="text">
+           <string>Tomasz Wilk</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QHBoxLayout" name="classesDateLayout">
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="classesDateLabel">
         <property name="text">
          <string>Date of classes</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_2"/>
+       <widget class="QLineEdit" name="classesDateField">
+        <property name="text">
+         <string>13. December 2016</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="studentGroupLayout">
       <item>
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="studentGroupLabel">
         <property name="text">
          <string>Student Group</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_3"/>
+       <widget class="QLineEdit" name="studentGroupField">
+        <property name="text">
+         <string>Tuesday - 14:15</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QGroupBox" name="groupBox_2">
+  <widget class="QGroupBox" name="lightSourceGroupBox">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -92,7 +104,7 @@
    <property name="title">
     <string>Light Source Information</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -101,23 +113,25 @@
       <height>31</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <layout class="QHBoxLayout" name="lightSouceLayout">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="lightSourceLabel">
        <property name="text">
         <string>Source Name</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_10"/>
+      <widget class="QLineEdit" name="lightSourceField">
+       <property name="text">
+        <string>Oprawa 1</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
-   <zorder>layoutWidget</zorder>
-   <zorder>lineEdit_10</zorder>
   </widget>
-  <widget class="QGroupBox" name="groupBox_3">
+  <widget class="QGroupBox" name="enviromentSettingsGroupBox">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -134,71 +148,73 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>484</width>
+      <width>486</width>
       <height>251</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <layout class="QVBoxLayout" name="enviromentSettingsLayout">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <layout class="QHBoxLayout" name="stepInParallelLayout">
        <item>
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="stepInParallelLayout_2">
+         <property name="text">
+          <string>Step in parallel direction</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="stepParallelComboBox"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="stepInMeridianLayout">
+       <item>
+        <widget class="QLabel" name="stepInMeridianLabel">
+         <property name="text">
+          <string>Step in meridian direction</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="stepInMeridianComboBox"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="unitsLayou">
+       <item>
+        <widget class="QLabel" name="unitsLabel">
          <property name="text">
           <string>Units</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox"/>
+        <widget class="QComboBox" name="unitsComboBox"/>
        </item>
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <layout class="QHBoxLayout" name="radiusLayout">
        <item>
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="radiusLabel">
          <property name="text">
           <string>Radius of measured sphere</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_9"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_7">
-       <item>
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>Number of Points on parallel</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit_8"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_8">
-       <item>
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Number of Points on meridian</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit_7"/>
+        <widget class="QLineEdit" name="radiusField"/>
        </item>
       </layout>
      </item>
     </layout>
    </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder></zorder>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="startProjectButton">
    <property name="geometry">
     <rect>
      <x>230</x>
