@@ -62,28 +62,54 @@ SurfaceGraph::~SurfaceGraph()
     delete m_graph;
 }
 
-void SurfaceGraph::set_graph_details()
+
+void SurfaceGraph::set_range_x()
 {
-    auto el_x = std::minmax_element(data_table.begin(), data_table.end(),
+    const double scale_factor = 1.5;
+    auto range = std::minmax_element(data_table.begin(), data_table.end(),
           [](const Point &px, const Point &py){
               return px.x < py.x;
           }
     );
-    const float sampleMinX = el_x.first()->x;
-    //const float sampleMinX = min_el_x->x;
+    m_graph->axisX()->setRange(scale_factor * range.first->x, scale_factor * range.second->x);
+}
 
 
+void SurfaceGraph::set_range_y()
+{
+    const double scale_factor = 1.5;
+    auto range = std::minmax_element(data_table.begin(), data_table.end(),
+          [](const Point &px, const Point &py){
+              return px.y < py.y;
+          }
+    );
+    m_graph->axisY()->setRange(scale_factor * range.first->y, scale_factor * range.second->y);
+}
 
-    const float sampleMinZ = -8.0f;
-    const float sampleMax = 8.0f;
+
+void SurfaceGraph::set_range_z()
+{
+    const double scale_factor = 1.5;
+    auto range = std::minmax_element(data_table.begin(), data_table.end(),
+          [](const Point &px, const Point &py){
+              return px.z < py.z;
+          }
+    );
+    m_graph->axisZ()->setRange(scale_factor * range.first->z, scale_factor * range.second->z);
+}
+
+
+void SurfaceGraph::set_graph_details()
+{
+    set_range_x();
+    set_range_y();
+    set_range_z();
+
     m_PhotoLayerSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
     m_PhotoLayerSeries->setFlatShadingEnabled(true);
 
     m_graph->axisX()->setLabelFormat("%.2f");
     m_graph->axisZ()->setLabelFormat("%.2f");
-    m_graph->axisX()->setRange(sampleMinX, sampleMax);
-    m_graph->axisY()->setRange(0.0f, 2.0f);
-    m_graph->axisZ()->setRange(sampleMinZ, sampleMax);
     m_graph->axisX()->setLabelAutoRotation(30);
     m_graph->axisY()->setLabelAutoRotation(90);
     m_graph->axisZ()->setLabelAutoRotation(30);

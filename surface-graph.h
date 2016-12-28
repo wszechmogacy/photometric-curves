@@ -21,6 +21,9 @@ public:
 private:
     void set_graph_details();
     void set_data(std::vector<Point> &data_table);
+    void set_range_x();
+    void set_range_y();
+    void set_range_z();
 
     std::vector<Point> data_table;
     Q3DSurface *m_graph;
