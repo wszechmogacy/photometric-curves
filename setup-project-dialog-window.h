@@ -15,6 +15,9 @@ public:
     explicit SetupProjectDialogWindow(QWidget *parent = 0);
     ~SetupProjectDialogWindow();
 
+private slots:
+    void on_startProjectButton_clicked();
+
 private:
     Ui::SetupProjectDialogWindow *ui;
 };

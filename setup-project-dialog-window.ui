@@ -163,7 +163,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="stepParallelComboBox"/>
+        <widget class="QComboBox" name="stepParallelComboBox">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -205,7 +209,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="radiusField"/>
+        <widget class="QLineEdit" name="radiusField">
+         <property name="text">
+          <string>210</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

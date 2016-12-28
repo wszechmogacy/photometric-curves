@@ -6,9 +6,21 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(QWidget *parent) :
     ui(new Ui::SetupProjectDialogWindow)
 {
     ui->setupUi(this);
+
+    const QStringList unitsItems = {"uW/cm^2", "W/m^2", "lm/m^2"};
+    ui->unitsComboBox->addItems(unitsItems);
+
+    const QStringList stepParalleItems = {"5", "10", "15"};
+    ui->stepParallelComboBox->addItems(stepParalleItems);
+    ui->stepInMeridianComboBox->addItems(stepParalleItems);
 }
 
 SetupProjectDialogWindow::~SetupProjectDialogWindow()
 {
     delete ui;
+}
+
+void SetupProjectDialogWindow::on_startProjectButton_clicked()
+{
+
 }
