@@ -18,4 +18,5 @@ void IntroductionDialogWindow::on_createProjectButton_clicked()
 {
     SetupProjectDialogWindow window;
     window.exec();
+    close();
 }

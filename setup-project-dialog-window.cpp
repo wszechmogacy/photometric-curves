@@ -7,6 +7,8 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //connect(this, SIGNAL(close()), this->parent(), SLOT(destroy()));
+
     const QStringList unitsItems = {"uW/cm^2", "W/m^2", "lm/m^2"};
     ui->unitsComboBox->addItems(unitsItems);
 
@@ -22,5 +24,5 @@ SetupProjectDialogWindow::~SetupProjectDialogWindow()
 
 void SetupProjectDialogWindow::on_startProjectButton_clicked()
 {
-
+    close();
 }
