@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "project-settings.h"
 #include "point.h"
+
+
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +31,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     std::vector<Point> getTableData();
+    ProjectSettings project_settings;
+
 };
 
 #endif // MAINWINDOW_H

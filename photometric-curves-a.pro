@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     introduction-dialog-window.cpp \
     setup-project-dialog-window.cpp \
     surface-window.cpp \
-    surface-graph.cpp
+    surface-graph.cpp \
+    project-settings.cpp
 
 HEADERS  += mainwindow.h \
     polar-graph-pixmaps.h \
@@ -36,7 +37,8 @@ HEADERS  += mainwindow.h \
     introduction-dialog-window.h \
     setup-project-dialog-window.h \
     surface-window.h \
-    surface-graph.h
+    surface-graph.h \
+    project-settings.h
 
 FORMS    += mainwindow.ui \
     polar-graph-window.ui \

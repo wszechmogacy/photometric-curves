@@ -1,10 +1,12 @@
 #include "introduction-dialog-window.h"
 #include "setup-project-dialog-window.h"
 #include "ui_introduction-dialog-window.h"
+#include "project-settings.h"
 
-IntroductionDialogWindow::IntroductionDialogWindow(QWidget *parent) :
+IntroductionDialogWindow::IntroductionDialogWindow(ProjectSettings *proj_settings, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::IntroductionDialogWindow)
+    ui(new Ui::IntroductionDialogWindow),
+    project_settings(proj_settings)
 {
     ui->setupUi(this);
 }
@@ -16,7 +18,7 @@ IntroductionDialogWindow::~IntroductionDialogWindow()
 
 void IntroductionDialogWindow::on_createProjectButton_clicked()
 {
-    SetupProjectDialogWindow window;
+    SetupProjectDialogWindow window(project_settings);
     window.exec();
     close();
 }

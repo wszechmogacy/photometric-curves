@@ -3,6 +3,7 @@
 #include <QWidget>
 #include <QDialog>
 #include <QPointF>
+#include <QString>
 #include <QVector2D>
 #include <vector>
 
@@ -14,9 +15,12 @@
 #include "ui_mainwindow.h"
 #include "polar-graph-window.h"
 #include "point.h"
+#include "project-settings.h"
 #include "surface-window.h"
 #include "introduction-dialog-window.h"
 #include "ui_introduction-dialog-window.h"
+
+#include <QDebug>
 
 const int PARALLEL_POINTS_COUNT = 36;
 const int MERIDIAN_POINTS_COUNT = 9;
@@ -27,8 +31,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {setWindowTitle("Photometric Curves Calculator");
     ui->setupUi(this);
 
-    IntroductionDialogWindow intro;
+    IntroductionDialogWindow intro(&project_settings);
     intro.exec();
+    qDebug() << project_settings.student_name;
 
     ui->dataTable->setRowCount(PARALLEL_POINTS_COUNT);
     ui->dataTable->setColumnCount(MERIDIAN_POINTS_COUNT + 1);
