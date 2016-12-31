@@ -32,7 +32,8 @@ private:
     Ui::MainWindow *ui;
     std::vector<Point> getTableData();
     ProjectSettings project_settings;
-
+    unsigned rows_count;
+    unsigned columns_count;
 };
 
 #endif // MAINWINDOW_H
