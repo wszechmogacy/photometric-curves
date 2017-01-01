@@ -14,7 +14,7 @@
    <cursorShape>CrossCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Lumnious Flux</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
