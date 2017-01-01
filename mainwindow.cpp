@@ -140,23 +140,20 @@ void MainWindow::on_calculateAreaButton_clicked()
 std::vector<Point> MainWindow::getTableData()
 {
     std::vector<Point> table_data;
-    size_t row_count = ui->dataTable->rowCount();
-    size_t column_count = ui->dataTable->columnCount();
 
-    for(size_t row = 0; row < row_count; row++) {
-        for(size_t column = 0; column < column_count; column++) {
-            QString horizontalName = ui->dataTable->horizontalHeaderItem(column)->text();
-            QString verticalName = ui->dataTable->verticalHeaderItem(row)->text();
+    for(size_t row = 0; row < rows_count; row++) {
+        for(size_t column = 0; column < columns_count; column++) {
+            QString meridianName = ui->dataTable->horizontalHeaderItem(column)->text();
+            QString parallelName = ui->dataTable->verticalHeaderItem(row)->text();
             QString valueName =  ui->dataTable->item(row, column)->text();
             //TODO: handle return values from toDouble (
-            table_data.emplace_back(horizontalName.toDouble(),
-                                    verticalName.toDouble(),
+            table_data.emplace_back(parallelName.toDouble(),
+                                    meridianName.toDouble(),
                                     valueName.toDouble()
                                     );
         }
     }
     return table_data;
-
 }
 
 void MainWindow::on_draw3DplotButton_clicked()

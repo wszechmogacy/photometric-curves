@@ -19,9 +19,9 @@ Point::Point(double lon_angle_deg, double lat_angle_deg, double radial) :
     lon_angle_deg(lon_angle_deg), lat_angle_deg(lat_angle_deg), radial(radial),
     lon_angle_rad(lon_angle_deg * 2 * ConstNumbers::pi / 360),
     lat_angle_rad(lat_angle_deg * 2 * ConstNumbers::pi / 360),
-    x(radial * cos(lat_angle_rad) * cos(lon_angle_rad)),
-    y(radial * cos(lat_angle_rad) * sin(lon_angle_rad)),
-    z(radial * sin(lat_angle_rad))
+    x(radial * sin(lat_angle_rad) * cos(lon_angle_rad)),
+    y(radial * sin(lat_angle_rad) * sin(lon_angle_rad)),
+    z(radial * cos(lat_angle_rad))
 {
     //obslugla bledow. czy wszystkie sie dalo skonwertowac do double/double. Wybrac odpowiedni typ
     //https://pl.wikipedia.org/wiki/Uk%C5%82ad_wsp%C3%B3%C5%82rz%C4%99dNych_sferycznych
