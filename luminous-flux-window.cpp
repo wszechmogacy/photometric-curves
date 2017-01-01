@@ -3,11 +3,13 @@
 #include "luminous-flux-window.h"
 #include "ui_luminous-flux-window.h"
 
-LuminousFluxWindow::LuminousFluxWindow(QWidget *parent) :
+LuminousFluxWindow::LuminousFluxWindow(double flux, QString units, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LuminousFluxWindow)
 {
     ui->setupUi(this);
+    QString window_txt = "Luminous Flux = " + QString::number(flux, 'g', 8) + " " + units;
+    ui->luminousFluxtxt->setText(window_txt);
 }
 
 LuminousFluxWindow::~LuminousFluxWindow()
@@ -18,15 +20,4 @@ LuminousFluxWindow::~LuminousFluxWindow()
 void LuminousFluxWindow::on_CloseButton_clicked()
 {
     this->close();
-}
-
-void LuminousFluxWindow::set_luminous_flux_value(double flux)
-{
-    //TODO: format to not show power values
-    ui->luminousFluxValue->setText(QString::number(flux));
-}
-
-void LuminousFluxWindow::set_luminous_flux_units(QString units)
-{
-    ui->luminousUnitsName->setText(units);
 }

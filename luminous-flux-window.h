@@ -12,11 +12,8 @@ class LuminousFluxWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit LuminousFluxWindow(QWidget *parent = 0);
+    explicit LuminousFluxWindow(double flux, QString units, QWidget *parent = 0);
     ~LuminousFluxWindow();
-
-    void set_luminous_flux_value(double flux);
-    void set_luminous_flux_units(QString units);
 
 private slots:
     void on_CloseButton_clicked();

@@ -10,6 +10,9 @@
     <height>174</height>
    </rect>
   </property>
+  <property name="cursor">
+   <cursorShape>CrossCursor</cursorShape>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -26,23 +29,21 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="luminousFluxName">
-        <property name="text">
-         <string>Luminous Flux = </string>
+       <widget class="QLabel" name="luminousFluxtxt">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="luminousFluxValue">
         <property name="text">
          <string/>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="luminousUnitsName">
-        <property name="text">
-         <string/>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

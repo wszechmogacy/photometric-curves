@@ -130,11 +130,7 @@ void MainWindow::on_calculateAreaButton_clicked()
     LuminousFluxCalculator flux_calculator(1.0);
     double luminous_flux = flux_calculator(table_data, columns_count);
 
-    LuminousFluxWindow window;
-    window.set_luminous_flux_value(luminous_flux);
-
-
-    window.set_luminous_flux_units(project_settings.units);
+    LuminousFluxWindow window(luminous_flux, project_settings.units);
     window.exec();
 }
 
