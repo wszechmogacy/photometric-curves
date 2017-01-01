@@ -1,7 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QModelIndexList>
 #include <QMainWindow>
+
 #include "project-settings.h"
 #include "point.h"
 
@@ -34,6 +36,8 @@ private:
     ProjectSettings project_settings;
     unsigned rows_count;
     unsigned columns_count;
+    QList<QPointF> get_meridian_values(QModelIndexList selection, int i);
+    QList<QPointF> get_meridian_section_values(int i, QModelIndexList selection);
 };
 
 #endif // MAINWINDOW_H

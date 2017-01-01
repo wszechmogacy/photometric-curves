@@ -9,8 +9,6 @@
 #include "polar-graph-plot.h"
 
 
-const QwtInterval azimuthInterval( 0.0, 360.0 );
-
 class Data: public QwtSeriesData<QwtPointPolar>
 {
 public:
@@ -64,6 +62,7 @@ PolarGraphPlot::PolarGraphPlot( QList<QPointF> &plot_data, QWidget *parent ):
     setPlotBackground( Qt::darkBlue );
 
     // scales
+    const QwtInterval azimuthInterval( 0.0, 360.0 );
     setScale( QwtPolar::Azimuth,
         azimuthInterval.minValue(), azimuthInterval.maxValue(),
         azimuthInterval.width() / 12 );

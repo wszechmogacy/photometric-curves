@@ -88,22 +88,32 @@ void MainWindow::on_horizontalSectionButton_clicked()
     }
 }
 
+QList<QPointF> MainWindow::get_meridian_section_values(int i, QModelIndexList selection)
+{
+    QModelIndex index = selection.at(i);
+
+    QList<QPointF> vec;
+    for (unsigned angle = 0; angle < 90; angle += project_settings.step_in_meridian) {
+        QString next_val_txt = ui->dataTable->item(index.row(), angle / project_settings.step_in_meridian)->text();
+        QString prev_val_txt = ui->dataTable->item( ui->dataTable->rowCount() - index.row(), angle / project_settings.step_in_meridian)->text();
+        QLocale c(QLocale::C);
+        double next_val = c.toDouble(next_val_txt);
+        double prev_val = c.toDouble(prev_val_txt);
+        vec.append(QPointF(next_val, angle));
+        vec.prepend(QPointF(prev_val, (-1.0) * angle));
+    }
+
+    return vec;
+}
+
 void MainWindow::on_verticalSectionButton_clicked()
 {
     QModelIndexList selection = ui->dataTable->selectionModel()->selectedRows();
 
     for(int i=0; i< selection.count(); i++)
     {
-        QModelIndex index = selection.at(i);
+        QList<QPointF> vec = get_meridian_section_values(i, selection);
 
-        QList<QPointF> vec;
-        for (int j = 0; j <= columns_count; j++) {
-            QString txt = ui->dataTable->item(index.row(), j)->text();
-            QLocale c(QLocale::C);
-            double d = c.toDouble(txt);
-
-            vec.append(QPointF(d, 90 / columns_count * j));
-        }
         PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
         polar_graph->resize(800,600);
         polar_graph->show();
