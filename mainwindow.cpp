@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     for(size_t col = 0; col <= columns_count; col++) {
         for(size_t row = 0; row < rows_count; row++) {
-            ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
+          //  ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
              ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
         }
     }
@@ -124,16 +124,17 @@ void MainWindow::on_calculateAreaButton_clicked()
 {
     //get data from table
     auto table_data = MainWindow::getTableData();
-    const double sphere_radius = 1.0;
-    LuminousFluxCalculator flux_calculator(sphere_radius);
-    double luminous_flux = flux_calculator(table_data, columns_count, rows_count);
-    //show window with value
-    qDebug() << "calculated flux =  " << QString::number(luminous_flux);
-    QString units = "W/m^2";
+    const double sphere_radius = project_settings.radius;
+        //TODO: set radius as below, for now, I am using radius=1 to debug calculation
+    //LuminousFluxCalculator flux_calculator(sphere_radius);
+    LuminousFluxCalculator flux_calculator(1.0);
+    double luminous_flux = flux_calculator(table_data, columns_count);
 
     LuminousFluxWindow window;
     window.set_luminous_flux_value(luminous_flux);
-    window.set_luminous_flux_units(units);
+
+
+    window.set_luminous_flux_units(project_settings.units);
     window.exec();
 }
 
@@ -152,7 +153,11 @@ std::vector<Point> MainWindow::getTableData()
                                     valueName.toDouble()
                                     );
         }
+        //TODO : hack to fill with "estimated value at the end of range"
+        // please replace this with esitmation
+        table_data.emplace_back(ui->dataTable->verticalHeaderItem(row)->text().toDouble(), 90.0, 1.0);
     }
+
     return table_data;
 }
 
