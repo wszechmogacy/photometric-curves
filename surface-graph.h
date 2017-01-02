@@ -17,6 +17,8 @@ class SurfaceGraph : public QObject
 public:
     explicit SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigned columns_count, unsigned rows_count);
     ~SurfaceGraph();
+    void rotateX(int rotation);
+    void rotateY(int rotation);
 
 private:
     void set_graph_details();
@@ -31,6 +33,8 @@ private:
     Q3DSurface *m_graph;
     QSurfaceDataProxy *m_PhotoLayerProxy;
     QSurface3DSeries *m_PhotoLayerSeries;
+    float m_xRotation;
+    float m_yRotation;
 };
 
 #endif // SURFACEGRAPH_H

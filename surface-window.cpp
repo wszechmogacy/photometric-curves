@@ -1,7 +1,9 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QMessageBox>
+#include <QtWidgets/QSlider>
 #include <QtGui/QScreen>
 
 #include "surface-window.h"
@@ -34,7 +36,35 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
 
     widget->setWindowTitle(QStringLiteral("Photometric surface"));
 
-    widget->show();
+
+    //add qsliders
+        QSlider *rotationSliderX = new QSlider(Qt::Horizontal, widget);
+        rotationSliderX->setTickInterval(30);
+        rotationSliderX->setTickPosition(QSlider::TicksBelow);
+        rotationSliderX->setMinimum(-180);
+        rotationSliderX->setValue(0);
+        rotationSliderX->setMaximum(180);
+        QSlider *rotationSliderY = new QSlider(Qt::Horizontal, widget);
+        rotationSliderY->setTickInterval(15);
+        rotationSliderY->setTickPosition(QSlider::TicksAbove);
+        rotationSliderY->setMinimum(-90);
+        rotationSliderY->setValue(0);
+        rotationSliderY->setMaximum(90);
+
+        //add qsliders to right place in window
+        vLayout->addWidget(new QLabel(QStringLiteral("Rotate horizontally")));
+        vLayout->addWidget(rotationSliderX, 0, Qt::AlignTop);
+        vLayout->addWidget(new QLabel(QStringLiteral("Rotate vertically")));
+        vLayout->addWidget(rotationSliderY, 0, Qt::AlignTop);
+
 
     SurfaceGraph *modifier = new SurfaceGraph(graph, data_table, columns_count, rows_count);
+
+    //connect sliders to slots
+    QObject::connect(rotationSliderX, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateX);
+    QObject::connect(rotationSliderY, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateY);
+
+
+     widget->show();
+
 }

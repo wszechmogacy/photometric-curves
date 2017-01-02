@@ -17,7 +17,9 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigne
     : m_graph(surface),
     data_table(data),
     sampleCountOnMeridian(columns_count + 1),
-    sampleCountOnParallel(rows_count + 1)
+    sampleCountOnParallel(rows_count + 1),
+    m_xRotation(0.0f),
+    m_yRotation(0.0f)
 {
     m_graph->setAxisX(new QValue3DAxis);
     m_graph->setAxisY(new QValue3DAxis);
@@ -119,4 +121,16 @@ void SurfaceGraph::set_graph_details()
     m_graph->axisZ()->setLabelAutoRotation(30);
 
     m_graph->addSeries(m_PhotoLayerSeries);
+}
+
+
+void SurfaceGraph::rotateX(int rotation)
+{
+    m_xRotation = rotation;
+    m_graph->scene()->activeCamera()->setCameraPosition(m_xRotation, m_yRotation);
+}
+void SurfaceGraph::rotateY(int rotation)
+{
+    m_yRotation = rotation;
+    m_graph->scene()->activeCamera()->setCameraPosition(m_xRotation, m_yRotation);
 }
