@@ -13,9 +13,11 @@
 using namespace QtDataVisualization;
 
 
-SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
+SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigned columns_count, unsigned rows_count)
     : m_graph(surface),
-    data_table(data)
+    data_table(data),
+    sampleCountOnMeridian(columns_count + 1),
+    sampleCountOnParallel(rows_count + 1)
 {
     m_graph->setAxisX(new QValue3DAxis);
     m_graph->setAxisY(new QValue3DAxis);
@@ -33,22 +35,23 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data)
 void SurfaceGraph::set_data(std::vector<Point> &data_table)
 {
     std::vector<Point> data(data_table);
-    auto sampleCountZ = data.size();
+    auto sampleCountAll = data.size();
     std::sort(data.begin(), data.end());
-    for (auto zm : data)
-    {
-        qDebug() << QString::number(zm.lat_angle_deg) << " " << QString::number(zm.lon_angle_deg);
-    }
-
-    size_t sampleCountX = 9;
 
     QSurfaceDataArray *dataArray = new QSurfaceDataArray;
-    dataArray->reserve(sampleCountZ);
-    for (size_t i = 0 ; i < sampleCountZ ; i++) {
-        QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);
+    dataArray->reserve(sampleCountAll);
+    for (unsigned i = 0; i < sampleCountOnParallel; i++) {
+        QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountOnParallel);
         int index = 0;
-        for (size_t j = 0; j < sampleCountX; j++) {
-            (*newRow)[index++].setPosition(QVector3D(data[i].x, data[i].y, data[i].z));
+        for (unsigned j = 0; j < sampleCountOnMeridian; j++) {
+            size_t pos = i * sampleCountOnMeridian + j;
+            (*newRow)[index].setPosition(QVector3D(data[pos].x, data[pos].y, data[pos].z));
+            qDebug() << QString::number(pos) << ": "
+                     << QString::number(index)
+                     << QString::number(data[pos].lat_angle_deg, 'g', 8)
+                     << QString::number(data[pos].lon_angle_deg, 'g', 8)
+                     << QString::number(data[pos].z, 'g', 8);
+            index++;
         }
         *dataArray << newRow;
     }
@@ -110,6 +113,7 @@ void SurfaceGraph::set_graph_details()
 
     m_graph->axisX()->setLabelFormat("%.2f");
     m_graph->axisZ()->setLabelFormat("%.2f");
+
     m_graph->axisX()->setLabelAutoRotation(30);
     m_graph->axisY()->setLabelAutoRotation(90);
     m_graph->axisZ()->setLabelAutoRotation(30);
