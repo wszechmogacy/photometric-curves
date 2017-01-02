@@ -20,6 +20,8 @@ public:
     void rotateX(int rotation);
     void rotateY(int rotation);
 
+    void convert_point_on_meridian(std::vector<Point> data, unsigned i, int &index, QSurfaceDataRow *newRow, unsigned j);
+
 private:
     void set_graph_details();
     void set_data(std::vector<Point> &data_table);

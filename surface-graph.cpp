@@ -17,7 +17,7 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigne
     : m_graph(surface),
     data_table(data),
     sampleCountOnMeridian(columns_count + 1),
-    sampleCountOnParallel(rows_count + 1),
+    sampleCountOnParallel(rows_count),
     m_xRotation(0.0f),
     m_yRotation(0.0f)
 {
@@ -34,6 +34,18 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigne
     set_graph_details();
 }
 
+void SurfaceGraph::convert_point_on_meridian(std::vector<Point> data, unsigned i, int &index, QSurfaceDataRow *newRow, unsigned j)
+{
+    size_t pos = i * sampleCountOnMeridian + j;
+    (*newRow)[index].setPosition(QVector3D(data[pos].x, data[pos].y, data[pos].z));
+    qDebug() << QString::number(pos) << ": "
+             << QString::number(index)
+             << QString::number(data[pos].lat_angle_deg, 'g', 8)
+             << QString::number(data[pos].lon_angle_deg, 'g', 8)
+             << QString::number(data[pos].z, 'g', 8);
+    index++;
+}
+
 void SurfaceGraph::set_data(std::vector<Point> &data_table)
 {
     std::vector<Point> data(data_table);
@@ -46,17 +58,17 @@ void SurfaceGraph::set_data(std::vector<Point> &data_table)
         QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountOnParallel);
         int index = 0;
         for (unsigned j = 0; j < sampleCountOnMeridian; j++) {
-            size_t pos = i * sampleCountOnMeridian + j;
-            (*newRow)[index].setPosition(QVector3D(data[pos].x, data[pos].y, data[pos].z));
-            qDebug() << QString::number(pos) << ": "
-                     << QString::number(index)
-                     << QString::number(data[pos].lat_angle_deg, 'g', 8)
-                     << QString::number(data[pos].lon_angle_deg, 'g', 8)
-                     << QString::number(data[pos].z, 'g', 8);
-            index++;
+            convert_point_on_meridian(data, i, index, newRow, j);
         }
         *dataArray << newRow;
     }
+    //workaround to close the surface (add 0 parallel at the end of curve
+    QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountOnParallel);
+    int index = 0;
+    for (unsigned j = 0; j < sampleCountOnMeridian; j++) {
+        convert_point_on_meridian(data, 0, index, newRow, j);
+    }
+    *dataArray << newRow;
 
     m_PhotoLayerProxy->resetArray(dataArray);
 
