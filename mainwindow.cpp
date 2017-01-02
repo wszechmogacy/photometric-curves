@@ -160,5 +160,5 @@ std::vector<Point> MainWindow::getTableData()
 void MainWindow::on_draw3DplotButton_clicked()
 {
     auto table_data = MainWindow::getTableData();
-    SurfaceWindow *window = new SurfaceWindow(table_data);
+    SurfaceWindow *window = new SurfaceWindow(table_data, columns_count, rows_count);
 }

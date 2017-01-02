@@ -7,7 +7,7 @@
 #include "surface-window.h"
 #include "surface-graph.h"
 
-SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
+SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count)
 {
     Q3DSurface *graph = new Q3DSurface();
     QWidget *container = QWidget::createWindowContainer(graph);
@@ -36,5 +36,5 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table)
 
     widget->show();
 
-    SurfaceGraph *modifier = new SurfaceGraph(graph, data_table);
+    SurfaceGraph *modifier = new SurfaceGraph(graph, data_table, columns_count, rows_count);
 }

@@ -8,6 +8,7 @@ LuminousFluxWindow::LuminousFluxWindow(double flux, QString units, QWidget *pare
     ui(new Ui::LuminousFluxWindow)
 {
     ui->setupUi(this);
+    ui->luminousFluxtxt->setTextInteractionFlags(Qt::TextSelectableByMouse);
     QString window_txt = "Luminous Flux = " + QString::number(flux, 'g', 8) + " " + units;
     ui->luminousFluxtxt->setText(window_txt);
 }
