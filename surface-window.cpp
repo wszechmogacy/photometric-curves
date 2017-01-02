@@ -64,6 +64,8 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
     QObject::connect(rotationSliderX, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateX);
     QObject::connect(rotationSliderY, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateY);
 
+    //set initial rotation of layer
+    rotationSliderX->setValue(-130);
 
      widget->show();
 
