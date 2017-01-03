@@ -89,6 +89,7 @@ void SurfaceWindow::print_to_pdf()
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFileName("photometric_surface.pdf");
     printer.setOrientation(QPrinter::Landscape);
+    printer.setResolution(300);
 
     QPrintDialog *dialog = new QPrintDialog(&printer);
     if (dialog->exec() == QDialog::Accepted) {
