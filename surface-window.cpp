@@ -1,7 +1,9 @@
 #include <QImage>
+#include <QPageLayout>
 #include <QPainter>
 #include <QPrinter>
 #include <QPrintDialog>
+#include <QSize>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -86,14 +88,24 @@ void SurfaceWindow::print_to_pdf()
 {
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFileName("photometric_surface.pdf");
+    printer.setOrientation(QPrinter::Landscape);
 
     QPrintDialog *dialog = new QPrintDialog(&printer);
     if (dialog->exec() == QDialog::Accepted) {
 
         QPainter painter;
         painter.begin(&printer);
-        QImage img = graph->renderToImage();
-        painter.drawImage(0,0, img);
+
+        double xscale = printer.pageRect().width()/double(graph->width());
+                double yscale = printer.pageRect().height()/double(graph->height());
+                double scale = qMin(xscale, yscale);
+                painter.translate(printer.paperRect().x() + printer.pageRect().width()/2,
+                                   printer.paperRect().y() + printer.pageRect().height()/2);
+                painter.scale(scale, scale);
+
+        QImage img = graph->renderToImage(0, QSize(graph->width(),graph->height()));
+
+        painter.drawImage(-graph->width() / 2, -graph->height() / 2, img);
         painter.end();
     }
 
