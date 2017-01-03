@@ -4,6 +4,9 @@
 #include <QtDataVisualization/Q3DTheme>
 #include <QtGui/QImage>
 #include <QtCore/qmath.h>
+#include <QPainter>
+#include <QPrinter>
+#include <QPrintDialog>
 #include <utility>
 #include <vector>
 #include <string>
@@ -147,7 +150,4 @@ void SurfaceGraph::rotateY(int rotation)
     m_graph->scene()->activeCamera()->setCameraPosition(m_xRotation, m_yRotation);
 }
 
-void SurfaceGraph::print_to_pdf()
-{
-    qDebug() << "printinf to pdf";
-}
+

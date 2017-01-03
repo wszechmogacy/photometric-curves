@@ -1,3 +1,7 @@
+#include <QImage>
+#include <QPainter>
+#include <QPrinter>
+#include <QPrintDialog>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -12,7 +16,7 @@
 
 SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count)
 {
-    Q3DSurface *graph = new Q3DSurface();
+    graph = new Q3DSurface();
     QWidget *container = QWidget::createWindowContainer(graph);
 
     if (!graph->hasContext()) {
@@ -68,11 +72,29 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
     //connect sliders to slots
     QObject::connect(rotationSliderX, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateX);
     QObject::connect(rotationSliderY, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateY);
-    QObject::connect(toPdfButton, &QPushButton::clicked, modifier, &SurfaceGraph::print_to_pdf);
+    QObject::connect(toPdfButton, &QPushButton::clicked, this, &SurfaceWindow::print_to_pdf);
+
 
     //set initial rotation of layer
     rotationSliderX->setValue(-130);
 
      widget->show();
+
+}
+
+void SurfaceWindow::print_to_pdf()
+{
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setOutputFileName("photometric_surface.pdf");
+
+    QPrintDialog *dialog = new QPrintDialog(&printer);
+    if (dialog->exec() == QDialog::Accepted) {
+
+        QPainter painter;
+        painter.begin(&printer);
+        QImage img = graph->renderToImage();
+        painter.drawImage(0,0, img);
+        painter.end();
+    }
 
 }
