@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui svg printsupport datavisualization
+QT       += core gui svg printsupport datavisualization charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,7 +24,9 @@ SOURCES += main.cpp\
     setup-project-dialog-window.cpp \
     surface-window.cpp \
     surface-graph.cpp \
-    project-settings.cpp
+    project-settings.cpp \
+    polar-graph.cpp \
+    chartview.cpp
 
 HEADERS  += mainwindow.h \
     polar-graph-pixmaps.h \
@@ -38,7 +40,9 @@ HEADERS  += mainwindow.h \
     setup-project-dialog-window.h \
     surface-window.h \
     surface-graph.h \
-    project-settings.h
+    project-settings.h \
+    polar-graph.h \
+    chartview.h
 
 FORMS    += mainwindow.ui \
     polar-graph-window.ui \

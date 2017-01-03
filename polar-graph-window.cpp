@@ -1,118 +1,70 @@
-#include <qregexp.h>
-#include <qtoolbar.h>
-#include <qtoolbutton.h>
-#include <qprinter.h>
-#include <qprintdialog.h>
-#include <qfiledialog.h>
-#include <qimagewriter.h>
-#include <qfileinfo.h>
-#include <qlayout.h>
-#ifdef QT_SVG_LIB
-#include <qsvggenerator.h>
-#endif
-#include <qwt_polar_panner.h>
-#include <qwt_polar_magnifier.h>
-#include <qwt_polar_renderer.h>
+#include "chartview.h"
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
+#include <QtCharts/QScatterSeries>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QSplineSeries>
+#include <QtCharts/QAreaSeries>
+#include <QtCharts/QValueAxis>
+#include <QtCharts/QPolarChart>
+#include <QtCore/QDebug>
+
+
 #include "polar-graph-window.h"
-#include "polar-graph-plot.h"
-#include "polar-graph-settingseditor.h"
-#include "polar-graph-pixmaps.h"
-#include "ui_polar-graph-window.h"
 
-PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data, QWidget *parent ):
-    QMainWindow( parent )
+using namespace QtCharts;
+
+PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data)
 {
-    QWidget *w = new QWidget( this );
 
-    d_plot = new PolarGraphPlot( plot_data, w  );
+    const qreal angularMin = 0.0;
+    const qreal angularMax = 360.0;
 
-    d_panner = new QwtPolarPanner( d_plot->canvas() );
-    d_panner->setEnabled( false );
+    const qreal radialMin = 0.0;
+    const qreal radialMax = 1.5;
 
-    d_zoomer = new QwtPolarMagnifier( d_plot->canvas() );
-    d_zoomer->setEnabled( false );
 
-    d_settingsEditor = new PolarGraphSettingsEditor( w );
+    QScatterSeries *point_series = new QScatterSeries();
+    point_series->setName("scatter");
 
-    d_settingsEditor->showSettings( d_plot->settings() );
-    connect( d_settingsEditor, SIGNAL( edited( const PolarGraphPlotSettings & ) ),
-        d_plot, SLOT( applySettings( const PolarGraphPlotSettings & ) ) );
-
-    QHBoxLayout *layout = new QHBoxLayout( w );
-    layout->addWidget( d_settingsEditor, 0 );
-    layout->addWidget( d_plot, 10 );
-
-    setCentralWidget( w );
-
-    QToolBar *toolBar = new QToolBar( this );
-
-    QToolButton *btnZoom = new QToolButton( toolBar );
-
-    const QString zoomHelp =
-        "Use the wheel to zoom in/out.\n"
-        "When the plot is zoomed in,\n"
-        "use the left mouse button to ove it.";
-
-    btnZoom->setText( "Zoom" );
-    btnZoom->setIcon( QPixmap( zoom_xpm ) );
-    btnZoom->setToolButtonStyle( Qt::ToolButtonTextUnderIcon );
-    btnZoom->setToolTip( zoomHelp );
-    btnZoom->setCheckable( true );
-    toolBar->addWidget( btnZoom );
-    connect( btnZoom, SIGNAL( toggled( bool ) ), SLOT( enableZoomMode( bool ) ) );
-
-    QToolButton *btnPrint = new QToolButton( toolBar );
-    btnPrint->setText( "Print" );
-    btnPrint->setIcon( QPixmap( print_xpm ) );
-    btnPrint->setToolButtonStyle( Qt::ToolButtonTextUnderIcon );
-    toolBar->addWidget( btnPrint );
-    connect( btnPrint, SIGNAL( clicked() ), SLOT( printDocument() ) );
-
-#ifdef QT_SVG_LIB
-    QToolButton *btnExport = new QToolButton( toolBar );
-    btnExport->setText( "Export" );
-    btnExport->setIcon( QPixmap( print_xpm ) );
-    btnExport->setToolButtonStyle( Qt::ToolButtonTextUnderIcon );
-    toolBar->addWidget( btnExport );
-
-    connect( btnExport, SIGNAL( clicked() ), SLOT( exportDocument() ) );
-#endif
-
-    addToolBar( toolBar );
-}
-
-void PolarGraphWindow::printDocument()
-{
-    QPrinter printer( QPrinter::HighResolution );
-
-    QString docName = d_plot->title().text();
-    if ( !docName.isEmpty() )
+    for (auto each : plot_data)
     {
-        docName.replace ( QRegExp ( QString::fromLatin1 ( "\n" ) ), tr ( " -- " ) );
-        printer.setDocName ( docName );
+        point_series->append(each.y(), each.x());
     }
 
-    printer.setCreator( "polar plot" );
-    printer.setOrientation( QPrinter::Landscape );
 
-    QPrintDialog dialog( &printer );
-    if ( dialog.exec() )
-    {
-        QwtPolarRenderer renderer;
-        renderer.renderTo( d_plot, printer );
-    }
-}
 
-void PolarGraphWindow::exportDocument()
-{
-    QString fileName = "polarplot.pdf";
+    QPolarChart *chart = new QPolarChart();
 
-    QwtPolarRenderer renderer;
-    renderer.exportTo( d_plot, "polarplot.pdf" );
-}
+    chart->addSeries(point_series);
 
-void PolarGraphWindow::enableZoomMode( bool on )
-{
-    d_panner->setEnabled( on );
-    d_zoomer->setEnabled( on );
+
+    QValueAxis *angularAxis = new QValueAxis();
+    angularAxis->setTickCount(19);
+    angularAxis->setLabelFormat("%d");
+    angularAxis->setShadesVisible(true);
+    angularAxis->setShadesBrush(QBrush(QColor(249, 249, 255)));
+    chart->addAxis(angularAxis, QPolarChart::PolarOrientationAngular);
+
+
+    QValueAxis *radialAxis = new QValueAxis();
+    radialAxis->setTickCount(9);
+    radialAxis->setLabelFormat("%.2f");
+    chart->addAxis(radialAxis, QPolarChart::PolarOrientationRadial);
+
+
+    point_series->attachAxis(radialAxis);
+    point_series->attachAxis(angularAxis);
+
+    radialAxis->setRange(radialMin, radialMax);
+    angularAxis->setRange(angularMin, angularMax);
+
+    ChartView *chartView = new ChartView();
+    chartView->setChart(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    QMainWindow *window = new QMainWindow;
+    window->setCentralWidget(chartView);
+    window->resize(800, 600);
+    window->show();
 }
