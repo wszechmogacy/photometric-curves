@@ -27,7 +27,7 @@
 **
 ****************************************************************************/
 
-#include "chartview.h"
+#include "polar-graph-view.h"
 #include <QtGui/QMouseEvent>
 #include <QtCore/QDebug>
 #include <QtCharts/QAbstractAxis>

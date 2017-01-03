@@ -24,7 +24,7 @@ SOURCES += main.cpp\
     surface-graph.cpp \
     project-settings.cpp \
     polar-graph.cpp \
-    chartview.cpp
+    polar-graph-view.cpp
 
 HEADERS  += mainwindow.h \
     polar-graph-window.h \
@@ -37,7 +37,7 @@ HEADERS  += mainwindow.h \
     surface-graph.h \
     project-settings.h \
     polar-graph.h \
-    chartview.h
+    polar-graph-view.h
 
 FORMS    += mainwindow.ui \
     polar-graph-window.ui \

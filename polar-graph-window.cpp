@@ -1,4 +1,4 @@
-#include "chartview.h"
+#include "polar-graph-view.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 #include <QtCharts/QScatterSeries>
