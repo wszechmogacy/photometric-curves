@@ -14,7 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    polar-graph-plot.cpp \
     polar-graph-window.cpp \
     point.cpp \
     luminous-flux-calculator.cpp \
@@ -28,7 +27,6 @@ SOURCES += main.cpp\
     chartview.cpp
 
 HEADERS  += mainwindow.h \
-    polar-graph-plot.h \
     polar-graph-window.h \
     point.h \
     luminous-flux-calculator.h \
