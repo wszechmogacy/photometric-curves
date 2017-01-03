@@ -29,7 +29,6 @@ SOURCES += main.cpp\
     chartview.cpp
 
 HEADERS  += mainwindow.h \
-    polar-graph-pixmaps.h \
     polar-graph-plot.h \
     polar-graph-settingseditor.h \
     polar-graph-window.h \
