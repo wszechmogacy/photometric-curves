@@ -3,6 +3,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QMessageBox>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtGui/QScreen>
 
@@ -51,11 +52,15 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
         rotationSliderY->setValue(0);
         rotationSliderY->setMaximum(90);
 
+        QPushButton *toPdfButton = new QPushButton;
+        toPdfButton->setText("Convert to PDF");
+
         //add qsliders to right place in window
         vLayout->addWidget(new QLabel(QStringLiteral("Rotate horizontally")));
         vLayout->addWidget(rotationSliderX, 0, Qt::AlignTop);
         vLayout->addWidget(new QLabel(QStringLiteral("Rotate vertically")));
         vLayout->addWidget(rotationSliderY, 0, Qt::AlignTop);
+        vLayout->addWidget(toPdfButton);
 
 
     SurfaceGraph *modifier = new SurfaceGraph(graph, data_table, columns_count, rows_count);
@@ -63,6 +68,7 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
     //connect sliders to slots
     QObject::connect(rotationSliderX, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateX);
     QObject::connect(rotationSliderY, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateY);
+    QObject::connect(toPdfButton, &QPushButton::clicked, modifier, &SurfaceGraph::print_to_pdf);
 
     //set initial rotation of layer
     rotationSliderX->setValue(-130);

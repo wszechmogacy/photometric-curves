@@ -21,6 +21,7 @@ public:
     void rotateY(int rotation);
 
     void convert_point_on_meridian(std::vector<Point> data, unsigned i, int &index, QSurfaceDataRow *newRow, unsigned j);
+    void print_to_pdf();
 
 private:
     void set_graph_details();
@@ -37,6 +38,7 @@ private:
     QSurface3DSeries *m_PhotoLayerSeries;
     float m_xRotation;
     float m_yRotation;
+
 };
 
 #endif // SURFACEGRAPH_H
