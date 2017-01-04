@@ -8,7 +8,6 @@
 #include <QScatterSeries>
 #include <QList>
 #include <QPointF>
-#include "ui_polar-graph-window.h"
 #include <QValueAxis>
 
 QT_CHARTS_USE_NAMESPACE

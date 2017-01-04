@@ -40,7 +40,6 @@ HEADERS  += mainwindow.h \
     polar-graph-view.h
 
 FORMS    += mainwindow.ui \
-    polar-graph-window.ui \
     luminous-flux-window.ui \
     introduction-dialog-window.ui \
     setup-project-dialog-window.ui
