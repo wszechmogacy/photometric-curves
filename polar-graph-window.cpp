@@ -14,50 +14,67 @@
 
 using namespace QtCharts;
 
+double PolarGraphWindow::find_max_polar_value(QList<QPointF> &plot_data)
+{
+    double max_value = 0.0;
+    for (auto each : plot_data) {
+        if (each.x() > max_value) max_value = each.x();
+    }
+    return max_value;
+}
+
+
+QValueAxis * PolarGraphWindow::setup_radial_axis(QList<QPointF> &plot_data)
+{
+    QValueAxis *radialAxis = new QValueAxis();
+    radialAxis->setTickCount(9);
+    radialAxis->setLabelFormat("%.2f");
+
+    const double radialMin = 0.0;
+    const double scale_factor = 1.2;
+    const double radialMax = scale_factor * find_max_polar_value(plot_data);
+    radialAxis->setRange(radialMin, radialMax);
+
+
+    return radialAxis;
+}
+
+QValueAxis * PolarGraphWindow::setup_angular_axis()
+{
+    QValueAxis *angularAxis = new QValueAxis();
+    angularAxis->setTickCount(19);
+    angularAxis->setLabelFormat("%d");
+    angularAxis->setShadesVisible(true);
+    angularAxis->setShadesBrush(QBrush(QColor(249, 249, 255)));
+
+    const double angularMin = 0.0;
+    const double angularMax = 360.0;
+    angularAxis->setRange(angularMin, angularMax);
+
+    return angularAxis;
+}
+
 PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data)
 {
-
-    const qreal angularMin = 0.0;
-    const qreal angularMax = 360.0;
-
-    const qreal radialMin = 0.0;
-    const qreal radialMax = 1.5;
-
-
     QScatterSeries *point_series = new QScatterSeries();
-    point_series->setName("scatter");
+    point_series->setName("dots");
 
     for (auto each : plot_data)
     {
         point_series->append(each.y(), each.x());
     }
 
-
-
     QPolarChart *chart = new QPolarChart();
 
     chart->addSeries(point_series);
 
-
-    QValueAxis *angularAxis = new QValueAxis();
-    angularAxis->setTickCount(19);
-    angularAxis->setLabelFormat("%d");
-    angularAxis->setShadesVisible(true);
-    angularAxis->setShadesBrush(QBrush(QColor(249, 249, 255)));
+    QValueAxis *angularAxis = setup_angular_axis();
     chart->addAxis(angularAxis, QPolarChart::PolarOrientationAngular);
-
-
-    QValueAxis *radialAxis = new QValueAxis();
-    radialAxis->setTickCount(9);
-    radialAxis->setLabelFormat("%.2f");
-    chart->addAxis(radialAxis, QPolarChart::PolarOrientationRadial);
-
-
-    point_series->attachAxis(radialAxis);
     point_series->attachAxis(angularAxis);
 
-    radialAxis->setRange(radialMin, radialMax);
-    angularAxis->setRange(angularMin, angularMax);
+    QValueAxis *radialAxis = setup_radial_axis(plot_data);
+    chart->addAxis(radialAxis, QPolarChart::PolarOrientationRadial);
+    point_series->attachAxis(radialAxis);
 
     ChartView *chartView = new ChartView();
     chartView->setChart(chart);
