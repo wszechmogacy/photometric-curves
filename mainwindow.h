@@ -29,6 +29,8 @@ private slots:
 
     void on_draw3DplotButton_clicked();
 
+    void on_saveDataButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::vector<Point> getTableData();

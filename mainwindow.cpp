@@ -156,3 +156,35 @@ void MainWindow::on_draw3DplotButton_clicked()
     SurfaceWindow *window = new SurfaceWindow(table_data, columns_count, rows_count);
     window->show();
 }
+
+QString MainWindow::prepare_data_to_save()
+{
+    QString textData;
+    int rows = ui->dataTable->rowCount();
+    int columns = ui->dataTable->columnCount();
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+
+            textData += ui->dataTable->item(i,j)->text();
+            textData += ", ";
+        }
+        textData += "\n";
+    }
+
+    return textData;
+}
+
+void MainWindow::on_saveDataButton_clicked()
+{
+    QString textData = prepare_data_to_save();
+
+    QFile csvFile("test.csv");
+    if(csvFile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+
+        QTextStream out(&csvFile);
+        out << textData;
+
+        csvFile.close();
+    }
+}
