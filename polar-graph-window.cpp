@@ -8,6 +8,7 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QPolarChart>
 #include <QtCore/QDebug>
+#include <QLineSeries>
 
 
 #include "polar-graph-window.h"
@@ -54,7 +55,7 @@ QValueAxis * PolarGraphWindow::setup_angular_axis()
     return angularAxis;
 }
 
-void PolarGraphWindow::get_data_series(QScatterSeries *scatter_series, QString name, QList<QPointF> &plot_data)
+void PolarGraphWindow::get_data_series(QXYSeries *scatter_series, QString name, QList<QPointF> &plot_data)
 {
     scatter_series->setName(name);
 
@@ -67,19 +68,24 @@ void PolarGraphWindow::get_data_series(QScatterSeries *scatter_series, QString n
 PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data)
 {
     QScatterSeries *scatter_series = new QScatterSeries();
+    QLineSeries *line_series = new QLineSeries();
     get_data_series(scatter_series, "dots", plot_data);
+    get_data_series(line_series, "curve", plot_data);
 
     QPolarChart *chart = new QPolarChart();
 
     chart->addSeries(scatter_series);
+    chart->addSeries(line_series);
 
     QValueAxis *angularAxis = setup_angular_axis();
     chart->addAxis(angularAxis, QPolarChart::PolarOrientationAngular);
     scatter_series->attachAxis(angularAxis);
+    line_series->attachAxis(angularAxis);
 
     QValueAxis *radialAxis = setup_radial_axis(plot_data);
     chart->addAxis(radialAxis, QPolarChart::PolarOrientationRadial);
     scatter_series->attachAxis(radialAxis);
+    line_series->attachAxis(radialAxis);
 
     ChartView *chartView = new ChartView();
     chartView->setChart(chart);
