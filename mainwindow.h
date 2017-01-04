@@ -31,6 +31,8 @@ private slots:
 
     void on_saveDataButton_clicked();
 
+    void on_readFileButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::vector<Point> getTableData();
@@ -39,6 +41,8 @@ private:
     unsigned columns_count;
     QList<QPointF> get_meridian_values(QModelIndexList selection, int i);
     QList<QPointF> get_meridian_section_values(int i, QModelIndexList selection);
+    QString prepare_data_to_save();
+    void setup_table_view(int columns_count, int rows_count);
 };
 
 #endif // MAINWINDOW_H

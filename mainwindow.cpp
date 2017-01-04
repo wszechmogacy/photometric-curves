@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <QDialog>
 #include <QDebug>
+#include <QFileDialog>
 #include <QPointF>
 #include <QString>
 #include <QVector2D>
@@ -18,18 +19,8 @@
 #include <ui_mainwindow.h>
 
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{setWindowTitle("Photometric Curves Calculator");
-    ui->setupUi(this);
-
-    IntroductionDialogWindow intro(&project_settings);
-    intro.exec();
-
-    rows_count = 360 / project_settings.step_in_parallel;
-    columns_count = 90 / project_settings.step_in_meridian;
-
+void MainWindow::setup_table_view(int columns_count, int rows_count)
+{
     ui->dataTable->setRowCount(rows_count);
     ui->dataTable->setColumnCount(columns_count);
 
@@ -44,11 +35,27 @@ MainWindow::MainWindow(QWidget *parent) :
         vertical_label.append(QString::number(360*row/rows_count));
     }
     ui->dataTable->setVerticalHeaderLabels(vertical_label);
+}
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{setWindowTitle("Photometric Curves Calculator");
+    ui->setupUi(this);
+
+    IntroductionDialogWindow intro(&project_settings);
+    intro.exec();
+
+    rows_count = 360 / project_settings.step_in_parallel;
+    columns_count = 90 / project_settings.step_in_meridian;
+
+    qDebug() << "col: " << QString::number(columns_count) << QString::number(rows_count);
+    setup_table_view(columns_count, rows_count);
 
     for(size_t col = 0; col <= columns_count; col++) {
         for(size_t row = 0; row < rows_count; row++) {
-          //  ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
-             ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
+            ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
+          //   ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
         }
     }
 }
@@ -178,13 +185,53 @@ QString MainWindow::prepare_data_to_save()
 void MainWindow::on_saveDataButton_clicked()
 {
     QString textData = prepare_data_to_save();
-
-    QFile csvFile("test.csv");
-    if(csvFile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-
-        QTextStream out(&csvFile);
-        out << textData;
-
-        csvFile.close();
+    QString file_name = QFileDialog::getSaveFileName(this, tr("Open File"), ".", tr("CSV Files (*.csv)"));
+    if (!file_name.endsWith(".csv")) {
+        file_name.append(".csv");
     }
+
+    QFile csv_file(file_name);
+    if(csv_file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+
+        QTextStream stream(&csv_file);
+        stream << textData;
+
+        csv_file.close();
+    }
+}
+
+void MainWindow::on_readFileButton_clicked()
+{
+    QString file_name = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("CSV Files (*.csv)"));
+    qDebug() << "file: " << file_name;
+    QFile csv_file(file_name);
+    csv_file.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    QTextStream stream(&csv_file);
+    unsigned rows_count = 0;
+    unsigned columns_count = 0;
+
+
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        QStringList list = line.split(",");
+        columns_count = list.count() - 1;
+        rows_count++;
+    }
+    setup_table_view(columns_count, rows_count);
+
+    stream.seek(0);
+
+
+    int row = 0;
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        QStringList list = line.split(",");
+        for(int col = 0; col < list.count(); col++) {
+            ui->dataTable->setItem(row, col, new QTableWidgetItem(list[col]));
+        }
+        row++;
+    }
+
+    csv_file.close();
 }
