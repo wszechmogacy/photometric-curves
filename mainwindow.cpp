@@ -200,29 +200,8 @@ void MainWindow::on_saveDataButton_clicked()
     }
 }
 
-void MainWindow::on_readFileButton_clicked()
+void MainWindow::put_data_to_table(QTextStream &stream)
 {
-    QString file_name = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("CSV Files (*.csv)"));
-    qDebug() << "file: " << file_name;
-    QFile csv_file(file_name);
-    csv_file.open(QIODevice::ReadOnly | QIODevice::Text);
-
-    QTextStream stream(&csv_file);
-    unsigned rows_count = 0;
-    unsigned columns_count = 0;
-
-
-    while (!stream.atEnd()) {
-        QString line = stream.readLine();
-        QStringList list = line.split(",");
-        columns_count = list.count() - 1;
-        rows_count++;
-    }
-    setup_table_view(columns_count, rows_count);
-
-    stream.seek(0);
-
-
     int row = 0;
     while (!stream.atEnd()) {
         QString line = stream.readLine();
@@ -232,6 +211,32 @@ void MainWindow::on_readFileButton_clicked()
         }
         row++;
     }
+}
 
+void MainWindow::get_desired_table_dimension(QTextStream &stream, unsigned columns_count, unsigned rows_count)
+{
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        QStringList list = line.split(",");
+        columns_count = list.count() - 1;
+        rows_count++;
+    }
+    stream.seek(0);
+}
+
+void MainWindow::on_readFileButton_clicked()
+{
+    QString file_name = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("CSV Files (*.csv)"));
+    QFile csv_file(file_name);
+    csv_file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream stream(&csv_file);
+
+    unsigned rows_count = 0;
+    unsigned columns_count = 0;
+    get_desired_table_dimension(stream, columns_count, rows_count);
+
+    setup_table_view(columns_count, rows_count);
+
+    put_data_to_table(stream);
     csv_file.close();
 }

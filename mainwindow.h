@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QModelIndexList>
+#include <QTextStream>
 
 #include <point.h>
 #include <project-settings.h>
@@ -43,6 +44,8 @@ private:
     QList<QPointF> get_meridian_section_values(int i, QModelIndexList selection);
     QString prepare_data_to_save();
     void setup_table_view(int columns_count, int rows_count);
+    void put_data_to_table(QTextStream &stream);
+    void get_desired_table_dimension(QTextStream &stream, unsigned columns_count, unsigned rows_count);
 };
 
 #endif // MAINWINDOW_H
