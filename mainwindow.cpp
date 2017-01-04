@@ -72,7 +72,7 @@ void MainWindow::on_horizontalSectionButton_clicked()
         QModelIndex index = selection.at(i);
 
         QList<QPointF> vec;
-        for (int j = 0; j < rows_count; j++) {
+        for (unsigned j = 0; j < rows_count; j++) {
             QString txt = ui->dataTable->item(j, index.column())->text();
             QLocale c(QLocale::C);
             double d = c.toDouble(txt);
@@ -83,7 +83,6 @@ void MainWindow::on_horizontalSectionButton_clicked()
         double first_raw_item_value = n.toDouble(ui->dataTable->item(0, index.column())->text());
         vec.append(QPointF(first_raw_item_value, 0));
         PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
-        qDebug() << "clicked ;-(";
     }
 }
 
