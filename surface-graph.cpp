@@ -84,7 +84,7 @@ SurfaceGraph::~SurfaceGraph()
 
 void SurfaceGraph::set_range_x()
 {
-    const double scale_factor = 1.5;
+    const double scale_factor = 1.2;
     auto range = std::minmax_element(data_table.begin(), data_table.end(),
           [](const Point &px, const Point &py){
               return px.x < py.x;
@@ -96,7 +96,7 @@ void SurfaceGraph::set_range_x()
 
 void SurfaceGraph::set_range_y()
 {
-    const double scale_factor = 1.5;
+    const double scale_factor = 1.2;
     auto range = std::minmax_element(data_table.begin(), data_table.end(),
           [](const Point &px, const Point &py){
               return px.y < py.y;
@@ -108,7 +108,7 @@ void SurfaceGraph::set_range_y()
 
 void SurfaceGraph::set_range_z()
 {
-    const double scale_factor = 1.5;
+    const double scale_factor = 1.2;
     auto range = std::minmax_element(data_table.begin(), data_table.end(),
           [](const Point &px, const Point &py){
               return px.z < py.z;
