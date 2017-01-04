@@ -91,8 +91,6 @@ PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data)
     chartView->setChart(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    QMainWindow *window = new QMainWindow;
-    window->setCentralWidget(chartView);
-    window->resize(800, 600);
-    window->show();
+    this->setCentralWidget(chartView);
+    this->resize(800, 600);
 }
