@@ -54,27 +54,32 @@ QValueAxis * PolarGraphWindow::setup_angular_axis()
     return angularAxis;
 }
 
-PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data)
+void PolarGraphWindow::get_data_series(QScatterSeries *scatter_series, QString name, QList<QPointF> &plot_data)
 {
-    QScatterSeries *point_series = new QScatterSeries();
-    point_series->setName("dots");
+    scatter_series->setName(name);
 
     for (auto each : plot_data)
     {
-        point_series->append(each.y(), each.x());
+        scatter_series->append(each.y(), each.x());
     }
+}
+
+PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data)
+{
+    QScatterSeries *scatter_series = new QScatterSeries();
+    get_data_series(scatter_series, "dots", plot_data);
 
     QPolarChart *chart = new QPolarChart();
 
-    chart->addSeries(point_series);
+    chart->addSeries(scatter_series);
 
     QValueAxis *angularAxis = setup_angular_axis();
     chart->addAxis(angularAxis, QPolarChart::PolarOrientationAngular);
-    point_series->attachAxis(angularAxis);
+    scatter_series->attachAxis(angularAxis);
 
     QValueAxis *radialAxis = setup_radial_axis(plot_data);
     chart->addAxis(radialAxis, QPolarChart::PolarOrientationRadial);
-    point_series->attachAxis(radialAxis);
+    scatter_series->attachAxis(radialAxis);
 
     ChartView *chartView = new ChartView();
     chartView->setChart(chart);

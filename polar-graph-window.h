@@ -23,6 +23,8 @@ class PolarGraphWindow : public QMainWindow
 
     QValueAxis * setup_angular_axis();
 
+    void get_data_series(QScatterSeries *scatter_series, QString name, QList<QPointF> &plot_data);
+
 public:
     PolarGraphWindow(QList<QPointF> &plot_data);
     QPolarChart *graph;
