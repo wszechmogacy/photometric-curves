@@ -4,10 +4,11 @@
 #include <QtDataVisualization/Q3DSurface>
 #include <point.h>
 #include <QObject>
+#include <QMainWindow>
 
 using namespace QtDataVisualization;
 
-class SurfaceWindow : public QObject
+class SurfaceWindow : public QWidget
 {
      Q_OBJECT
 public:

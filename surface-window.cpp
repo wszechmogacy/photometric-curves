@@ -34,24 +34,23 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
     container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     container->setFocusPolicy(Qt::StrongFocus);
 
-    QWidget *widget = new QWidget;
-    QHBoxLayout *hLayout = new QHBoxLayout(widget);
+    QHBoxLayout *hLayout = new QHBoxLayout(this);
     QVBoxLayout *vLayout = new QVBoxLayout();
     hLayout->addWidget(container, 1);
     hLayout->addLayout(vLayout);
     vLayout->setAlignment(Qt::AlignTop);
 
-    widget->setWindowTitle(QStringLiteral("Photometric surface"));
+    this->setWindowTitle(QStringLiteral("Photometric surface"));
 
 
     //add qsliders
-        QSlider *rotationSliderX = new QSlider(Qt::Horizontal, widget);
+        QSlider *rotationSliderX = new QSlider(Qt::Horizontal, this);
         rotationSliderX->setTickInterval(30);
         rotationSliderX->setTickPosition(QSlider::TicksBelow);
         rotationSliderX->setMinimum(-180);
         rotationSliderX->setValue(0);
         rotationSliderX->setMaximum(180);
-        QSlider *rotationSliderY = new QSlider(Qt::Horizontal, widget);
+        QSlider *rotationSliderY = new QSlider(Qt::Horizontal, this);
         rotationSliderY->setTickInterval(15);
         rotationSliderY->setTickPosition(QSlider::TicksAbove);
         rotationSliderY->setMinimum(-90);
@@ -79,9 +78,6 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
 
     //set initial rotation of layer
     rotationSliderX->setValue(-130);
-
-     widget->show();
-
 }
 
 void SurfaceWindow::print_to_pdf()

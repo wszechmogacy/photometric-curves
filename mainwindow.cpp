@@ -159,4 +159,5 @@ void MainWindow::on_draw3DplotButton_clicked()
 {
     auto table_data = MainWindow::getTableData();
     SurfaceWindow *window = new SurfaceWindow(table_data, columns_count, rows_count);
+    window->show();
 }
