@@ -1,8 +1,7 @@
 #include <cmath>
 #include <QDebug>
-#include "point.h"
 
-
+#include <point.h>
 
 
 Point::Point() :
@@ -23,12 +22,6 @@ Point::Point(double lon_angle_deg, double lat_angle_deg, double radial) :
     y(radial * sin(lat_angle_rad) * sin(lon_angle_rad)),
     z(radial * cos(lat_angle_rad))
 {
-    //obslugla bledow. czy wszystkie sie dalo skonwertowac do double/double. Wybrac odpowiedni typ
-    //https://pl.wikipedia.org/wiki/Uk%C5%82ad_wsp%C3%B3%C5%82rz%C4%99dNych_sferycznych
-    //i czy punkty mieszcza się w zakresie 0<2pi czy jednego pi a promien > 0
-    //czy kąty będą intami czy doubleami?
-   // qDebug() << "xy=" << QString::number(lon_angle_deg) << " zx=" << QString::number(lat_angle_deg) << " radial=" << QString::number(radial) << endl;
-   // qDebug() << "x=" << QString::number(x) << " y=" << QString::number(y) << " z=" << QString::number(z) << endl;
 }
 
 bool Point::operator<(const Point &o) const {

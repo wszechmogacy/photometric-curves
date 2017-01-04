@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <vector>
 
-#include "luminous-flux-calculator.h"
+#include <luminous-flux-calculator.h>
 
 LuminousFluxCalculator::LuminousFluxCalculator(double radius) :
     sphere_radius(radius)

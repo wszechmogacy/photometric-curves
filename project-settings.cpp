@@ -1,4 +1,4 @@
-#include "project-settings.h"
+#include <project-settings.h>
 
 ProjectSettings::ProjectSettings()
 {

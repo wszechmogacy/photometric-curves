@@ -1,12 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QModelIndexList>
 #include <QMainWindow>
+#include <QModelIndexList>
 
-#include "project-settings.h"
-#include "point.h"
-
+#include <point.h>
+#include <project-settings.h>
 
 
 namespace Ui {

@@ -1,20 +1,21 @@
 #include <QImage>
 #include <QPageLayout>
 #include <QPainter>
-#include <QPrinter>
 #include <QPrintDialog>
+#include <QPrinter>
 #include <QSize>
-#include <QtWidgets/QWidget>
+#include <QtGui/QScreen>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
-#include <QtGui/QScreen>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
-#include "surface-window.h"
-#include "surface-graph.h"
+#include <surface-graph.h>
+#include <surface-window.h>
+
 
 SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count)
 {
@@ -105,5 +106,4 @@ void SurfaceWindow::print_to_pdf()
         painter.drawImage(-graph->width() / 2, -graph->height() / 2, img);
         painter.end();
     }
-
 }

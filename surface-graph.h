@@ -1,11 +1,11 @@
 #ifndef SURFACEGRAPH_H
 #define SURFACEGRAPH_H
 
+#include <algorithm>
 #include <QtDataVisualization/Q3DSurface>
 #include <QtDataVisualization/QSurfaceDataProxy>
 #include <QtDataVisualization/QSurface3DSeries>
 
-#include <algorithm>
 #include <point.h>
 #include <vector>
 

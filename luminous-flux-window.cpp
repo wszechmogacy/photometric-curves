@@ -1,7 +1,7 @@
 #include <QString>
 
-#include "luminous-flux-window.h"
-#include "ui_luminous-flux-window.h"
+#include <luminous-flux-window.h>
+#include <ui_luminous-flux-window.h>
 
 LuminousFluxWindow::LuminousFluxWindow(double flux, QString units, QWidget *parent) :
     QDialog(parent),

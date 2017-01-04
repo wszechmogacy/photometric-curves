@@ -1,10 +1,11 @@
 #ifndef SURFACEWINDOW_H
 #define SURFACEWINDOW_H
 
-#include <QtDataVisualization/Q3DSurface>
-#include <point.h>
-#include <QObject>
 #include <QMainWindow>
+#include <QObject>
+#include <QtDataVisualization/Q3DSurface>
+
+#include <point.h>
 
 using namespace QtDataVisualization;
 

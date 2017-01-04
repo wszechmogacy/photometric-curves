@@ -1,14 +1,15 @@
 #ifndef POLARGRAPH_H
 #define POLARGRAPH_H
 
-#include <point.h>
-#include <QtCharts/QPolarChart>
-#include <QObject>
-#include <QMainWindow>
-#include <QScatterSeries>
 #include <QList>
+#include <QMainWindow>
+#include <QObject>
 #include <QPointF>
+#include <QScatterSeries>
+#include <QtCharts/QPolarChart>
 #include <QValueAxis>
+
+#include <point.h>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -31,6 +32,3 @@ public:
 };
 
 #endif // POLARGRAPH_H
-
-
-

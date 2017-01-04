@@ -1,26 +1,21 @@
 #include <algorithm>
-#include <QDebug>
-#include <QWidget>
 #include <QDialog>
+#include <QDebug>
 #include <QPointF>
 #include <QString>
 #include <QVector2D>
+#include <QWidget>
 #include <vector>
 
-
-#include "luminous-flux-calculator.h"
-#include "luminous-flux-window.h"
-#include "ui_luminous-flux-window.h"
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "polar-graph-window.h"
-#include "point.h"
-#include "project-settings.h"
-#include "surface-window.h"
-#include "introduction-dialog-window.h"
-#include "ui_introduction-dialog-window.h"
-
-#include <QDebug>
+#include <introduction-dialog-window.h>
+#include <luminous-flux-calculator.h>
+#include <luminous-flux-window.h>
+#include <mainwindow.h>
+#include <point.h>
+#include <polar-graph-window.h>
+#include <project-settings.h>
+#include <surface-window.h>
+#include <ui_mainwindow.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :

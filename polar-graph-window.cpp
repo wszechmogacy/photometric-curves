@@ -1,17 +1,16 @@
-#include "polar-graph-view.h"
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QMainWindow>
+#include <QLineSeries>
 #include <QtCharts/QScatterSeries>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QSplineSeries>
-#include <QtCharts/QAreaSeries>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QPolarChart>
 #include <QtCore/QDebug>
-#include <QLineSeries>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
 
+#include <polar-graph-view.h>
+#include <polar-graph-window.h>
 
-#include "polar-graph-window.h"
 
 using namespace QtCharts;
 

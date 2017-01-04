@@ -2,7 +2,8 @@
 #define INTRODUCTIONDIALOGWINDOW_H
 
 #include <QDialog>
-#include "project-settings.h"
+
+#include <project-settings.h>
 
 namespace Ui {
 class IntroductionDialogWindow;

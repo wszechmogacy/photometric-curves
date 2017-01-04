@@ -1,6 +1,9 @@
-#include "setup-project-dialog-window.h"
-#include "ui_setup-project-dialog-window.h"
-#include "project-settings.h"
+#include <QWidget>
+
+#include <project-settings.h>
+#include <setup-project-dialog-window.h>
+#include <ui_setup-project-dialog-window.h>
+
 
 SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidget *parent) :
     QDialog(parent),

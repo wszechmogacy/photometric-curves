@@ -27,11 +27,12 @@
 **
 ****************************************************************************/
 
-#include "polar-graph-view.h"
-#include <QtGui/QMouseEvent>
-#include <QtCore/QDebug>
 #include <QtCharts/QAbstractAxis>
 #include <QtCharts/QValueAxis>
+#include <QtGui/QMouseEvent>
+#include <QtCore/QDebug>
+
+#include <polar-graph-view.h>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -40,7 +41,7 @@ ChartView::ChartView(QWidget *parent)
 {
 }
 
-//![1]
+
 void ChartView::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
@@ -70,9 +71,8 @@ void ChartView::keyPressEvent(QKeyEvent *event)
         break;
     }
 }
-//![1]
 
-//![2]
+
 void ChartView::switchChartType()
 {
     QChart *newChart;
@@ -117,4 +117,3 @@ void ChartView::switchChartType()
     setChart(newChart);
     delete oldChart;
 }
-//![2]

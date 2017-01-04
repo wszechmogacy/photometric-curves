@@ -1,20 +1,19 @@
-#include "surface-graph.h"
-
-#include <QtDataVisualization/QValue3DAxis>
+#include <QDebug>
+#include <QPainter>
+#include <QPrintDialog>
+#include <QPrinter>
 #include <QtDataVisualization/Q3DTheme>
+#include <QtDataVisualization/QValue3DAxis>
 #include <QtGui/QImage>
 #include <QtCore/qmath.h>
-#include <QPainter>
-#include <QPrinter>
-#include <QPrintDialog>
+#include <string>
 #include <utility>
 #include <vector>
-#include <string>
 
-#include <QDebug>
+#include <surface-graph.h>
+
 
 using namespace QtDataVisualization;
-
 
 SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigned columns_count, unsigned rows_count)
     : m_graph(surface),
