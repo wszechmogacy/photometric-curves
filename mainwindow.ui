@@ -86,7 +86,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Through meridian Section</string>
+           <string>Photometric Curve</string>
           </property>
          </widget>
         </item>
@@ -115,7 +115,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Through parallel Section</string>
+           <string>Section</string>
           </property>
          </widget>
         </item>
@@ -144,7 +144,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Calculate Luminous Flux</string>
+           <string>Luminous Flux</string>
           </property>
          </widget>
         </item>
@@ -173,7 +173,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Draw 3D Plot</string>
+           <string>3D Plot</string>
           </property>
          </widget>
         </item>
