@@ -84,23 +84,6 @@ QList<QPointF> MainWindow::get_meridian_section_values(int i, QModelIndexList se
     return vec;
 }
 
-void MainWindow::on_readFileButton_clicked()
-{
-    QString file_name = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("CSV Files (*.csv)"));
-    QFile csv_file(file_name);
-    csv_file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QTextStream stream(&csv_file);
-
-    unsigned rows_count = 0;
-    unsigned columns_count = 0;
-    get_desired_table_dimension(stream, columns_count, rows_count);
-
-    setup_table_view(columns_count, rows_count);
-
-    put_data_to_table(stream);
-    csv_file.close();
-}
-
 void MainWindow::on_photometricCurveButton_clicked()
 {
     QModelIndexList selection = ui->dataTable->selectionModel()->selectedRows();
@@ -237,7 +220,15 @@ void MainWindow::on_readFileButton_clicked()
         columns_count = list.count() - 1;
         rows_count++;
     }
+    project_settings.step_in_meridian = 90 / columns_count;
+    project_settings.step_in_parallel = 360 / rows_count;
+    this->columns_count = columns_count;
+    this->rows_count = rows_count;
+
+    qDebug() << "steps: " << QString::number(project_settings.step_in_meridian) << QString::number(project_settings.step_in_parallel);
+
     setup_table_view(columns_count, rows_count);
+
 
     stream.seek(0);
 
