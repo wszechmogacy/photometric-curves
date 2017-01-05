@@ -107,7 +107,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="SectionButton">
+         <widget class="QPushButton" name="sectionButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>

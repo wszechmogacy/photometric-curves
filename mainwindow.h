@@ -21,10 +21,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_horizontalSectionButton_clicked();
-
-    void on_verticalSectionButton_clicked();
-
     void on_draw3DplotButton_clicked();
 
     void on_saveDataButton_clicked();
@@ -32,6 +28,10 @@ private slots:
     void on_readFileButton_clicked();
 
     void on_lumniousFluxButton_clicked();
+
+    void on_photometricCurveButton_clicked();
+
+    void on_sectionButton_clicked();
 
 private:
     Ui::MainWindow *ui;

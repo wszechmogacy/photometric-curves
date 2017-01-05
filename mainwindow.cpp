@@ -65,29 +65,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_horizontalSectionButton_clicked()
-{
-    QModelIndexList selection = ui->dataTable->selectionModel()->selectedColumns();
-
-    for(int i=0; i< selection.count(); i++)
-    {
-        QModelIndex index = selection.at(i);
-
-        QList<QPointF> vec;
-        for (unsigned j = 0; j < rows_count; j++) {
-            QString txt = ui->dataTable->item(j, index.column())->text();
-            QLocale c(QLocale::C);
-            double d = c.toDouble(txt);
-
-            vec.append(QPointF(d, 360 / rows_count * j));
-        }
-        QLocale n(QLocale::C);
-        double first_raw_item_value = n.toDouble(ui->dataTable->item(0, index.column())->text());
-        vec.append(QPointF(first_raw_item_value, 0));
-        PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
-        polar_graph->show();
-    }
-}
 
 QList<QPointF> MainWindow::get_meridian_section_values(int i, QModelIndexList selection)
 {
@@ -107,7 +84,24 @@ QList<QPointF> MainWindow::get_meridian_section_values(int i, QModelIndexList se
     return vec;
 }
 
-void MainWindow::on_verticalSectionButton_clicked()
+void MainWindow::on_readFileButton_clicked()
+{
+    QString file_name = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("CSV Files (*.csv)"));
+    QFile csv_file(file_name);
+    csv_file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream stream(&csv_file);
+
+    unsigned rows_count = 0;
+    unsigned columns_count = 0;
+    get_desired_table_dimension(stream, columns_count, rows_count);
+
+    setup_table_view(columns_count, rows_count);
+
+    put_data_to_table(stream);
+    csv_file.close();
+}
+
+void MainWindow::on_photometricCurveButton_clicked()
 {
     QModelIndexList selection = ui->dataTable->selectionModel()->selectedRows();
 
@@ -115,6 +109,31 @@ void MainWindow::on_verticalSectionButton_clicked()
     {
         QList<QPointF> vec = get_meridian_section_values(i, selection);
 
+        PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
+        polar_graph->show();
+    }
+
+}
+
+void MainWindow::on_sectionButton_clicked()
+{
+    QModelIndexList selection = ui->dataTable->selectionModel()->selectedColumns();
+
+    for(int i=0; i< selection.count(); i++)
+    {
+        QModelIndex index = selection.at(i);
+
+        QList<QPointF> vec;
+        for (unsigned j = 0; j < rows_count; j++) {
+            QString txt = ui->dataTable->item(j, index.column())->text();
+            QLocale c(QLocale::C);
+            double d = c.toDouble(txt);
+
+            vec.append(QPointF(d, 360 / rows_count * j));
+        }
+        QLocale n(QLocale::C);
+        double first_raw_item_value = n.toDouble(ui->dataTable->item(0, index.column())->text());
+        vec.append(QPointF(first_raw_item_value, 0));
         PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
         polar_graph->show();
     }
