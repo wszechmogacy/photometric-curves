@@ -78,7 +78,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="verticalSectionButton">
+         <widget class="QPushButton" name="photometricCurveButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -107,7 +107,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="horizontalSectionButton">
+         <widget class="QPushButton" name="SectionButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -136,7 +136,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="calculateAreaButton">
+         <widget class="QPushButton" name="lumniousFluxButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>

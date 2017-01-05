@@ -25,13 +25,13 @@ private slots:
 
     void on_verticalSectionButton_clicked();
 
-    void on_calculateAreaButton_clicked();
-
     void on_draw3DplotButton_clicked();
 
     void on_saveDataButton_clicked();
 
     void on_readFileButton_clicked();
+
+    void on_lumniousFluxButton_clicked();
 
 private:
     Ui::MainWindow *ui;

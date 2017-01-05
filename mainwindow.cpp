@@ -120,7 +120,7 @@ void MainWindow::on_verticalSectionButton_clicked()
     }
 }
 
-void MainWindow::on_calculateAreaButton_clicked()
+void MainWindow::on_lumniousFluxButton_clicked()
 {
     //get data from table
     auto table_data = MainWindow::getTableData();
