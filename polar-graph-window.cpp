@@ -64,7 +64,7 @@ void PolarGraphWindow::get_data_series(QXYSeries *scatter_series, QString name, 
     }
 }
 
-PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data)
+PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_data)
 {
     QScatterSeries *scatter_series = new QScatterSeries();
     QLineSeries *line_series = new QLineSeries();
@@ -86,10 +86,17 @@ PolarGraphWindow::PolarGraphWindow(QList<QPointF> &plot_data)
     scatter_series->attachAxis(radialAxis);
     line_series->attachAxis(radialAxis);
 
+    if (graph_type == GraphType::curve) {
+        chart->scroll(-180.0, 0);
+    }
+
     ChartView *chartView = new ChartView();
     chartView->setChart(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
+
     this->setCentralWidget(chartView);
     this->resize(800, 600);
+
+
 }

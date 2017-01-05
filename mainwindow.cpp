@@ -92,7 +92,7 @@ void MainWindow::on_photometricCurveButton_clicked()
     {
         QList<QPointF> vec = get_meridian_section_values(i, selection);
 
-        PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
+        PolarGraphWindow *polar_graph = new PolarGraphWindow(GraphType::curve,vec);
         polar_graph->show();
     }
 
@@ -117,7 +117,7 @@ void MainWindow::on_sectionButton_clicked()
         QLocale n(QLocale::C);
         double first_raw_item_value = n.toDouble(ui->dataTable->item(0, index.column())->text());
         vec.append(QPointF(first_raw_item_value, 0));
-        PolarGraphWindow *polar_graph = new PolarGraphWindow(vec);
+        PolarGraphWindow *polar_graph = new PolarGraphWindow(GraphType::section, vec);
         polar_graph->show();
     }
 }
