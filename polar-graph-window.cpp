@@ -27,7 +27,7 @@ double PolarGraphWindow::find_max_polar_value(QList<QPointF> &plot_data)
 QValueAxis * PolarGraphWindow::setup_radial_axis(QList<QPointF> &plot_data)
 {
     QValueAxis *radialAxis = new QValueAxis();
-    radialAxis->setTickCount(9);
+    radialAxis->setTickCount(11);
     radialAxis->setLabelFormat("%.2f");
 
     const double radialMin = 0.0;
@@ -42,7 +42,8 @@ QValueAxis * PolarGraphWindow::setup_radial_axis(QList<QPointF> &plot_data)
 QValueAxis * PolarGraphWindow::setup_angular_axis()
 {
     QValueAxis *angularAxis = new QValueAxis();
-    angularAxis->setTickCount(19);
+    const unsigned step = 15;
+    angularAxis->setTickCount(360 / step + 1);
     angularAxis->setLabelFormat("%d");
     angularAxis->setShadesVisible(true);
     angularAxis->setShadesBrush(QBrush(QColor(249, 249, 255)));
@@ -64,7 +65,8 @@ void PolarGraphWindow::get_data_series(QXYSeries *scatter_series, QString name, 
     }
 }
 
-PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_data)
+PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_data) :
+    graph_type(graph_type)
 {
     QScatterSeries *scatter_series = new QScatterSeries();
     QLineSeries *line_series = new QLineSeries();
@@ -97,6 +99,4 @@ PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_da
 
     this->setCentralWidget(chartView);
     this->resize(800, 600);
-
-
 }

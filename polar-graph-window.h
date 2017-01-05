@@ -35,6 +35,8 @@ public:
     PolarGraphWindow(GraphType graph_type,  QList<QPointF> &plot_data);
     QPolarChart *graph;
     QValueAxis * setup_radial_axis(QList<QPointF> &plot_data);
+private:
+    GraphType graph_type;
 };
 
 #endif // POLARGRAPH_H
