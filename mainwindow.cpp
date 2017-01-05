@@ -54,8 +54,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     for(size_t col = 0; col <= columns_count; col++) {
         for(size_t row = 0; row < rows_count; row++) {
-            ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
-          //   ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
+          //  ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
+             ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
         }
     }
 }
@@ -73,7 +73,7 @@ QList<QPointF> MainWindow::get_meridian_section_values(int i, QModelIndexList se
     QList<QPointF> vec;
     for (unsigned angle = 0; angle < 90; angle += project_settings.step_in_meridian) {
         QString next_val_txt = ui->dataTable->item(index.row(), angle / project_settings.step_in_meridian)->text();
-        QString prev_val_txt = ui->dataTable->item( ui->dataTable->rowCount() - index.row(), angle / project_settings.step_in_meridian)->text();
+        QString prev_val_txt = ui->dataTable->item( (ui->dataTable->rowCount() / 2 + index.row()) % ui->dataTable->rowCount(), angle / project_settings.step_in_meridian)->text();
         QLocale c(QLocale::C);
         double next_val = c.toDouble(next_val_txt);
         double prev_val = c.toDouble(prev_val_txt);
