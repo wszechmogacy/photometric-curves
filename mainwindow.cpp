@@ -128,13 +128,11 @@ void MainWindow::on_lumniousFluxButton_clicked()
 {
     //get data from table
     auto table_data = MainWindow::getTableData();
-    const double sphere_radius = project_settings.radius;
-        //TODO: set radius as below, for now, I am using radius=1 to debug calculation
-    //LuminousFluxCalculator flux_calculator(sphere_radius);
-    LuminousFluxCalculator flux_calculator(1.0);
-    double luminous_flux = flux_calculator(table_data, columns_count);
+    const double sphere_radius_m = project_settings.radius;
+    LuminousFluxCalculator flux_calculator(sphere_radius_m);
+    double luminous_flux = flux_calculator(table_data, project_settings.units_scale, columns_count);
 
-    LuminousFluxWindow window(luminous_flux, project_settings.units);
+    LuminousFluxWindow window(luminous_flux);
     window.exec();
 }
 

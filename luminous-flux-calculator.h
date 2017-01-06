@@ -9,7 +9,7 @@ class LuminousFluxCalculator
 {
 public:
     explicit LuminousFluxCalculator(double radius);
-    double operator() (std::vector<Point> &data, int meridian_points_count);
+    double operator() (std::vector<Point> &data, double scale, int meridian_points_count);
 
 private:
     const double sphere_radius;

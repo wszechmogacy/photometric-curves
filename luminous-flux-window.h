@@ -12,7 +12,7 @@ class LuminousFluxWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit LuminousFluxWindow(double flux, QString units, QWidget *parent = 0);
+    explicit LuminousFluxWindow(double flux, QWidget *parent = 0);
     ~LuminousFluxWindow();
 
 private slots:

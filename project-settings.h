@@ -15,7 +15,7 @@ public:
     unsigned step_in_parallel;
     unsigned step_in_meridian;
     QString units;
-    unsigned radius;
+    double radius;
     double units_scale;
 };
 

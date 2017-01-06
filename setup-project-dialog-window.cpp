@@ -14,9 +14,9 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
 
     const double luminous_flux_to_watts_ratio = 683.0;
     unitsItems = {
-        qMakePair(QString("W/m^2"), 100.0),
-        qMakePair(QString("uW/cm^2"), 1.0),
-        qMakePair(QString("lm/m^2"), 100.0 / luminous_flux_to_watts_ratio)
+        qMakePair(QString("W/m^2"), 1.0),
+        qMakePair(QString("uW/cm^2"), 0.01),
+        qMakePair(QString("lm/m^2"), 1.0 / luminous_flux_to_watts_ratio)
     };
 
     QPair<QString, double> each_pair;
@@ -46,7 +46,7 @@ void SetupProjectDialogWindow::on_startProjectButton_clicked()
     project_settings->source_name = ui->lightSourceField->text();
     project_settings->step_in_parallel = ui->stepParallelComboBox->currentText().toUInt();
     project_settings->step_in_meridian = ui->stepInMeridianComboBox->currentText().toUInt();
-    project_settings->radius = ui->radiusField->text().toUInt();
+    project_settings->radius = ui->radiusField->text().toDouble();
     QString unitsName =  ui->unitsComboBox->currentText();
     project_settings->units = unitsName;
 

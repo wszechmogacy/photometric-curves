@@ -17,7 +17,7 @@ double LuminousFluxCalculator::calculate_meridian_chunck_length(int meridian_poi
     return half_meridian_length / meridian_points_count;
 }
 
-double LuminousFluxCalculator::operator() (std::vector<Point> &data, int meridian_points_count)
+double LuminousFluxCalculator::operator() (std::vector<Point> &data, double scale, int meridian_points_count)
 {
 
     auto parallels = create_paralles_list(meridian_points_count);
@@ -33,8 +33,8 @@ double LuminousFluxCalculator::operator() (std::vector<Point> &data, int meridia
 
         area = (upper_circumference + lower_circumference) * calculate_meridian_chunck_length(meridian_points_count) / 2;
 
-        const double upper_average = average_value_on_parallel(upper_lattidtude, data);
-        const double lower_average = average_value_on_parallel(lower_lattidtude, data);
+        const double upper_average = average_value_on_parallel(upper_lattidtude, data) * scale;
+        const double lower_average = average_value_on_parallel(lower_lattidtude, data) * scale;
 
         flux += (upper_average + lower_average) * area;
     }
@@ -51,7 +51,7 @@ double LuminousFluxCalculator::average_value_on_parallel(double lattidtude, std:
     }
 
     double sum = std::accumulate(points_on_layer.begin(), points_on_layer.end(), 0.0,
-                                 [](double val, const Point &point){ return val + point.z;}
+                                 [](double val, const Point &point){ return val + point.radial;}
     );
 
     return sum / static_cast<double>(points_on_layer.size());
