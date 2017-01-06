@@ -141,7 +141,7 @@ void MainWindow::on_lumniousFluxButton_clicked()
 std::vector<Point> MainWindow::getTableData()
 {
     std::vector<Point> table_data;
-
+    double last, prelast;
     for(size_t row = 0; row < rows_count; row++) {
         for(size_t column = 0; column < columns_count; column++) {
             QString meridianName = ui->dataTable->horizontalHeaderItem(column)->text();
@@ -152,10 +152,11 @@ std::vector<Point> MainWindow::getTableData()
                                     meridianName.toDouble(),
                                     valueName.toDouble()
                                     );
+
+            if (column == columns_count -1) last = valueName.toDouble();
+            if (column == columns_count -2) prelast = valueName.toDouble();
         }
-        //TODO : hack to fill with "estimated value at the end of range"
-        // please replace this with esitmation
-        table_data.emplace_back(ui->dataTable->verticalHeaderItem(row)->text().toDouble(), 90.0, 1.0);
+        table_data.emplace_back(ui->dataTable->verticalHeaderItem(row)->text().toDouble(), 90.0, last + (last - prelast));
     }
 
     return table_data;
