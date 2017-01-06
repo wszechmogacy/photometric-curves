@@ -16,6 +16,7 @@ public:
     unsigned step_in_meridian;
     QString units;
     unsigned radius;
+    double units_scale;
 };
 
 #endif // PROJECTSETTINGS_H

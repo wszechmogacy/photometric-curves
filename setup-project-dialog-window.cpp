@@ -12,8 +12,21 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
 {
     ui->setupUi(this);
 
-    const QStringList unitsItems = {"uW/cm^2", "W/m^2", "lm/m^2"};
-    ui->unitsComboBox->addItems(unitsItems);
+    const double luminous_flux_to_watts_ratio = 683.0;
+    unitsItems = {
+        qMakePair(QString("W/m^2"), 100.0),
+        qMakePair(QString("uW/cm^2"), 1.0),
+        qMakePair(QString("lm/m^2"), 100.0 / luminous_flux_to_watts_ratio)
+    };
+
+    QPair<QString, double> each_pair;
+    QStringList unitsNameItems;
+    foreach(each_pair, unitsItems) {
+        unitsNameItems.append(each_pair.first);
+    }
+
+
+   ui->unitsComboBox->addItems(unitsNameItems);
 
     const QStringList stepParalleItems = {"5", "10", "15", "45"};
     ui->stepParallelComboBox->addItems(stepParalleItems);
@@ -33,7 +46,15 @@ void SetupProjectDialogWindow::on_startProjectButton_clicked()
     project_settings->source_name = ui->lightSourceField->text();
     project_settings->step_in_parallel = ui->stepParallelComboBox->currentText().toUInt();
     project_settings->step_in_meridian = ui->stepInMeridianComboBox->currentText().toUInt();
-    project_settings->units = ui->unitsComboBox->currentText();
     project_settings->radius = ui->radiusField->text().toUInt();
+    QString unitsName =  ui->unitsComboBox->currentText();
+    project_settings->units = unitsName;
+
+    QPair<QString, double> each;
+    foreach (each, unitsItems) {
+        if (each.first == unitsName)
+            project_settings->units_scale = each.second;
+    }
+
     close();
 }
