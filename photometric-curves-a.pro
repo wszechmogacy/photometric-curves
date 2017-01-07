@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     polar-graph-window.cpp \
     point.cpp \
     luminous-flux-calculator.cpp \
@@ -24,9 +23,10 @@ SOURCES += main.cpp\
     surface-graph.cpp \
     project-settings.cpp \
     polar-graph.cpp \
-    polar-graph-view.cpp
+    polar-graph-view.cpp \
+    main-window.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     polar-graph-window.h \
     point.h \
     luminous-flux-calculator.h \
@@ -37,7 +37,8 @@ HEADERS  += mainwindow.h \
     surface-graph.h \
     project-settings.h \
     polar-graph.h \
-    polar-graph-view.h
+    polar-graph-view.h \
+    main-window.h
 
 FORMS    += mainwindow.ui \
     luminous-flux-window.ui \

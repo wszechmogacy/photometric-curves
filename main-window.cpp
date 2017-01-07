@@ -12,7 +12,7 @@
 #include <introduction-dialog-window.h>
 #include <luminous-flux-calculator.h>
 #include <luminous-flux-window.h>
-#include <mainwindow.h>
+#include <main-window.h>
 #include <point.h>
 #include <polar-graph-window.h>
 #include <project-settings.h>
