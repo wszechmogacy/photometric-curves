@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
     for(size_t col = 0; col <= columns_count; col++) {
         for(size_t row = 0; row < rows_count; row++) {
             //ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
-            ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
+            //ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
         }
     }
 }
@@ -151,10 +151,12 @@ std::vector<Point> MainWindow::getTableData()
                                     valueName.toDouble()
                                     );
 
-            if (column == columns_count -1) last = valueName.toDouble();
-            if (column == columns_count -2) prelast = valueName.toDouble();
+            if (column == columns_count - 1) last = valueName.toDouble();
+            if (column == columns_count - 2) prelast = valueName.toDouble();
         }
-        table_data.emplace_back(ui->dataTable->verticalHeaderItem(row)->text().toDouble(), 90.0, last + (last - prelast));
+        if (columns_count > 2) {
+            table_data.emplace_back(ui->dataTable->verticalHeaderItem(row)->text().toDouble(), 90.0, last + (last - prelast));
+        }
     }
 
     return table_data;
@@ -221,10 +223,15 @@ void MainWindow::on_readFileButton_clicked()
         columns_count = list.count() - 1;
         rows_count++;
     }
-    project_settings.step_in_meridian = 90 / columns_count;
-    project_settings.step_in_parallel = 360 / rows_count;
-    this->columns_count = columns_count;
-    this->rows_count = rows_count;
+
+    if (columns_count != 0 && rows_count != 0) {
+        project_settings.step_in_meridian = 90 / columns_count;
+        project_settings.step_in_parallel = 360 / rows_count;
+        this->columns_count = columns_count;
+        this->rows_count = rows_count;
+    } else {
+        qDebug() << "Error when reading data";
+    }
 
     qDebug() << "steps: " << QString::number(project_settings.step_in_meridian) << QString::number(project_settings.step_in_parallel);
 

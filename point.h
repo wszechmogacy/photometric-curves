@@ -4,7 +4,7 @@
 #include <cmath>
 
 namespace ConstNumbers {
-    constexpr double pi = std::acos(-1);
+    const double pi = std::acos(-1);
 }
 
 class Point {
