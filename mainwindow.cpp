@@ -6,6 +6,7 @@
 #include <QString>
 #include <QVector2D>
 #include <QWidget>
+#include <stdexcept>
 #include <vector>
 
 #include <introduction-dialog-window.h>
@@ -21,17 +22,21 @@
 
 void MainWindow::setup_table_view(int columns_count, int rows_count)
 {
+    if (rows_count == 0 || columns_count == 00) {
+        throw std::runtime_error("Input data (columns or rows) are invalid");
+    }
+
     ui->dataTable->setRowCount(rows_count);
     ui->dataTable->setColumnCount(columns_count);
 
     QStringList horizontal_label;
-    for(size_t col = 0; col <= columns_count; col++) {
+    for(int col = 0; col <= columns_count; col++) {
         horizontal_label.append(QString::number(90*col/columns_count));
     }
     ui->dataTable->setHorizontalHeaderLabels(horizontal_label);
 
     QStringList vertical_label;
-    for(size_t row = 0; row < rows_count; row++) {
+    for(int row = 0; row < rows_count; row++) {
         vertical_label.append(QString::number(360*row/rows_count));
     }
     ui->dataTable->setVerticalHeaderLabels(vertical_label);
