@@ -7,8 +7,8 @@
 
 SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidget *parent) :
     QDialog(parent),
-    project_settings_(proj),
-    ui_(new Ui::SetupProjectDialogWindow)
+    ui_(new Ui::SetupProjectDialogWindow),
+    project_settings_(proj)
 {
     ui_->setupUi(this);
     const double luminous_flux_to_watts_ratio = 683.0;

@@ -16,10 +16,10 @@
 using namespace QtDataVisualization;
 
 SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigned columns_count, unsigned rows_count)
-    : graph_(surface),
-    data_table_(data),
-    sample_count_on_meridian_(columns_count + 1),
+    : sample_count_on_meridian_(columns_count + 1),
     sample_count_on_parallel_(rows_count),
+    data_table_(data),
+    graph_(surface),
     x_rotation_(0.0f),
     y_rotation_(0.0f)
 {

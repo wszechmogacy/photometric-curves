@@ -60,8 +60,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     for(size_t col = 0; col <= columns_count_; col++) {
         for(size_t row = 0; row < rows_count_; row++) {
-            //ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
-            //ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
+            //ui_->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
+            //ui_->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
         }
     }
 }

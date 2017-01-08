@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <numeric>
 #include <QDebug>
+#include <QtCore/QtMath>
 #include <vector>
 
 #include <luminous-flux-calculator.h>
@@ -28,8 +29,8 @@ double LuminousFluxCalculator::operator() (std::vector<Point> &data, double scal
 
         double lower_lattidtude = upper_lattidtude + 90.0 / meridian_points_count;
 
-        const double upper_circumference = 2.0 * ConstNumbers::pi * this->sphere_radius_ * std::sin(static_cast<double>(upper_lattidtude) / 360.0 * 2.0 * ConstNumbers::pi);
-        const double lower_circumference = 2.0 * ConstNumbers::pi * this->sphere_radius_ * std::sin(static_cast<double>(lower_lattidtude) / 360.0 * 2.0 * ConstNumbers::pi);
+        const double upper_circumference = 2.0 * ConstNumbers::pi * this->sphere_radius_ * qSin(qDegreesToRadians(static_cast<double>(upper_lattidtude)));
+        const double lower_circumference = 2.0 * ConstNumbers::pi * this->sphere_radius_ * qSin(qDegreesToRadians(static_cast<double>(lower_lattidtude)));
 
         area = (upper_circumference + lower_circumference) / parallels.size() * calculate_meridian_chunck_length(meridian_points_count) / 2;
 
