@@ -3,12 +3,8 @@
 # Project created by QtCreator 2016-11-10T20:25:04
 #
 #-------------------------------------------------
-
-QT       += core gui printsupport datavisualization charts
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET = photometric-curves-a
+QT += core gui printsupport widgets gui datavisualization charts
+TARGET = photometric-curves
 TEMPLATE = app
 
 
