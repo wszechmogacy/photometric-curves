@@ -19,17 +19,17 @@
 
 SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count)
 {
-    graph = new Q3DSurface();
-    QWidget *container = QWidget::createWindowContainer(graph);
+    graph_ = new Q3DSurface();
+    QWidget *container = QWidget::createWindowContainer(graph_);
 
-    if (!graph->hasContext()) {
+    if (!graph_->hasContext()) {
         QMessageBox msgBox;
         msgBox.setText("Couldn't initialize the OpenGL context.");
         msgBox.exec();
         //handle error
     }
 
-    QSize screenSize = graph->screen()->size();
+    QSize screenSize = graph_->screen()->size();
     container->setMinimumSize(QSize(screenSize.width() / 2, screenSize.height() / 1.6));
     container->setMaximumSize(screenSize);
     container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -69,7 +69,7 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
         vLayout->addWidget(toPdfButton);
 
 
-    SurfaceGraph *modifier = new SurfaceGraph(graph, data_table, columns_count, rows_count);
+    SurfaceGraph *modifier = new SurfaceGraph(graph_, data_table, columns_count, rows_count);
 
     //connect sliders to slots
     QObject::connect(rotationSliderX, &QSlider::valueChanged, modifier, &SurfaceGraph::rotate_x);
@@ -94,16 +94,16 @@ void SurfaceWindow::print_to_pdf()
         QPainter painter;
         painter.begin(&printer);
 
-        double xscale = printer.pageRect().width()/double(graph->width());
-                double yscale = printer.pageRect().height()/double(graph->height());
+        double xscale = printer.pageRect().width()/double(graph_->width());
+                double yscale = printer.pageRect().height()/double(graph_->height());
                 double scale = qMin(xscale, yscale);
                 painter.translate(printer.paperRect().x() + printer.pageRect().width()/2,
                                    printer.paperRect().y() + printer.pageRect().height()/2);
                 painter.scale(scale, scale);
 
-        QImage img = graph->renderToImage(0, QSize(graph->width(),graph->height()));
+        QImage img = graph_->renderToImage(0, QSize(graph_->width(),graph_->height()));
 
-        painter.drawImage(-graph->width() / 2, -graph->height() / 2, img);
+        painter.drawImage(-graph_->width() / 2, -graph_->height() / 2, img);
         painter.end();
     }
 }

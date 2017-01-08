@@ -16,29 +16,29 @@
 using namespace QtDataVisualization;
 
 SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigned columns_count, unsigned rows_count)
-    : m_graph(surface),
-    data_table(data),
-    sampleCountOnMeridian(columns_count + 1),
-    sampleCountOnParallel(rows_count),
-    m_xRotation(0.0f),
-    m_yRotation(0.0f)
+    : graph_(surface),
+    data_table_(data),
+    sample_count_on_meridian_(columns_count + 1),
+    sample_count_on_parallel_(rows_count),
+    x_rotation_(0.0f),
+    y_rotation_(0.0f)
 {
-    m_graph->setAxisX(new QValue3DAxis);
-    m_graph->setAxisY(new QValue3DAxis);
-    m_graph->setAxisZ(new QValue3DAxis);
+    graph_->setAxisX(new QValue3DAxis);
+    graph_->setAxisY(new QValue3DAxis);
+    graph_->setAxisZ(new QValue3DAxis);
 
-    m_PhotoLayerProxy = new QSurfaceDataProxy();
-    m_PhotoLayerSeries = new QSurface3DSeries(m_PhotoLayerProxy);
+    photo_layer_proxy_ = new QSurfaceDataProxy();
+    photo_layer_series_ = new QSurface3DSeries(photo_layer_proxy_);
 
-    set_data(data_table);
+    set_data(data_table_);
 
-    m_graph->activeTheme()->setType(Q3DTheme::ThemeQt);
+    graph_->activeTheme()->setType(Q3DTheme::ThemeQt);
     set_graph_details();
 }
 
 void SurfaceGraph::convert_point_on_meridian(std::vector<Point> data, unsigned i, int &index, QSurfaceDataRow *newRow, unsigned j)
 {
-    size_t pos = i * sampleCountOnMeridian + j;
+    size_t pos = i * sample_count_on_meridian_ + j;
     (*newRow)[index].setPosition(QVector3D(data[pos].x_, data[pos].y_, data[pos].z_));
     qDebug() << QString::number(pos) << ": "
              << QString::number(index)
@@ -56,65 +56,65 @@ void SurfaceGraph::set_data(std::vector<Point> &data_table)
 
     QSurfaceDataArray *dataArray = new QSurfaceDataArray;
     dataArray->reserve(sampleCountAll);
-    for (unsigned i = 0; i < sampleCountOnParallel; i++) {
-        QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountOnParallel);
+    for (unsigned i = 0; i < sample_count_on_parallel_; i++) {
+        QSurfaceDataRow *newRow = new QSurfaceDataRow(sample_count_on_parallel_);
         int index = 0;
-        for (unsigned j = 0; j < sampleCountOnMeridian; j++) {
+        for (unsigned j = 0; j < sample_count_on_meridian_; j++) {
             convert_point_on_meridian(data, i, index, newRow, j);
         }
         *dataArray << newRow;
     }
     //workaround to close the surface (add 0 parallel at the end of curve
-    QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountOnParallel);
+    QSurfaceDataRow *newRow = new QSurfaceDataRow(sample_count_on_parallel_);
     int index = 0;
-    for (unsigned j = 0; j < sampleCountOnMeridian; j++) {
+    for (unsigned j = 0; j < sample_count_on_meridian_; j++) {
         convert_point_on_meridian(data, 0, index, newRow, j);
     }
     *dataArray << newRow;
 
-    m_PhotoLayerProxy->resetArray(dataArray);
+    photo_layer_proxy_->resetArray(dataArray);
 
 }
 
 SurfaceGraph::~SurfaceGraph()
 {
-    delete m_graph;
+    delete graph_;
 }
 
 
 void SurfaceGraph::set_range_x()
 {
     const double scale_factor = 1.2;
-    auto range = std::minmax_element(data_table.begin(), data_table.end(),
+    auto range = std::minmax_element(data_table_.begin(), data_table_.end(),
           [](const Point &px, const Point &py){
               return px.x_ < py.x_;
           }
     );
-    m_graph->axisX()->setRange(scale_factor * range.first->x_, scale_factor * range.second->x_);
+    graph_->axisX()->setRange(scale_factor * range.first->x_, scale_factor * range.second->x_);
 }
 
 
 void SurfaceGraph::set_range_y()
 {
     const double scale_factor = 1.2;
-    auto range = std::minmax_element(data_table.begin(), data_table.end(),
+    auto range = std::minmax_element(data_table_.begin(), data_table_.end(),
           [](const Point &px, const Point &py){
               return px.y_ < py.y_;
           }
     );
-    m_graph->axisY()->setRange(scale_factor * range.first->y_, scale_factor * range.second->y_);
+    graph_->axisY()->setRange(scale_factor * range.first->y_, scale_factor * range.second->y_);
 }
 
 
 void SurfaceGraph::set_range_z()
 {
     const double scale_factor = 1.2;
-    auto range = std::minmax_element(data_table.begin(), data_table.end(),
+    auto range = std::minmax_element(data_table_.begin(), data_table_.end(),
           [](const Point &px, const Point &py){
               return px.z_ < py.z_;
           }
     );
-    m_graph->axisZ()->setRange(scale_factor * range.first->z_, scale_factor * range.second->z_);
+    graph_->axisZ()->setRange(scale_factor * range.first->z_, scale_factor * range.second->z_);
 }
 
 
@@ -124,29 +124,29 @@ void SurfaceGraph::set_graph_details()
     set_range_y();
     set_range_z();
 
-    m_PhotoLayerSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
-    m_PhotoLayerSeries->setFlatShadingEnabled(true);
+    photo_layer_series_->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
+    photo_layer_series_->setFlatShadingEnabled(true);
 
-    m_graph->axisX()->setLabelFormat("%.2f");
-    m_graph->axisZ()->setLabelFormat("%.2f");
+    graph_->axisX()->setLabelFormat("%.2f");
+    graph_->axisZ()->setLabelFormat("%.2f");
 
-    m_graph->axisX()->setLabelAutoRotation(30);
-    m_graph->axisY()->setLabelAutoRotation(90);
-    m_graph->axisZ()->setLabelAutoRotation(30);
+    graph_->axisX()->setLabelAutoRotation(30);
+    graph_->axisY()->setLabelAutoRotation(90);
+    graph_->axisZ()->setLabelAutoRotation(30);
 
-    m_graph->addSeries(m_PhotoLayerSeries);
+    graph_->addSeries(photo_layer_series_);
 }
 
 
 void SurfaceGraph::rotate_x(int rotation)
 {
-    m_xRotation = rotation;
-    m_graph->scene()->activeCamera()->setCameraPosition(m_xRotation, m_yRotation);
+    x_rotation_ = rotation;
+    graph_->scene()->activeCamera()->setCameraPosition(x_rotation_, y_rotation_);
 }
 void SurfaceGraph::rotate_y(int rotation)
 {
-    m_yRotation = rotation;
-    m_graph->scene()->activeCamera()->setCameraPosition(m_xRotation, m_yRotation);
+    y_rotation_ = rotation;
+    graph_->scene()->activeCamera()->setCameraPosition(x_rotation_, y_rotation_);
 }
 
 

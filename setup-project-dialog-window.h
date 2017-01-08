@@ -21,9 +21,9 @@ private slots:
     void on_startProjectButton_clicked();
 
 private:
-    Ui::SetupProjectDialogWindow *ui;
-    ProjectSettings *project_settings;
-    QList< QPair<QString, double>> units_items;
+    Ui::SetupProjectDialogWindow *ui_;
+    ProjectSettings *project_settings_;
+    QList< QPair<QString, double>> units_items_;
 };
 
 #endif // SETUPPROJECTDIALOGWINDOW_H

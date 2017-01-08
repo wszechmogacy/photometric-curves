@@ -14,7 +14,7 @@ class SurfaceWindow : public QWidget
      Q_OBJECT
 public:
     SurfaceWindow(std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count);
-    Q3DSurface *graph;
+    Q3DSurface *graph_;
 
 public slots:
     void print_to_pdf();

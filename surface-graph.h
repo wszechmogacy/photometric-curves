@@ -24,19 +24,19 @@ public:
 
 private:
     void set_graph_details();
-    void set_data(std::vector<Point> &data_table);
+    void set_data(std::vector<Point> &data_table_);
     void set_range_x();
     void set_range_y();
     void set_range_z();
 
-    unsigned sampleCountOnMeridian;
-    unsigned sampleCountOnParallel;
-    std::vector<Point> data_table;
-    Q3DSurface *m_graph;
-    QSurfaceDataProxy *m_PhotoLayerProxy;
-    QSurface3DSeries *m_PhotoLayerSeries;
-    float m_xRotation;
-    float m_yRotation;
+    unsigned sample_count_on_meridian_;
+    unsigned sample_count_on_parallel_;
+    std::vector<Point> data_table_;
+    Q3DSurface *graph_;
+    QSurfaceDataProxy *photo_layer_proxy_;
+    QSurface3DSeries *photo_layer_series_;
+    float x_rotation_;
+    float y_rotation_;
 
 };
 
