@@ -45,7 +45,8 @@ void MainWindow::setup_table_view(int columns_count, int rows_count)
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui_(new Ui::MainWindow)
-{setWindowTitle("Photometric Curves Calculator");
+{
+    setWindowTitle("Photometric Curves Calculator");
     ui_->setupUi(this);
 
     IntroductionDialogWindow intro(&project_settings_);

@@ -11,7 +11,7 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
     ui(new Ui::SetupProjectDialogWindow)
 {
     ui->setupUi(this);
-
+    project_settings = nullptr;
     const double luminous_flux_to_watts_ratio = 683.0;
     units_items = {
         qMakePair(QString("W/m^2"), 1.0),
