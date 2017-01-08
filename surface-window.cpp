@@ -72,8 +72,8 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
     SurfaceGraph *modifier = new SurfaceGraph(graph, data_table, columns_count, rows_count);
 
     //connect sliders to slots
-    QObject::connect(rotationSliderX, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateX);
-    QObject::connect(rotationSliderY, &QSlider::valueChanged, modifier, &SurfaceGraph::rotateY);
+    QObject::connect(rotationSliderX, &QSlider::valueChanged, modifier, &SurfaceGraph::rotate_x);
+    QObject::connect(rotationSliderY, &QSlider::valueChanged, modifier, &SurfaceGraph::rotate_y);
     QObject::connect(toPdfButton, &QPushButton::clicked, this, &SurfaceWindow::print_to_pdf);
 
 

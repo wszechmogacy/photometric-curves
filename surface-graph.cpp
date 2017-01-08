@@ -138,12 +138,12 @@ void SurfaceGraph::set_graph_details()
 }
 
 
-void SurfaceGraph::rotateX(int rotation)
+void SurfaceGraph::rotate_x(int rotation)
 {
     m_xRotation = rotation;
     m_graph->scene()->activeCamera()->setCameraPosition(m_xRotation, m_yRotation);
 }
-void SurfaceGraph::rotateY(int rotation)
+void SurfaceGraph::rotate_y(int rotation)
 {
     m_yRotation = rotation;
     m_graph->scene()->activeCamera()->setCameraPosition(m_xRotation, m_yRotation);

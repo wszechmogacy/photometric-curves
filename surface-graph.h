@@ -17,8 +17,8 @@ class SurfaceGraph : public QObject
 public:
     explicit SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigned columns_count, unsigned rows_count);
     ~SurfaceGraph();
-    void rotateX(int rotation);
-    void rotateY(int rotation);
+    void rotate_x(int rotation);
+    void rotate_y(int rotation);
 
     void convert_point_on_meridian(std::vector<Point> data, unsigned i, int &index, QSurfaceDataRow *newRow, unsigned j);
 
@@ -28,9 +28,9 @@ private:
     void set_range_x();
     void set_range_y();
     void set_range_z();
+
     unsigned sampleCountOnMeridian;
     unsigned sampleCountOnParallel;
-
     std::vector<Point> data_table;
     Q3DSurface *m_graph;
     QSurfaceDataProxy *m_PhotoLayerProxy;

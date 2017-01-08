@@ -13,7 +13,7 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
     ui->setupUi(this);
 
     const double luminous_flux_to_watts_ratio = 683.0;
-    unitsItems = {
+    units_items = {
         qMakePair(QString("W/m^2"), 1.0),
         qMakePair(QString("uW/cm^2"), 0.01),
         qMakePair(QString("lm/m^2"), 1.0 / luminous_flux_to_watts_ratio)
@@ -21,7 +21,7 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
 
     QPair<QString, double> each_pair;
     QStringList unitsNameItems;
-    foreach(each_pair, unitsItems) {
+    foreach(each_pair, units_items) {
         unitsNameItems.append(each_pair.first);
     }
 
@@ -51,7 +51,7 @@ void SetupProjectDialogWindow::on_startProjectButton_clicked()
     project_settings->units = unitsName;
 
     QPair<QString, double> each;
-    foreach (each, unitsItems) {
+    foreach (each, units_items) {
         if (each.first == unitsName)
             project_settings->units_scale = each.second;
     }

@@ -23,7 +23,7 @@ private slots:
 private:
     Ui::SetupProjectDialogWindow *ui;
     ProjectSettings *project_settings;
-    QList< QPair<QString, double> > unitsItems;
+    QList< QPair<QString, double>> units_items;
 };
 
 #endif // SETUPPROJECTDIALOGWINDOW_H

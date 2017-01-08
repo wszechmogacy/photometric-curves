@@ -132,7 +132,7 @@ void MainWindow::on_sectionButton_clicked()
 void MainWindow::on_lumniousFluxButton_clicked()
 {
     //get data from table
-    auto table_data = MainWindow::getTableData();
+    auto table_data = MainWindow::get_table_data();
     const double sphere_radius_m = project_settings.radius;
     LuminousFluxCalculator flux_calculator(sphere_radius_m);
     double luminous_flux = flux_calculator(table_data, project_settings.units_scale, columns_count);
@@ -141,7 +141,7 @@ void MainWindow::on_lumniousFluxButton_clicked()
     window.exec();
 }
 
-std::vector<Point> MainWindow::getTableData()
+std::vector<Point> MainWindow::get_table_data()
 {
     std::vector<Point> table_data;
     double last, prelast;
@@ -169,7 +169,7 @@ std::vector<Point> MainWindow::getTableData()
 
 void MainWindow::on_draw3DplotButton_clicked()
 {
-    auto table_data = MainWindow::getTableData();
+    auto table_data = MainWindow::get_table_data();
     SurfaceWindow *window = new SurfaceWindow(table_data, columns_count, rows_count);
     window->show();
 }
