@@ -31,7 +31,7 @@ double LuminousFluxCalculator::operator() (std::vector<Point> &data, double scal
         const double upper_circumference = 2.0 * ConstNumbers::pi * this->sphere_radius_ * std::sin(static_cast<double>(upper_lattidtude) / 360.0 * 2.0 * ConstNumbers::pi);
         const double lower_circumference = 2.0 * ConstNumbers::pi * this->sphere_radius_ * std::sin(static_cast<double>(lower_lattidtude) / 360.0 * 2.0 * ConstNumbers::pi);
 
-        area = (upper_circumference + lower_circumference) * calculate_meridian_chunck_length(meridian_points_count) / 2;
+        area = (upper_circumference + lower_circumference) / parallels.size() * calculate_meridian_chunck_length(meridian_points_count) / 2;
 
         const double upper_average = average_value_on_parallel(upper_lattidtude, data) * scale;
         const double lower_average = average_value_on_parallel(lower_lattidtude, data) * scale;
