@@ -7,20 +7,20 @@
 
 IntroductionDialogWindow::IntroductionDialogWindow(ProjectSettings *proj_settings, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::IntroductionDialogWindow),
-    project_settings(proj_settings)
+    ui_(new Ui::IntroductionDialogWindow),
+    project_settings_(proj_settings)
 {
-    ui->setupUi(this);
+    ui_->setupUi(this);
 }
 
 IntroductionDialogWindow::~IntroductionDialogWindow()
 {
-    delete ui;
+    delete ui_;
 }
 
 void IntroductionDialogWindow::on_createProjectButton_clicked()
 {
-    SetupProjectDialogWindow window(project_settings);
+    SetupProjectDialogWindow window(project_settings_);
     window.exec();
     close();
 }

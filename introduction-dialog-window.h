@@ -21,8 +21,8 @@ private slots:
     void on_createProjectButton_clicked();
 
 private:
-    Ui::IntroductionDialogWindow *ui;
-    ProjectSettings *project_settings;
+    Ui::IntroductionDialogWindow *ui_;
+    ProjectSettings *project_settings_;
 };
 
 #endif // INTRODUCTIONDIALOGWINDOW_H

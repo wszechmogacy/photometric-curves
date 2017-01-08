@@ -26,39 +26,39 @@ void MainWindow::setup_table_view(int columns_count, int rows_count)
         throw std::runtime_error("Input data (columns or rows) are invalid");
     }
 
-    ui->dataTable->setRowCount(rows_count);
-    ui->dataTable->setColumnCount(columns_count);
+    ui_->dataTable->setRowCount(rows_count);
+    ui_->dataTable->setColumnCount(columns_count);
 
     QStringList horizontal_label;
     for(int col = 0; col <= columns_count; col++) {
         horizontal_label.append(QString::number(90*col/columns_count));
     }
-    ui->dataTable->setHorizontalHeaderLabels(horizontal_label);
+    ui_->dataTable->setHorizontalHeaderLabels(horizontal_label);
 
     QStringList vertical_label;
     for(int row = 0; row < rows_count; row++) {
         vertical_label.append(QString::number(360*row/rows_count));
     }
-    ui->dataTable->setVerticalHeaderLabels(vertical_label);
+    ui_->dataTable->setVerticalHeaderLabels(vertical_label);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui_(new Ui::MainWindow)
 {setWindowTitle("Photometric Curves Calculator");
-    ui->setupUi(this);
+    ui_->setupUi(this);
 
-    IntroductionDialogWindow intro(&project_settings);
+    IntroductionDialogWindow intro(&project_settings_);
     intro.exec();
 
-    rows_count = 360 / project_settings.step_in_parallel;
-    columns_count = 90 / project_settings.step_in_meridian;
+    rows_count_ = 360 / project_settings_.step_in_parallel;
+    columns_count_ = 90 / project_settings_.step_in_meridian;
 
-    qDebug() << "col: " << QString::number(columns_count) << QString::number(rows_count);
-    setup_table_view(columns_count, rows_count);
+    qDebug() << "col: " << QString::number(columns_count_) << QString::number(rows_count_);
+    setup_table_view(columns_count_, rows_count_);
 
-    for(size_t col = 0; col <= columns_count; col++) {
-        for(size_t row = 0; row < rows_count; row++) {
+    for(size_t col = 0; col <= columns_count_; col++) {
+        for(size_t row = 0; row < rows_count_; row++) {
             //ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
             //ui->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
         }
@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete ui_;
 }
 
 
@@ -76,9 +76,9 @@ QList<QPointF> MainWindow::get_meridian_section_values(int i, QModelIndexList se
     QModelIndex index = selection.at(i);
 
     QList<QPointF> vec;
-    for (unsigned angle = 0; angle < 90; angle += project_settings.step_in_meridian) {
-        QString next_val_txt = ui->dataTable->item(index.row(), angle / project_settings.step_in_meridian)->text();
-        QString prev_val_txt = ui->dataTable->item( (ui->dataTable->rowCount() / 2 + index.row()) % ui->dataTable->rowCount(), angle / project_settings.step_in_meridian)->text();
+    for (unsigned angle = 0; angle < 90; angle += project_settings_.step_in_meridian) {
+        QString next_val_txt = ui_->dataTable->item(index.row(), angle / project_settings_.step_in_meridian)->text();
+        QString prev_val_txt = ui_->dataTable->item( (ui_->dataTable->rowCount() / 2 + index.row()) % ui_->dataTable->rowCount(), angle / project_settings_.step_in_meridian)->text();
         QLocale c(QLocale::C);
         double next_val = c.toDouble(next_val_txt);
         double prev_val = c.toDouble(prev_val_txt);
@@ -91,7 +91,7 @@ QList<QPointF> MainWindow::get_meridian_section_values(int i, QModelIndexList se
 
 void MainWindow::on_photometricCurveButton_clicked()
 {
-    QModelIndexList selection = ui->dataTable->selectionModel()->selectedRows();
+    QModelIndexList selection = ui_->dataTable->selectionModel()->selectedRows();
 
     for(int i=0; i< selection.count(); i++)
     {
@@ -105,23 +105,23 @@ void MainWindow::on_photometricCurveButton_clicked()
 
 void MainWindow::on_sectionButton_clicked()
 {
-    QModelIndexList selection = ui->dataTable->selectionModel()->selectedColumns();
+    QModelIndexList selection = ui_->dataTable->selectionModel()->selectedColumns();
 
     for(int i=0; i< selection.count(); i++)
     {
         QModelIndex index = selection.at(i);
 
         QList<QPointF> vec;
-        for (unsigned j = 0; j < rows_count; j++) {
-            QString txt = ui->dataTable->item(j, index.column())->text();
+        for (unsigned j = 0; j < rows_count_; j++) {
+            QString txt = ui_->dataTable->item(j, index.column())->text();
             QLocale c(QLocale::C);
             double d = c.toDouble(txt);
 
-            vec.append(QPointF(d, 360 / rows_count * j));
+            vec.append(QPointF(d, 360 / rows_count_ * j));
         }
 
         QLocale n(QLocale::C);
-        double first_raw_item_value = n.toDouble(ui->dataTable->item(0, index.column())->text());
+        double first_raw_item_value = n.toDouble(ui_->dataTable->item(0, index.column())->text());
         vec.append(QPointF(first_raw_item_value, 360));
 
         PolarGraphWindow *polar_graph = new PolarGraphWindow(GraphType::section, vec);
@@ -133,9 +133,9 @@ void MainWindow::on_lumniousFluxButton_clicked()
 {
     //get data from table
     auto table_data = MainWindow::get_table_data();
-    const double sphere_radius_m = project_settings.radius;
+    const double sphere_radius_m = project_settings_.radius;
     LuminousFluxCalculator flux_calculator(sphere_radius_m);
-    double luminous_flux = flux_calculator(table_data, project_settings.units_scale, columns_count);
+    double luminous_flux = flux_calculator(table_data, project_settings_.units_scale, columns_count_);
 
     LuminousFluxWindow window(luminous_flux);
     window.exec();
@@ -145,22 +145,22 @@ std::vector<Point> MainWindow::get_table_data()
 {
     std::vector<Point> table_data;
     double last, prelast;
-    for(size_t row = 0; row < rows_count; row++) {
-        for(size_t column = 0; column < columns_count; column++) {
-            QString meridianName = ui->dataTable->horizontalHeaderItem(column)->text();
-            QString parallelName = ui->dataTable->verticalHeaderItem(row)->text();
-            QString valueName =  ui->dataTable->item(row, column)->text();
+    for(size_t row = 0; row < rows_count_; row++) {
+        for(size_t column = 0; column < columns_count_; column++) {
+            QString meridianName = ui_->dataTable->horizontalHeaderItem(column)->text();
+            QString parallelName = ui_->dataTable->verticalHeaderItem(row)->text();
+            QString valueName =  ui_->dataTable->item(row, column)->text();
             //TODO: handle return values from toDouble (
             table_data.emplace_back(parallelName.toDouble(),
                                     meridianName.toDouble(),
                                     valueName.toDouble()
                                     );
 
-            if (column == columns_count - 1) last = valueName.toDouble();
-            if (column == columns_count - 2) prelast = valueName.toDouble();
+            if (column == columns_count_ - 1) last = valueName.toDouble();
+            if (column == columns_count_ - 2) prelast = valueName.toDouble();
         }
-        if (columns_count > 2) {
-            table_data.emplace_back(ui->dataTable->verticalHeaderItem(row)->text().toDouble(), 90.0, last + (last - prelast));
+        if (columns_count_ > 2) {
+            table_data.emplace_back(ui_->dataTable->verticalHeaderItem(row)->text().toDouble(), 90.0, last + (last - prelast));
         }
     }
 
@@ -170,20 +170,20 @@ std::vector<Point> MainWindow::get_table_data()
 void MainWindow::on_draw3DplotButton_clicked()
 {
     auto table_data = MainWindow::get_table_data();
-    SurfaceWindow *window = new SurfaceWindow(table_data, columns_count, rows_count);
+    SurfaceWindow *window = new SurfaceWindow(table_data, columns_count_, rows_count_);
     window->show();
 }
 
 QString MainWindow::prepare_data_to_save()
 {
     QString textData;
-    int rows = ui->dataTable->rowCount();
-    int columns = ui->dataTable->columnCount();
+    int rows = ui_->dataTable->rowCount();
+    int columns = ui_->dataTable->columnCount();
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
 
-            textData += ui->dataTable->item(i,j)->text();
+            textData += ui_->dataTable->item(i,j)->text();
             textData += ", ";
         }
         textData += "\n";
@@ -230,15 +230,15 @@ void MainWindow::on_readFileButton_clicked()
     }
 
     if (columns_count != 0 && rows_count != 0) {
-        project_settings.step_in_meridian = 90 / columns_count;
-        project_settings.step_in_parallel = 360 / rows_count;
-        this->columns_count = columns_count;
-        this->rows_count = rows_count;
+        project_settings_.step_in_meridian = 90 / columns_count;
+        project_settings_.step_in_parallel = 360 / rows_count;
+        this->columns_count_ = columns_count;
+        this->rows_count_ = rows_count;
     } else {
         qDebug() << "Error when reading data";
     }
 
-    qDebug() << "steps: " << QString::number(project_settings.step_in_meridian) << QString::number(project_settings.step_in_parallel);
+    qDebug() << "steps: " << QString::number(project_settings_.step_in_meridian) << QString::number(project_settings_.step_in_parallel);
 
     setup_table_view(columns_count, rows_count);
 
@@ -251,7 +251,7 @@ void MainWindow::on_readFileButton_clicked()
         QString line = stream.readLine();
         QStringList list = line.split(",");
         for(int col = 0; col < list.count(); col++) {
-            ui->dataTable->setItem(row, col, new QTableWidgetItem(list[col]));
+            ui_->dataTable->setItem(row, col, new QTableWidgetItem(list[col]));
         }
         row++;
     }

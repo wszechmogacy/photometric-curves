@@ -39,12 +39,12 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigne
 void SurfaceGraph::convert_point_on_meridian(std::vector<Point> data, unsigned i, int &index, QSurfaceDataRow *newRow, unsigned j)
 {
     size_t pos = i * sampleCountOnMeridian + j;
-    (*newRow)[index].setPosition(QVector3D(data[pos].x, data[pos].y, data[pos].z));
+    (*newRow)[index].setPosition(QVector3D(data[pos].x_, data[pos].y_, data[pos].z_));
     qDebug() << QString::number(pos) << ": "
              << QString::number(index)
-             << QString::number(data[pos].lat_angle_deg, 'g', 8)
-             << QString::number(data[pos].lon_angle_deg, 'g', 8)
-             << QString::number(data[pos].z, 'g', 8);
+             << QString::number(data[pos].lat_angle_deg_, 'g', 8)
+             << QString::number(data[pos].lon_angle_deg_, 'g', 8)
+             << QString::number(data[pos].z_, 'g', 8);
     index++;
 }
 
@@ -87,10 +87,10 @@ void SurfaceGraph::set_range_x()
     const double scale_factor = 1.2;
     auto range = std::minmax_element(data_table.begin(), data_table.end(),
           [](const Point &px, const Point &py){
-              return px.x < py.x;
+              return px.x_ < py.x_;
           }
     );
-    m_graph->axisX()->setRange(scale_factor * range.first->x, scale_factor * range.second->x);
+    m_graph->axisX()->setRange(scale_factor * range.first->x_, scale_factor * range.second->x_);
 }
 
 
@@ -99,10 +99,10 @@ void SurfaceGraph::set_range_y()
     const double scale_factor = 1.2;
     auto range = std::minmax_element(data_table.begin(), data_table.end(),
           [](const Point &px, const Point &py){
-              return px.y < py.y;
+              return px.y_ < py.y_;
           }
     );
-    m_graph->axisY()->setRange(scale_factor * range.first->y, scale_factor * range.second->y);
+    m_graph->axisY()->setRange(scale_factor * range.first->y_, scale_factor * range.second->y_);
 }
 
 
@@ -111,10 +111,10 @@ void SurfaceGraph::set_range_z()
     const double scale_factor = 1.2;
     auto range = std::minmax_element(data_table.begin(), data_table.end(),
           [](const Point &px, const Point &py){
-              return px.z < py.z;
+              return px.z_ < py.z_;
           }
     );
-    m_graph->axisZ()->setRange(scale_factor * range.first->z, scale_factor * range.second->z);
+    m_graph->axisZ()->setRange(scale_factor * range.first->z_, scale_factor * range.second->z_);
 }
 
 

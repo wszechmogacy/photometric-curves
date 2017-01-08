@@ -5,17 +5,17 @@
 
 LuminousFluxWindow::LuminousFluxWindow(double flux, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::LuminousFluxWindow)
+    ui_(new Ui::LuminousFluxWindow)
 {
-    ui->setupUi(this);
-    ui->luminousFluxtxt->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    ui_->setupUi(this);
+    ui_->luminousFluxtxt->setTextInteractionFlags(Qt::TextSelectableByMouse);
     QString window_txt = "Luminous Flux = " + QString::number(flux * 683, 'g', 8) + " " + "lm";
-    ui->luminousFluxtxt->setText(window_txt);
+    ui_->luminousFluxtxt->setText(window_txt);
 }
 
 LuminousFluxWindow::~LuminousFluxWindow()
 {
-    delete ui;
+    delete ui_;
 }
 
 void LuminousFluxWindow::on_CloseButton_clicked()

@@ -10,17 +10,17 @@ namespace ConstNumbers {
 class Point {
 
 public:
-    double lon_angle_deg;
-    double lat_angle_deg;
-    double radial;
-    double lon_angle_rad;
-    double lat_angle_rad;
-    double x;
-    double y;
-    double z;
+    double lon_angle_deg_;
+    double lat_angle_deg_;
+    double radial_;
+    double lon_angle_rad_;
+    double lat_angle_rad_;
+    double x_;
+    double y_;
+    double z_;
 
 public:
-    Point(double lon_angle_deg, double lat_angle_deg, double radial);
+    Point(double lon_angle_deg_, double lat_angle_deg_, double radial_);
     Point();
     bool operator<(const Point &o) const;
 };

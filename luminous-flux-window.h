@@ -19,7 +19,7 @@ private slots:
     void on_CloseButton_clicked();
 
 private:
-    Ui::LuminousFluxWindow *ui;
+    Ui::LuminousFluxWindow *ui_;
 };
 
 #endif // LUMINOUSFLUXWINDOW_H
