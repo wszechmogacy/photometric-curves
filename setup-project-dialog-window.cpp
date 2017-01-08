@@ -40,20 +40,20 @@ SetupProjectDialogWindow::~SetupProjectDialogWindow()
 
 void SetupProjectDialogWindow::on_startProjectButton_clicked()
 {
-    project_settings->student_name = ui->studentNameField->text();
-    project_settings->class_date = ui->classesDateField->text();
-    project_settings->student_group = ui->studentGroupField->text();
-    project_settings->source_name = ui->lightSourceField->text();
-    project_settings->step_in_parallel = ui->stepParallelComboBox->currentText().toUInt();
-    project_settings->step_in_meridian = ui->stepInMeridianComboBox->currentText().toUInt();
-    project_settings->radius = ui->radiusField->text().toDouble();
+    project_settings->student_name_ = ui->studentNameField->text();
+    project_settings->class_date_ = ui->classesDateField->text();
+    project_settings->student_group_ = ui->studentGroupField->text();
+    project_settings->source_name_ = ui->lightSourceField->text();
+    project_settings->step_in_parallel_dir_ = ui->stepParallelComboBox->currentText().toUInt();
+    project_settings->step_in_meridian_dir_ = ui->stepInMeridianComboBox->currentText().toUInt();
+    project_settings->radius_ = ui->radiusField->text().toDouble();
     QString unitsName =  ui->unitsComboBox->currentText();
-    project_settings->units = unitsName;
+    project_settings->units_ = unitsName;
 
     QPair<QString, double> each;
     foreach (each, units_items) {
         if (each.first == unitsName)
-            project_settings->units_scale = each.second;
+            project_settings->units_scale_ = each.second;
     }
 
     close();

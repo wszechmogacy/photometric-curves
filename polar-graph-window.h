@@ -32,11 +32,11 @@ class PolarGraphWindow : public QMainWindow
     void get_data_series(QXYSeries *scatter_series, QString name, QList<QPointF> &plot_data);
 
 public:
-    PolarGraphWindow(GraphType graph_type,  QList<QPointF> &plot_data);
-    QPolarChart *graph;
-    QValueAxis * setup_radial_axis(QList<QPointF> &plot_data);
+    PolarGraphWindow(GraphType graph_type_,  QList<QPointF> &plot_data);
+    QPolarChart *graph_;
+    QValueAxis *setup_radial_axis(QList<QPointF> &plot_data);
 private:
-    GraphType graph_type;
+    GraphType graph_type_;
 };
 
 #endif // POLARGRAPH_H

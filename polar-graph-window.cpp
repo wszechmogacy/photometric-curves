@@ -75,7 +75,7 @@ void PolarGraphWindow::get_data_series(QXYSeries *scatter_series, QString name, 
 
 
 PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_data) :
-    graph_type(graph_type)
+    graph_type_(graph_type)
 {
     if (graph_type == GraphType::curve) {
         this->setWindowTitle(QStringLiteral("Photometric curve"));

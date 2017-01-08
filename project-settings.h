@@ -8,15 +8,15 @@ class ProjectSettings
 {
 public:
     ProjectSettings();
-    QString student_name;
-    QString class_date;
-    QString student_group;
-    QString source_name;
-    unsigned step_in_parallel;
-    unsigned step_in_meridian;
-    QString units;
-    double radius;
-    double units_scale;
+    QString student_name_;
+    QString class_date_;
+    QString student_group_;
+    QString source_name_;
+    unsigned step_in_parallel_dir_;
+    unsigned step_in_meridian_dir_;
+    QString units_;
+    double radius_;
+    double units_scale_;
 };
 
 #endif // PROJECTSETTINGS_H

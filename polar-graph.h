@@ -8,6 +8,4 @@ public:
     PolarGraph();
 };
 
-
-
 #endif // POLARGRAPH_H

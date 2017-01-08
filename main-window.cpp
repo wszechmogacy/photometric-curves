@@ -51,8 +51,8 @@ MainWindow::MainWindow(QWidget *parent) :
     IntroductionDialogWindow intro(&project_settings_);
     intro.exec();
 
-    rows_count_ = 360 / project_settings_.step_in_parallel;
-    columns_count_ = 90 / project_settings_.step_in_meridian;
+    rows_count_ = 360 / project_settings_.step_in_parallel_dir_;
+    columns_count_ = 90 / project_settings_.step_in_meridian_dir_;
 
     qDebug() << "col: " << QString::number(columns_count_) << QString::number(rows_count_);
     setup_table_view(columns_count_, rows_count_);
@@ -76,9 +76,9 @@ QList<QPointF> MainWindow::get_meridian_section_values(int i, QModelIndexList se
     QModelIndex index = selection.at(i);
 
     QList<QPointF> vec;
-    for (unsigned angle = 0; angle < 90; angle += project_settings_.step_in_meridian) {
-        QString next_val_txt = ui_->dataTable->item(index.row(), angle / project_settings_.step_in_meridian)->text();
-        QString prev_val_txt = ui_->dataTable->item( (ui_->dataTable->rowCount() / 2 + index.row()) % ui_->dataTable->rowCount(), angle / project_settings_.step_in_meridian)->text();
+    for (unsigned angle = 0; angle < 90; angle += project_settings_.step_in_meridian_dir_) {
+        QString next_val_txt = ui_->dataTable->item(index.row(), angle / project_settings_.step_in_meridian_dir_)->text();
+        QString prev_val_txt = ui_->dataTable->item( (ui_->dataTable->rowCount() / 2 + index.row()) % ui_->dataTable->rowCount(), angle / project_settings_.step_in_meridian_dir_)->text();
         QLocale c(QLocale::C);
         double next_val = c.toDouble(next_val_txt);
         double prev_val = c.toDouble(prev_val_txt);
@@ -133,9 +133,9 @@ void MainWindow::on_lumniousFluxButton_clicked()
 {
     //get data from table
     auto table_data = MainWindow::get_table_data();
-    const double sphere_radius_m = project_settings_.radius;
+    const double sphere_radius_m = project_settings_.radius_;
     LuminousFluxCalculator flux_calculator(sphere_radius_m);
-    double luminous_flux = flux_calculator(table_data, project_settings_.units_scale, columns_count_);
+    double luminous_flux = flux_calculator(table_data, project_settings_.units_scale_, columns_count_);
 
     LuminousFluxWindow window(luminous_flux);
     window.exec();
@@ -230,15 +230,15 @@ void MainWindow::on_readFileButton_clicked()
     }
 
     if (columns_count != 0 && rows_count != 0) {
-        project_settings_.step_in_meridian = 90 / columns_count;
-        project_settings_.step_in_parallel = 360 / rows_count;
+        project_settings_.step_in_meridian_dir_ = 90 / columns_count;
+        project_settings_.step_in_parallel_dir_ = 360 / rows_count;
         this->columns_count_ = columns_count;
         this->rows_count_ = rows_count;
     } else {
         qDebug() << "Error when reading data";
     }
 
-    qDebug() << "steps: " << QString::number(project_settings_.step_in_meridian) << QString::number(project_settings_.step_in_parallel);
+    qDebug() << "steps: " << QString::number(project_settings_.step_in_meridian_dir_) << QString::number(project_settings_.step_in_parallel_dir_);
 
     setup_table_view(columns_count, rows_count);
 
