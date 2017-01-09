@@ -33,7 +33,7 @@
         <item>
          <widget class="QLabel" name="studentNameLabel">
           <property name="text">
-           <string>Student Name</string>
+           <string>Students' Names</string>
           </property>
          </widget>
         </item>
@@ -61,24 +61,6 @@
        <widget class="QLineEdit" name="classesDateField">
         <property name="text">
          <string>13. December 2016</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="studentGroupLayout">
-      <item>
-       <widget class="QLabel" name="studentGroupLabel">
-        <property name="text">
-         <string>Student Group</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="studentGroupField">
-        <property name="text">
-         <string>Tuesday - 14:15</string>
         </property>
        </widget>
       </item>
@@ -211,7 +193,7 @@
        <item>
         <widget class="QLineEdit" name="radiusField">
          <property name="text">
-          <string>0.210</string>
+          <string>0.200</string>
          </property>
         </widget>
        </item>
