@@ -16,7 +16,7 @@ public:
     ~LuminousFluxWindow();
 
 private slots:
-    void on_CloseButton_clicked();
+    void on_closeButton_clicked();
 
 private:
     Ui::LuminousFluxWindow *ui_;
