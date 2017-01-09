@@ -11,6 +11,8 @@ IntroductionDialogWindow::IntroductionDialogWindow(ProjectSettings *proj_setting
     project_settings_(proj_settings)
 {
     ui_->setupUi(this);
+    ui_->createProjectButton->setText(tr("Create Project"));
+    ui_->openProjectButton->setText(tr("Open Project"));
 }
 
 IntroductionDialogWindow::~IntroductionDialogWindow()

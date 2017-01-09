@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -26,7 +26,7 @@
     <item>
      <widget class="QPushButton" name="createProjectButton">
       <property name="text">
-       <string>Create Project</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -46,7 +46,7 @@
     <item>
      <widget class="QPushButton" name="openProjectButton">
       <property name="text">
-       <string>Open Project</string>
+       <string/>
       </property>
      </widget>
     </item>
