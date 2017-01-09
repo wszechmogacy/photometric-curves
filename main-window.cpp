@@ -49,6 +49,14 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle("Photometric Curves Calculator");
     ui_->setupUi(this);
 
+    ui_->lumniousFluxButton->setText(tr("Luminous Flux"));
+    ui_->photometricCurveButton->setText(tr("Photometric Curve"));
+    ui_->readFileButton->setText(tr("Read data"));
+    ui_->saveDataButton->setText(tr("Save to file"));
+    ui_->sectionButton->setText(tr("Section"));
+    ui_->draw3DplotButton->setText(tr("Photometric solid"));
+
+
     IntroductionDialogWindow intro(&project_settings_);
     intro.exec();
 
