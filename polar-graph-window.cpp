@@ -88,9 +88,9 @@ PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_da
     QScatterSeries *scatter_series = new QScatterSeries();
     QLineSeries *line_series = new QLineSeries();
     QSplineSeries *spline_series = new QSplineSeries();
-    get_data_series(scatter_series, "dots", plot_data);
-    get_data_series(line_series, "curve", plot_data);
-    get_data_series(spline_series, "spline", plot_data);
+    get_data_series(scatter_series, tr("dots"), plot_data);
+    get_data_series(line_series, tr("curve"), plot_data);
+    get_data_series(spline_series, tr("spline"), plot_data);
 
     QPolarChart *chart = new QPolarChart();
 
@@ -125,12 +125,12 @@ PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_da
     QWidget *widget = new QWidget();
     QHBoxLayout *hlayout = new QHBoxLayout;
 
-    QGroupBox *styleSelectionGroupBox = new QGroupBox(QStringLiteral("Graph curve type"));
+    QGroupBox *styleSelectionGroupBox = new QGroupBox(tr("Graph curve type"));
     QVBoxLayout *selectionVBox = new QVBoxLayout;
 
-    QCheckBox *scatterCheckBox = new QCheckBox("scatter");
-    QCheckBox *lineCheckBox = new QCheckBox("line");
-    QCheckBox *splineCheckBox = new QCheckBox("smooth line");
+    QCheckBox *scatterCheckBox = new QCheckBox(tr("scatter"));
+    QCheckBox *lineCheckBox = new QCheckBox(tr("line"));
+    QCheckBox *splineCheckBox = new QCheckBox(tr("smooth line"));
     scatterCheckBox->setCheckState(Qt::Checked);
     lineCheckBox->setCheckState(Qt::Unchecked);
     splineCheckBox->setCheckState(Qt::Unchecked);

@@ -59,12 +59,12 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
         rotationSliderY->setMaximum(90);
 
         QPushButton *toPdfButton = new QPushButton;
-        toPdfButton->setText("Convert to PDF");
+        toPdfButton->setText(tr("Convert to PDF"));
 
         //add qsliders to right place in window
-        vLayout->addWidget(new QLabel(QStringLiteral("Rotate horizontally")));
+        vLayout->addWidget(new QLabel(tr("Rotate horizontally")));
         vLayout->addWidget(rotationSliderX, 0, Qt::AlignTop);
-        vLayout->addWidget(new QLabel(QStringLiteral("Rotate vertically")));
+        vLayout->addWidget(new QLabel(tr("Rotate vertically")));
         vLayout->addWidget(rotationSliderY, 0, Qt::AlignTop);
         vLayout->addWidget(toPdfButton);
 
