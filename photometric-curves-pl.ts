@@ -224,7 +224,7 @@
     <message>
         <location filename="setup-project-dialog-window.ui" line="189"/>
         <source>Radius of measured sphere</source>
-        <translation type="unfinished">Promień półsfery</translation>
+        <translation type="unfinished">Promień mierzonej półsfery</translation>
     </message>
     <message>
         <location filename="setup-project-dialog-window.ui" line="196"/>
@@ -264,7 +264,7 @@
     <message>
         <location filename="setup-project-dialog-window.cpp" line="25"/>
         <source>Measurement settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ustawienia pomiarów</translation>
     </message>
 </context>
 <context>
