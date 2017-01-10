@@ -78,11 +78,11 @@ PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_da
     graph_type_(graph_type)
 {
     if (graph_type == GraphType::curve) {
-        this->setWindowTitle(QStringLiteral("Photometric curve"));
+        this->setWindowTitle(tr("Photometric curve"));
     } else if (graph_type == GraphType::section) {
-        this->setWindowTitle(QStringLiteral("Photometric section"));
+        this->setWindowTitle(tr("Photometric section"));
     } else {
-        this->setWindowTitle(QStringLiteral("Photometric graph"));
+        this->setWindowTitle(tr("Photometric graph"));
     }
 
     QScatterSeries *scatter_series = new QScatterSeries();

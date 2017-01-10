@@ -11,7 +11,7 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
     project_settings_(proj)
 {
     ui_->setupUi(this);
-
+    setWindowTitle(tr("Project Settings"));
     ui_->classesInformationGroupBox->setTitle(tr("Classes information"));
     ui_->studentNameLabel->setText(tr("Students' names"));
     ui_->studentNameField->setText("Tomasz Wilk");

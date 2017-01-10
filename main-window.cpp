@@ -46,8 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui_(new Ui::MainWindow)
 {
-    setWindowTitle("Photometric Curves Calculator");
     ui_->setupUi(this);
+    setWindowTitle(tr("Photometric Curves"));
 
     ui_->lumniousFluxButton->setText(tr("Luminous Flux"));
     ui_->photometricCurveButton->setText(tr("Photometric Curve"));

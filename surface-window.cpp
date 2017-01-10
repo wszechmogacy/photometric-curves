@@ -41,7 +41,7 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
     hLayout->addLayout(vLayout);
     vLayout->setAlignment(Qt::AlignTop);
 
-    this->setWindowTitle(QStringLiteral("Photometric surface"));
+    this->setWindowTitle(tr("Photometric solid"));
 
 
     //add qsliders
