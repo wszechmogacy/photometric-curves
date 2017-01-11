@@ -13,7 +13,8 @@ int main(int argc, char *argv[])
     a.installTranslator(&translator);
 
     MainWindow *w = new MainWindow();
-    w->show();
+    if (w != nullptr)  w->show();
+
 
     return a.exec();
 }

@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent) :
     IntroductionDialogWindow intro(&project_settings_);
     intro.exec();
 
+    if (project_settings_.step_in_parallel_dir_ == 0 || project_settings_.step_in_meridian_dir_ == 0) return;
+
     rows_count_ = 360 / project_settings_.step_in_parallel_dir_;
     columns_count_ = 90 / project_settings_.step_in_meridian_dir_;
 
