@@ -97,24 +97,24 @@
     <message>
         <location filename="main-window.cpp" line="107"/>
         <source>Photometric Curve </source>
-        <translation type="unfinished">Krzywa Fotometryczna</translation>
+        <translation type="unfinished">Krzywa Fotometryczna </translation>
     </message>
     <message>
         <location filename="main-window.cpp" line="107"/>
         <location filename="main-window.cpp" line="139"/>
         <source> for </source>
-        <translation type="unfinished">dla</translation>
+        <translation type="unfinished"> dla </translation>
     </message>
     <message>
         <location filename="main-window.cpp" line="108"/>
         <location filename="main-window.cpp" line="140"/>
         <source> deg</source>
-        <translation type="unfinished">stopni</translation>
+        <translation type="unfinished"> stopni</translation>
     </message>
     <message>
         <location filename="main-window.cpp" line="139"/>
         <source>Section </source>
-        <translation type="unfinished">Przekrój</translation>
+        <translation type="unfinished">Przekrój </translation>
     </message>
     <message>
         <location filename="main-window.cpp" line="216"/>
