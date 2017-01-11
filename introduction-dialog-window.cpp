@@ -14,6 +14,9 @@ IntroductionDialogWindow::IntroductionDialogWindow(ProjectSettings *proj_setting
     setWindowTitle(tr("Photometric Curves"));
     ui_->createProjectButton->setText(tr("Create Project"));
     ui_->openProjectButton->setText(tr("Open Project"));
+
+    QStringList languages = {"Angielski", "Polski"};
+    ui_->languagecomboBox->addItems(languages);
 }
 
 IntroductionDialogWindow::~IntroductionDialogWindow()

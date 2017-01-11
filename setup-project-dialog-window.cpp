@@ -26,7 +26,7 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
     ui_->stepInParallelLayout_2->setText(tr("Step in parallel direction"));
     ui_->stepInMeridianLabel->setText(tr("Step in meridian direction"));
     ui_->unitsLabel->setText(tr("Units"));
-    ui_->radiusLabel->setText("Radius of measured sphere");
+    ui_->radiusLabel->setText(tr("Radius of measured sphere"));
     ui_->radiusField->setText("0.200");
 
     const double luminous_flux_to_watts_ratio = 683.0;

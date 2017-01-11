@@ -207,13 +207,13 @@
         <location filename="setup-project-dialog-window.ui" line="143"/>
         <location filename="setup-project-dialog-window.cpp" line="26"/>
         <source>Step in parallel direction</source>
-        <translation type="unfinished">Krok na południku</translation>
+        <translation type="unfinished">Krok równlegle do płaszczyzny</translation>
     </message>
     <message>
         <location filename="setup-project-dialog-window.ui" line="161"/>
         <location filename="setup-project-dialog-window.cpp" line="27"/>
         <source>Step in meridian direction</source>
-        <translation type="unfinished">Krok na równoleżniku</translation>
+        <translation type="unfinished">Krok prostopadle do płaszczyzny</translation>
     </message>
     <message>
         <location filename="setup-project-dialog-window.ui" line="175"/>
