@@ -18,7 +18,7 @@
 #include <surface-window.h>
 
 
-SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count)
+SurfaceWindow::SurfaceWindow(QString graph_name, std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count)
 {
     graph_ = std::unique_ptr<Q3DSurface>(new Q3DSurface());
     QWidget *container = QWidget::createWindowContainer(graph_.get());
@@ -63,14 +63,14 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
         toPdfButton->setText(tr("Convert to PDF"));
 
         //add qsliders to right place in window
-        vLayout->addWidget(new QLabel(tr("Rotate horizontally")));
+        vLayout->addWidget(new QLabel(tr("Rotate horizontQString graph_name,ally")));
         vLayout->addWidget(rotationSliderX, 0, Qt::AlignTop);
         vLayout->addWidget(new QLabel(tr("Rotate vertically")));
         vLayout->addWidget(rotationSliderY, 0, Qt::AlignTop);
         vLayout->addWidget(toPdfButton);
 
 
-    SurfaceGraph *modifier = new SurfaceGraph(graph_.get(), data_table, columns_count, rows_count);
+    SurfaceGraph *modifier = new SurfaceGraph(graph_name, graph_.get(), data_table, columns_count, rows_count);
 
     //connect sliders to slots
     QObject::connect(rotationSliderX, &QSlider::valueChanged, modifier, &SurfaceGraph::rotate_x);

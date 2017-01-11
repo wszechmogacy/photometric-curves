@@ -15,7 +15,7 @@
 
 using namespace QtDataVisualization;
 
-SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigned columns_count, unsigned rows_count)
+SurfaceGraph::SurfaceGraph(QString graph_name, Q3DSurface *surface, std::vector<Point> data, unsigned columns_count, unsigned rows_count)
     : sample_count_on_meridian_(columns_count + 1),
     sample_count_on_parallel_(rows_count),
     data_table_(data),
@@ -24,17 +24,13 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigne
     y_rotation_(0.0f)
 {
     auto *axisX = new QValue3DAxis;
-    axisX->setTitle("X [m]");
-    axisX->setTitleVisible(true);
     graph_->setAxisX(axisX);
 
     auto *axisY = new QValue3DAxis;
-    axisY->setTitle("Y [m]");
-    axisY->setTitleVisible(true);
     graph_->setAxisY(axisY);
 
     auto *axisZ = new QValue3DAxis;
-    axisZ->setTitle("Światłość [W/m^2]");
+    axisZ->setTitle(graph_name);
     axisZ->setTitleVisible(true);
     graph_->setAxisZ(axisZ);
 

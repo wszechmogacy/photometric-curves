@@ -14,7 +14,7 @@ class SurfaceWindow : public QWidget
 {
      Q_OBJECT
 public:
-    SurfaceWindow(std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count);
+    SurfaceWindow(QString graph_name, std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count);
     std::unique_ptr<Q3DSurface> graph_;
 
 public slots:

@@ -108,7 +108,12 @@ void MainWindow::on_photometricCurveButton_clicked()
     {
         QList<QPointF> vec = get_meridian_section_values(i, selection);
 
-        PolarGraphWindow *polar_graph = new PolarGraphWindow("Nazwa grafu", GraphType::curve, vec);
+        QString graph_name = tr("Photometric Curve ") + project_settings_.source_name_+ tr(" for ")
+                + QString::number(360 / rows_count_ * selection.at(i).row()) + tr(" deg")
+                + " ("
+                + project_settings_.student_name_ + " " + project_settings_.class_date_
+                +")";
+        PolarGraphWindow *polar_graph = new PolarGraphWindow(graph_name, GraphType::curve, project_settings_.units_,vec);
         polar_graph->show();
     }
 
@@ -135,9 +140,12 @@ void MainWindow::on_sectionButton_clicked()
         double first_raw_item_value = n.toDouble(ui_->dataTable->item(0, index.column())->text());
         vec.append(QPointF(first_raw_item_value, 360));
 
-        QString graph_name = "Section " + project_settings_.source_name_+ " for "
-                + QString::number(90 / columns_count_ * selection.at(i).column()) + " deg";
-        PolarGraphWindow *polar_graph = new PolarGraphWindow(graph_name, GraphType::section, vec);
+        QString graph_name = tr("Section ") + project_settings_.source_name_+ tr(" for ")
+                + QString::number(90 / columns_count_ * selection.at(i).column()) + tr(" deg")
+                + " ("
+                + project_settings_.student_name_ + " " + project_settings_.class_date_
+                +")";
+        PolarGraphWindow *polar_graph = new PolarGraphWindow(graph_name, GraphType::section, project_settings_.units_,vec);
         polar_graph->show();
     }
 }
@@ -183,7 +191,8 @@ std::vector<Point> MainWindow::get_table_data()
 void MainWindow::on_draw3DplotButton_clicked()
 {
     auto table_data = MainWindow::get_table_data();
-    SurfaceWindow *window = new SurfaceWindow(table_data, columns_count_, rows_count_);
+    QString graph_description = " (" + project_settings_.student_name_ + " " + project_settings_.class_date_ + ")";
+    SurfaceWindow *window = new SurfaceWindow(graph_description, table_data, columns_count_, rows_count_);
     window->show();
 }
 

@@ -18,7 +18,6 @@
 #include <polar-graph-view.h>
 #include <polar-graph-window.h>
 
-
 using namespace QtCharts;
 
 double PolarGraphWindow::find_max_polar_value(QList<QPointF> &plot_data)
@@ -70,11 +69,10 @@ void PolarGraphWindow::get_data_series(QXYSeries *scatter_series, QString name, 
     {
         scatter_series->append(each.y(), each.x());
     }
-
 }
 
 
-PolarGraphWindow::PolarGraphWindow(const QString &graph_name, GraphType graph_type, QList<QPointF> &plot_data) :
+PolarGraphWindow::PolarGraphWindow(const QString &graph_name, GraphType graph_type, QString units_name, QList<QPointF> &plot_data) :
     graph_type_(graph_type),
     graph_name_(graph_name)
 {
@@ -85,9 +83,6 @@ PolarGraphWindow::PolarGraphWindow(const QString &graph_name, GraphType graph_ty
     } else {
         this->setWindowTitle(tr("Photometric graph"));
     }
-
-    //graph_->setTitle("Moj graf");
-    //graph_->setTitle(QString("Moj graf"));
 
     QScatterSeries *scatter_series = new QScatterSeries();
     QLineSeries *line_series = new QLineSeries();
@@ -104,6 +99,8 @@ PolarGraphWindow::PolarGraphWindow(const QString &graph_name, GraphType graph_ty
     chart->setTitle(graph_name);
 
     QValueAxis *angularAxis = setup_angular_axis();
+    angularAxis->setTitleText(units_name);
+    angularAxis->setTitleVisible();
     chart->addAxis(angularAxis, QPolarChart::PolarOrientationAngular);
     scatter_series->attachAxis(angularAxis);
     line_series->attachAxis(angularAxis);
@@ -158,7 +155,6 @@ PolarGraphWindow::PolarGraphWindow(const QString &graph_name, GraphType graph_ty
         else scatter_series->show();
     });
 
-
     selectionVBox->addWidget(splineCheckBox);
     selectionVBox->addWidget(lineCheckBox);
     selectionVBox->addWidget(scatterCheckBox);
@@ -170,7 +166,6 @@ PolarGraphWindow::PolarGraphWindow(const QString &graph_name, GraphType graph_ty
 
     hlayout->addWidget(chartView);
     hlayout->addLayout(vlayout);
-
 
     widget->setLayout(hlayout);
     setCentralWidget(widget);
