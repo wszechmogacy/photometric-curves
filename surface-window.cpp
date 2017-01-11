@@ -63,7 +63,7 @@ SurfaceWindow::SurfaceWindow(QString graph_name, std::vector<Point> &data_table,
         toPdfButton->setText(tr("Convert to PDF"));
 
         //add qsliders to right place in window
-        vLayout->addWidget(new QLabel(tr("Rotate horizontQString graph_name,ally")));
+        vLayout->addWidget(new QLabel(tr("Rotate horizontally")));
         vLayout->addWidget(rotationSliderX, 0, Qt::AlignTop);
         vLayout->addWidget(new QLabel(tr("Rotate vertically")));
         vLayout->addWidget(rotationSliderY, 0, Qt::AlignTop);

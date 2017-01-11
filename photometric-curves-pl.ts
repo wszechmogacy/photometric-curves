@@ -9,6 +9,11 @@
         <translation type="unfinished">Krzywe Fotometryczne</translation>
     </message>
     <message>
+        <location filename="introduction-dialog-window.ui" line="89"/>
+        <source>Język/Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="introduction-dialog-window.cpp" line="14"/>
         <source>Photometric Curves</source>
         <translation type="unfinished">Krzywe Fotometryczne</translation>
@@ -50,97 +55,129 @@
         <translation type="unfinished">Krzywe Fotometryczne</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="50"/>
+        <location filename="main-window.cpp" line="46"/>
         <source>Photometric Curves</source>
         <translation type="unfinished">Krzywe Fotometryczne</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="52"/>
+        <location filename="main-window.cpp" line="48"/>
         <source>Luminous Flux</source>
         <translation type="unfinished">Strumień Świetlny</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="53"/>
+        <location filename="main-window.cpp" line="49"/>
         <source>Photometric Curve</source>
         <translation type="unfinished">Krzywa Fotometryczna</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="54"/>
+        <location filename="main-window.cpp" line="50"/>
         <source>Read data</source>
         <translation type="unfinished">Importuj Dane</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="55"/>
+        <location filename="main-window.cpp" line="51"/>
         <source>Save to file</source>
         <translation type="unfinished">Eksportuj do pliku</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="56"/>
+        <location filename="main-window.cpp" line="52"/>
         <source>Section</source>
         <translation type="unfinished">Przekrój</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="57"/>
+        <location filename="main-window.cpp" line="53"/>
         <source>Photometric solid</source>
         <translation type="unfinished">Bryła fotometryczna</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="207"/>
-        <location filename="main-window.cpp" line="224"/>
+        <location filename="main-window.cpp" line="54"/>
+        <source>Project Settings</source>
+        <translation type="unfinished">Ustawienia Projektu</translation>
+    </message>
+    <message>
+        <location filename="main-window.cpp" line="107"/>
+        <source>Photometric Curve </source>
+        <translation type="unfinished">Krzywa Fotometryczna</translation>
+    </message>
+    <message>
+        <location filename="main-window.cpp" line="107"/>
+        <location filename="main-window.cpp" line="139"/>
+        <source> for </source>
+        <translation type="unfinished">dla</translation>
+    </message>
+    <message>
+        <location filename="main-window.cpp" line="108"/>
+        <location filename="main-window.cpp" line="140"/>
+        <source> deg</source>
+        <translation type="unfinished">stopni</translation>
+    </message>
+    <message>
+        <location filename="main-window.cpp" line="139"/>
+        <source>Section </source>
+        <translation type="unfinished">Przekrój</translation>
+    </message>
+    <message>
+        <location filename="main-window.cpp" line="216"/>
+        <location filename="main-window.cpp" line="233"/>
         <source>Open File</source>
         <translation type="unfinished">Otwórz Plik</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="207"/>
-        <location filename="main-window.cpp" line="224"/>
+        <location filename="main-window.cpp" line="216"/>
+        <location filename="main-window.cpp" line="233"/>
         <source>CSV Files (*.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Plik (*.CSV)</translation>
     </message>
 </context>
 <context>
     <name>PolarGraphWindow</name>
     <message>
-        <location filename="polar-graph-window.cpp" line="81"/>
+        <location filename="polar-graph-window.cpp" line="80"/>
         <source>Photometric curve</source>
         <translation type="unfinished">Krzywa Fotometryczna</translation>
     </message>
     <message>
-        <location filename="polar-graph-window.cpp" line="83"/>
+        <location filename="polar-graph-window.cpp" line="82"/>
         <source>Photometric section</source>
         <translation type="unfinished">Przekrój</translation>
     </message>
     <message>
-        <location filename="polar-graph-window.cpp" line="85"/>
+        <location filename="polar-graph-window.cpp" line="84"/>
         <source>Photometric graph</source>
         <translation type="unfinished">Wykres</translation>
     </message>
     <message>
-        <location filename="polar-graph-window.cpp" line="91"/>
+        <location filename="polar-graph-window.cpp" line="90"/>
         <source>dots</source>
         <translation type="unfinished">punkty</translation>
     </message>
     <message>
-        <location filename="polar-graph-window.cpp" line="92"/>
+        <location filename="polar-graph-window.cpp" line="91"/>
         <source>curve</source>
         <translation type="unfinished">obrys</translation>
     </message>
     <message>
-        <location filename="polar-graph-window.cpp" line="93"/>
+        <location filename="polar-graph-window.cpp" line="92"/>
         <source>spline</source>
         <translation type="unfinished">estymata</translation>
     </message>
     <message>
-        <location filename="polar-graph-window.cpp" line="128"/>
+        <location filename="polar-graph-window.cpp" line="130"/>
         <source>Graph curve type</source>
         <translation type="unfinished">Typ linii</translation>
     </message>
     <message>
-        <location filename="polar-graph-window.cpp" line="131"/>
+        <location filename="polar-graph-window.cpp" line="135"/>
         <source>scatter</source>
         <translation type="unfinished">punkty</translation>
     </message>
     <message>
-        <location filename="polar-graph-window.cpp" line="132"/>
+        <location filename="polar-graph-window.cpp" line="164"/>
+        <source>Export to PDF</source>
+        <translation type="unfinished">Drukuj do PDF</translation>
+    </message>
+    <message>
+        <location filename="polar-graph-window.cpp" line="134"/>
         <source>line</source>
         <translation type="unfinished">estymata</translation>
     </message>
@@ -223,6 +260,7 @@
     </message>
     <message>
         <location filename="setup-project-dialog-window.ui" line="189"/>
+        <location filename="setup-project-dialog-window.cpp" line="29"/>
         <source>Radius of measured sphere</source>
         <translation type="unfinished">Promień mierzonej półsfery</translation>
     </message>
@@ -270,22 +308,31 @@
 <context>
     <name>SurfaceWindow</name>
     <message>
-        <location filename="surface-window.cpp" line="44"/>
+        <location filename="surface-window.cpp" line="28"/>
+        <source>Couldn&apos;t initialize the OpenGL context.</source>
+        <translation type="unfinished">Nie można zainicjować konteksttu OpenGL.</translation>
+    </message>
+    <message>
+        <location filename="surface-window.cpp" line="45"/>
         <source>Photometric solid</source>
         <translation type="unfinished">Bryła fotometryczna</translation>
     </message>
     <message>
-        <location filename="surface-window.cpp" line="62"/>
+        <location filename="surface-window.cpp" line="63"/>
         <source>Convert to PDF</source>
         <translation type="unfinished">Eksportuj do PDFa</translation>
     </message>
     <message>
-        <location filename="surface-window.cpp" line="65"/>
-        <source>Rotate horizontally</source>
-        <translation type="unfinished">Obróć poziomo</translation>
+        <location filename="surface-window.cpp" line="66"/>
+        <source>Rotate horizontQString graph_name,ally</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="surface-window.cpp" line="67"/>
+        <source>Rotate horizontally</source>
+        <translation type="obsolete">Obróć poziomo</translation>
+    </message>
+    <message>
+        <location filename="surface-window.cpp" line="68"/>
         <source>Rotate vertically</source>
         <translation type="unfinished">Obróć pionowo</translation>
     </message>
