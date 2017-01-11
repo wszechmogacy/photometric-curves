@@ -161,7 +161,10 @@ PolarGraphWindow::PolarGraphWindow(const QString &graph_name, GraphType graph_ty
     selectionVBox->setAlignment(Qt::AlignTop);
     styleSelectionGroupBox->setLayout(selectionVBox);
 
+    QPushButton *printToPdfButton = new QPushButton(tr("Export to PDF"));
+
     QVBoxLayout *vlayout = new QVBoxLayout();
+    vlayout->addWidget(printToPdfButton);
     vlayout->addWidget(styleSelectionGroupBox);
 
     hlayout->addWidget(chartView);

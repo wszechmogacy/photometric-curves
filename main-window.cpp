@@ -6,7 +6,6 @@
 #include <QString>
 #include <QVector2D>
 #include <QWidget>
-#include <stdexcept>
 #include <vector>
 
 #include <introduction-dialog-window.h>
@@ -22,10 +21,7 @@
 
 void MainWindow::setup_table_view(int columns_count, int rows_count)
 {
-    if (rows_count == 0 || columns_count == 00) {
-        throw std::runtime_error("Input data (columns or rows) are invalid");
-    }
-
+    if (rows_count == 0 || columns_count == 00) return;
     ui_->dataTable->setRowCount(rows_count);
     ui_->dataTable->setColumnCount(columns_count);
 
@@ -55,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui_->saveDataButton->setText(tr("Save to file"));
     ui_->sectionButton->setText(tr("Section"));
     ui_->draw3DplotButton->setText(tr("Photometric solid"));
-
+    ui_->projectSettingsButton->setText(tr("Project Settings"));
 
     IntroductionDialogWindow intro(&project_settings_);
     intro.exec();
