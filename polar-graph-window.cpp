@@ -74,8 +74,9 @@ void PolarGraphWindow::get_data_series(QXYSeries *scatter_series, QString name, 
 }
 
 
-PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_data) :
-    graph_type_(graph_type)
+PolarGraphWindow::PolarGraphWindow(const QString &graph_name, GraphType graph_type, QList<QPointF> &plot_data) :
+    graph_type_(graph_type),
+    graph_name_(graph_name)
 {
     if (graph_type == GraphType::curve) {
         this->setWindowTitle(tr("Photometric curve"));
@@ -84,6 +85,9 @@ PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_da
     } else {
         this->setWindowTitle(tr("Photometric graph"));
     }
+
+    //graph_->setTitle("Moj graf");
+    //graph_->setTitle(QString("Moj graf"));
 
     QScatterSeries *scatter_series = new QScatterSeries();
     QLineSeries *line_series = new QLineSeries();
@@ -97,6 +101,7 @@ PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_da
     chart->addSeries(scatter_series);
     chart->addSeries(line_series);
     chart->addSeries(spline_series);
+    chart->setTitle(graph_name);
 
     QValueAxis *angularAxis = setup_angular_axis();
     chart->addAxis(angularAxis, QPolarChart::PolarOrientationAngular);

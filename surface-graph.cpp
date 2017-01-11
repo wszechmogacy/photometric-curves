@@ -23,9 +23,24 @@ SurfaceGraph::SurfaceGraph(Q3DSurface *surface, std::vector<Point> data, unsigne
     x_rotation_(0.0f),
     y_rotation_(0.0f)
 {
-    graph_->setAxisX(new QValue3DAxis);
-    graph_->setAxisY(new QValue3DAxis);
-    graph_->setAxisZ(new QValue3DAxis);
+    auto *axisX = new QValue3DAxis;
+    axisX->setTitle("X [m]");
+    axisX->setTitleVisible(true);
+    graph_->setAxisX(axisX);
+
+    auto *axisY = new QValue3DAxis;
+    axisY->setTitle("Y [m]");
+    axisY->setTitleVisible(true);
+    graph_->setAxisY(axisY);
+
+    auto *axisZ = new QValue3DAxis;
+    axisZ->setTitle("Światłość [W/m^2]");
+    axisZ->setTitleVisible(true);
+    graph_->setAxisZ(axisZ);
+
+    graph_->setTitle("Wilk title");
+
+
 
     photo_layer_proxy_ = new QSurfaceDataProxy();
     photo_layer_series_ = new QSurface3DSeries(photo_layer_proxy_);

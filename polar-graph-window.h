@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QPointF>
 #include <QScatterSeries>
+#include <QString>
 #include <QtCharts/QPolarChart>
 #include <QValueAxis>
 
@@ -32,11 +33,12 @@ class PolarGraphWindow : public QMainWindow
     void get_data_series(QXYSeries *scatter_series, QString name, QList<QPointF> &plot_data);
 
 public:
-    PolarGraphWindow(GraphType graph_type_,  QList<QPointF> &plot_data);
+    PolarGraphWindow(const QString &graph_name, GraphType graph_type_,  QList<QPointF> &plot_data);
     QPolarChart *graph_;
     QValueAxis *setup_radial_axis(QList<QPointF> &plot_data);
 private:
     GraphType graph_type_;
+    QString graph_name_;
 };
 
 #endif // POLARGRAPH_H

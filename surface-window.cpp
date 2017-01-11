@@ -1,3 +1,4 @@
+#include <memory>
 #include <QImage>
 #include <QPageLayout>
 #include <QPainter>
@@ -19,12 +20,12 @@
 
 SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_count, unsigned rows_count)
 {
-    graph_ = new Q3DSurface();
-    QWidget *container = QWidget::createWindowContainer(graph_);
+    graph_ = std::unique_ptr<Q3DSurface>(new Q3DSurface());
+    QWidget *container = QWidget::createWindowContainer(graph_.get());
 
     if (!graph_->hasContext()) {
         QMessageBox msgBox;
-        msgBox.setText("Couldn't initialize the OpenGL context.");
+        msgBox.setText(tr("Couldn't initialize the OpenGL context."));
         msgBox.exec();
         //handle error
     }
@@ -69,7 +70,7 @@ SurfaceWindow::SurfaceWindow(std::vector<Point> &data_table, unsigned columns_co
         vLayout->addWidget(toPdfButton);
 
 
-    SurfaceGraph *modifier = new SurfaceGraph(graph_, data_table, columns_count, rows_count);
+    SurfaceGraph *modifier = new SurfaceGraph(graph_.get(), data_table, columns_count, rows_count);
 
     //connect sliders to slots
     QObject::connect(rotationSliderX, &QSlider::valueChanged, modifier, &SurfaceGraph::rotate_x);
