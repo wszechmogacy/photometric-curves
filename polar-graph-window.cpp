@@ -128,34 +128,35 @@ PolarGraphWindow::PolarGraphWindow(GraphType graph_type, QList<QPointF> &plot_da
     QGroupBox *styleSelectionGroupBox = new QGroupBox(tr("Graph curve type"));
     QVBoxLayout *selectionVBox = new QVBoxLayout;
 
-    QCheckBox *scatterCheckBox = new QCheckBox(tr("scatter"));
-    QCheckBox *lineCheckBox = new QCheckBox(tr("line"));
     QCheckBox *splineCheckBox = new QCheckBox(tr("smooth line"));
-    scatterCheckBox->setCheckState(Qt::Checked);
+    QCheckBox *lineCheckBox = new QCheckBox(tr("line"));
+    QCheckBox *scatterCheckBox = new QCheckBox(tr("scatter"));
+
+    splineCheckBox->setCheckState(Qt::Checked);
     lineCheckBox->setCheckState(Qt::Unchecked);
-    splineCheckBox->setCheckState(Qt::Unchecked);
-    scatter_series->show();
+    scatterCheckBox->setCheckState(Qt::Unchecked);
+
+    spline_series->show();
+    scatter_series->hide();
     line_series->hide();
-    spline_series->hide();
 
-
-    QObject::connect(scatterCheckBox,&QCheckBox::stateChanged, [scatter_series](){
-        if (scatter_series->isVisible()) scatter_series->hide();
-        else scatter_series->show();
+    QObject::connect(splineCheckBox,&QCheckBox::stateChanged, [spline_series](){
+        if (spline_series->isVisible()) spline_series->hide();
+        else spline_series->show();
     });
     QObject::connect(lineCheckBox,&QCheckBox::stateChanged, [line_series](){
         if (line_series->isVisible()) line_series->hide();
         else line_series->show();
     });
-    QObject::connect(splineCheckBox,&QCheckBox::stateChanged, [spline_series](){
-        if (spline_series->isVisible()) spline_series->hide();
-        else spline_series->show();
+    QObject::connect(scatterCheckBox,&QCheckBox::stateChanged, [scatter_series](){
+        if (scatter_series->isVisible()) scatter_series->hide();
+        else scatter_series->show();
     });
 
 
-    selectionVBox->addWidget(scatterCheckBox);
-    selectionVBox->addWidget(lineCheckBox);
     selectionVBox->addWidget(splineCheckBox);
+    selectionVBox->addWidget(lineCheckBox);
+    selectionVBox->addWidget(scatterCheckBox);
     selectionVBox->setAlignment(Qt::AlignTop);
     styleSelectionGroupBox->setLayout(selectionVBox);
 
