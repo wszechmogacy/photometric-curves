@@ -26,12 +26,8 @@ void SetupProjectDialogWindow::putRuntimeValuesToProjectSettingsWindow()
     ui_->stepParallelComboBox->setCurrentIndex(project_settings_->step_in_meridian_dir.index);
 }
 
-SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidget *parent) :
-    QDialog(parent),
-    ui_(new Ui::SetupProjectDialogWindow),
-    project_settings_(proj)
+void SetupProjectDialogWindow::setNamesInProjectDialogWindow()
 {
-    ui_->setupUi(this);
     setWindowTitle(tr("Project Settings"));
 
     const QStringList stepParalleItems = {"5", "10", "15", "45"};
@@ -62,6 +58,15 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
     }
 
     ui_->unitsComboBox->addItems(unitsNameItems);
+}
+
+SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidget *parent) :
+    QDialog(parent),
+    ui_(new Ui::SetupProjectDialogWindow),
+    project_settings_(proj)
+{
+    ui_->setupUi(this);
+    setNamesInProjectDialogWindow();
 
     if(project_settings_->initial_config) {
         putInitialValuesToProjectSettingsWindow();
