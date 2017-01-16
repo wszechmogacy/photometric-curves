@@ -25,6 +25,8 @@ private:
     ProjectSettings *project_settings_;
     QList< QPair<QString, double>> units_items_;
     void handleOnStartProjectButton_clicked();
+    void putInitialValuesToProjectSettingsWindow();
+    void putRuntimeValuesToProjectSettingsWindow();
 };
 
 #endif // SETUPPROJECTDIALOGWINDOW_H

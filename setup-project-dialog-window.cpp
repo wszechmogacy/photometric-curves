@@ -5,6 +5,27 @@
 #include <ui_setup-project-dialog-window.h>
 
 
+void SetupProjectDialogWindow::putInitialValuesToProjectSettingsWindow()
+{
+    ui_->studentNameField->setText("Tomasz Wilk");
+    ui_->classesDateField->setText("2017-01-28");
+    ui_->lightSourceField->setText("Oprawa 1");
+    ui_->radiusField->setText("0.200");
+    ui_->startProjectButton->setText(tr("Save settings"));
+}
+
+void SetupProjectDialogWindow::putRuntimeValuesToProjectSettingsWindow()
+{
+    ui_->studentNameField->setText(project_settings_->student_name_);
+    ui_->classesDateField->setText(project_settings_->class_date_);
+    ui_->lightSourceField->setText(project_settings_->source_name_);
+    ui_->radiusField->setText(QString::number(project_settings_->radius_));
+
+    ui_->unitsComboBox->setCurrentIndex(project_settings_->units.index);
+    ui_->stepInMeridianComboBox->setCurrentIndex(project_settings_->step_in_meridian_dir.index);
+    ui_->stepParallelComboBox->setCurrentIndex(project_settings_->step_in_meridian_dir.index);
+}
+
 SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidget *parent) :
     QDialog(parent),
     ui_(new Ui::SetupProjectDialogWindow),
@@ -42,21 +63,10 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
 
     ui_->unitsComboBox->addItems(unitsNameItems);
 
-
     if(project_settings_->initial_config) {
-        ui_->studentNameField->setText("Tomasz Wilk");
-        ui_->classesDateField->setText("2017-01-28");
-        ui_->lightSourceField->setText("Oprawa 1");
-        ui_->radiusField->setText("0.200");
+        putInitialValuesToProjectSettingsWindow();
     } else {
-        ui_->studentNameField->setText(project_settings_->student_name_);
-        ui_->classesDateField->setText(project_settings_->class_date_);
-        ui_->lightSourceField->setText(project_settings_->source_name_);
-        ui_->radiusField->setText(QString::number(project_settings_->radius_));
-
-        ui_->unitsComboBox->setCurrentIndex(project_settings_->units.index);
-        ui_->stepInMeridianComboBox->setCurrentIndex(project_settings_->step_in_meridian_dir.index);
-        ui_->stepParallelComboBox->setCurrentIndex(project_settings_->step_in_meridian_dir.index);
+        putRuntimeValuesToProjectSettingsWindow();
     }
 }
 
