@@ -24,6 +24,7 @@ private:
     Ui::SetupProjectDialogWindow *ui_;
     ProjectSettings *project_settings_;
     QList< QPair<QString, double>> units_items_;
+    void handleOnStartProjectButton_clicked();
 };
 
 #endif // SETUPPROJECTDIALOGWINDOW_H

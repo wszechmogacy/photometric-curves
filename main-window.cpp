@@ -15,6 +15,7 @@
 #include <point.h>
 #include <polar-graph-window.h>
 #include <project-settings.h>
+#include <setup-project-dialog-window.h>
 #include <surface-window.h>
 #include <ui_mainwindow.h>
 
@@ -67,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
     for(size_t col = 0; col <= columns_count_; col++) {
         for(size_t row = 0; row < rows_count_; row++) {
             //ui_->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number((col + row)*0.54 + 2.4))));
-            //ui_->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
+            ui_->dataTable->setItem(row, col, new QTableWidgetItem(QString(QString::number(1))));
         }
     }
 }
@@ -275,4 +276,10 @@ void MainWindow::on_readFileButton_clicked()
     }
 
     csv_file.close();
+}
+
+void MainWindow::on_projectSettingsButton_clicked()
+{
+    auto *window = new SetupProjectDialogWindow(&project_settings_);
+    window->exec();
 }

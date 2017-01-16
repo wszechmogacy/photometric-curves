@@ -17,6 +17,7 @@ public:
     QString units_;
     double radius_;
     double units_scale_;
+    bool initial_config;
 };
 
 #endif // PROJECTSETTINGS_H

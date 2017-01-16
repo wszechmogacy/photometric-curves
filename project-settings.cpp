@@ -2,5 +2,5 @@
 
 ProjectSettings::ProjectSettings()
 {
-
+    initial_config = true;
 }

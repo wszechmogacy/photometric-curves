@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QTranslator translator;
-    translator.load("/home/tomasz/devel/photometric-curves/photometric-curves-pl.qm");
+    translator.load("./photometric-curves-pl.qm");
     a.installTranslator(&translator);
 
     MainWindow *w = new MainWindow();

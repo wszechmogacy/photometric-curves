@@ -12,22 +12,20 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
 {
     ui_->setupUi(this);
     setWindowTitle(tr("Project Settings"));
+
+    const QStringList stepParalleItems = {"5", "10", "15", "45"};
+    ui_->stepParallelComboBox->addItems(stepParalleItems);
+    ui_->stepInMeridianComboBox->addItems(stepParalleItems);
     ui_->classesInformationGroupBox->setTitle(tr("Classes information"));
     ui_->studentNameLabel->setText(tr("Students' names"));
-    ui_->studentNameField->setText("Tomasz Wilk");
     ui_->classesDateLabel->setText(tr("Date of classes"));
-    ui_->classesDateField->setText("2017-01-28");
-
     ui_->lightSourceGroupBox->setTitle(tr("Measured light source"));
     ui_->lightSourceLabel->setText(tr("Source name"));
-    ui_->lightSourceField->setText("Oprawa 1");
-
     ui_->enviromentSettingsGroupBox->setTitle(tr("Measurement settings"));
     ui_->stepInParallelLayout_2->setText(tr("Step in parallel direction"));
     ui_->stepInMeridianLabel->setText(tr("Step in meridian direction"));
     ui_->unitsLabel->setText(tr("Units"));
     ui_->radiusLabel->setText(tr("Radius of measured sphere"));
-    ui_->radiusField->setText("0.200");
 
     const double luminous_flux_to_watts_ratio = 683.0;
     units_items_ = {
@@ -42,12 +40,20 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
         unitsNameItems.append(each_pair.first);
     }
 
+    ui_->unitsComboBox->addItems(unitsNameItems);
 
-   ui_->unitsComboBox->addItems(unitsNameItems);
 
-    const QStringList stepParalleItems = {"5", "10", "15", "45"};
-    ui_->stepParallelComboBox->addItems(stepParalleItems);
-    ui_->stepInMeridianComboBox->addItems(stepParalleItems);
+    if(project_settings_->initial_config) {
+        ui_->studentNameField->setText("Tomasz Wilk");
+        ui_->classesDateField->setText("2017-01-28");
+        ui_->lightSourceField->setText("Oprawa 1");
+        ui_->radiusField->setText("0.200");
+    } else {
+        ui_->studentNameField->setText(project_settings_->student_name_);
+        ui_->classesDateField->setText(project_settings_->class_date_);
+        ui_->lightSourceField->setText(project_settings_->source_name_);
+        ui_->radiusField->setText(QString::number(project_settings_->radius_));
+    }
 }
 
 SetupProjectDialogWindow::~SetupProjectDialogWindow()
@@ -55,7 +61,7 @@ SetupProjectDialogWindow::~SetupProjectDialogWindow()
     delete ui_;
 }
 
-void SetupProjectDialogWindow::on_startProjectButton_clicked()
+void SetupProjectDialogWindow::handleOnStartProjectButton_clicked()
 {
     project_settings_->student_name_ = ui_->studentNameField->text();
     project_settings_->class_date_ = ui_->classesDateField->text();
@@ -65,6 +71,7 @@ void SetupProjectDialogWindow::on_startProjectButton_clicked()
     project_settings_->radius_ = ui_->radiusField->text().toDouble();
     QString unitsName =  ui_->unitsComboBox->currentText();
     project_settings_->units_ = unitsName;
+    project_settings_->initial_config = false;
 
     QPair<QString, double> each;
     foreach (each, units_items_) {
@@ -73,4 +80,9 @@ void SetupProjectDialogWindow::on_startProjectButton_clicked()
     }
 
     close();
+}
+
+void SetupProjectDialogWindow::on_startProjectButton_clicked()
+{
+    handleOnStartProjectButton_clicked();
 }

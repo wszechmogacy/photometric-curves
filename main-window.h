@@ -33,6 +33,8 @@ private slots:
 
     void on_sectionButton_clicked();
 
+    void on_projectSettingsButton_clicked();
+
 private:
     Ui::MainWindow *ui_;
     std::vector<Point> get_table_data();
