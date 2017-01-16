@@ -57,10 +57,10 @@ MainWindow::MainWindow(QWidget *parent) :
     IntroductionDialogWindow intro(&project_settings_);
     intro.exec();
 
-    if (project_settings_.step_in_parallel_dir_ == 0 || project_settings_.step_in_meridian_dir_ == 0) return;
+    if (project_settings_.step_in_parallel_dir.value == 0 || project_settings_.step_in_meridian_dir.value == 0) return;
 
-    rows_count_ = 360 / project_settings_.step_in_parallel_dir_;
-    columns_count_ = 90 / project_settings_.step_in_meridian_dir_;
+    rows_count_ = 360 / project_settings_.step_in_parallel_dir.value;
+    columns_count_ = 90 / project_settings_.step_in_meridian_dir.value;
 
     qDebug() << "col: " << QString::number(columns_count_) << QString::number(rows_count_);
     setup_table_view(columns_count_, rows_count_);
@@ -84,9 +84,9 @@ QList<QPointF> MainWindow::get_meridian_section_values(int i, QModelIndexList se
     QModelIndex index = selection.at(i);
 
     QList<QPointF> vec;
-    for (unsigned angle = 0; angle < 90; angle += project_settings_.step_in_meridian_dir_) {
-        QString next_val_txt = ui_->dataTable->item(index.row(), angle / project_settings_.step_in_meridian_dir_)->text();
-        QString prev_val_txt = ui_->dataTable->item( (ui_->dataTable->rowCount() / 2 + index.row()) % ui_->dataTable->rowCount(), angle / project_settings_.step_in_meridian_dir_)->text();
+    for (unsigned angle = 0; angle < 90; angle += project_settings_.step_in_meridian_dir.value) {
+        QString next_val_txt = ui_->dataTable->item(index.row(), angle / project_settings_.step_in_meridian_dir.value)->text();
+        QString prev_val_txt = ui_->dataTable->item( (ui_->dataTable->rowCount() / 2 + index.row()) % ui_->dataTable->rowCount(), angle / project_settings_.step_in_meridian_dir.value)->text();
         QLocale c(QLocale::C);
         double next_val = c.toDouble(next_val_txt);
         double prev_val = c.toDouble(prev_val_txt);
@@ -249,15 +249,15 @@ void MainWindow::on_readFileButton_clicked()
     }
 
     if (columns_count != 0 && rows_count != 0) {
-        project_settings_.step_in_meridian_dir_ = 90 / columns_count;
-        project_settings_.step_in_parallel_dir_ = 360 / rows_count;
+        project_settings_.step_in_meridian_dir.value = 90 / columns_count;
+        project_settings_.step_in_parallel_dir.value = 360 / rows_count;
         this->columns_count_ = columns_count;
         this->rows_count_ = rows_count;
     } else {
         qDebug() << "Error when reading data";
     }
 
-    qDebug() << "steps: " << QString::number(project_settings_.step_in_meridian_dir_) << QString::number(project_settings_.step_in_parallel_dir_);
+    qDebug() << "steps: " << QString::number(project_settings_.step_in_meridian_dir.value) << QString::number(project_settings_.step_in_parallel_dir.value);
 
     setup_table_view(columns_count, rows_count);
 

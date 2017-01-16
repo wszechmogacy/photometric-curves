@@ -9,6 +9,11 @@ typedef struct {
     unsigned index;
 } units_t;
 
+typedef struct {
+    unsigned value;
+    unsigned index;
+} step_t;
+
 
 class ProjectSettings
 {
@@ -18,12 +23,12 @@ public:
     QString class_date_;
     QString student_group_;
     QString source_name_;
-    unsigned step_in_parallel_dir_;
-    unsigned step_in_meridian_dir_;
     double radius_;
     double units_scale_;
     bool initial_config;
     units_t units;
+    step_t step_in_parallel_dir;
+    step_t step_in_meridian_dir;
 };
 
 #endif // PROJECTSETTINGS_H

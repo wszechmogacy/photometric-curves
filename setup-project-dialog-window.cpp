@@ -53,7 +53,10 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
         ui_->classesDateField->setText(project_settings_->class_date_);
         ui_->lightSourceField->setText(project_settings_->source_name_);
         ui_->radiusField->setText(QString::number(project_settings_->radius_));
+
         ui_->unitsComboBox->setCurrentIndex(project_settings_->units.index);
+        ui_->stepInMeridianComboBox->setCurrentIndex(project_settings_->step_in_meridian_dir.index);
+        ui_->stepParallelComboBox->setCurrentIndex(project_settings_->step_in_meridian_dir.index);
     }
 }
 
@@ -67,8 +70,13 @@ void SetupProjectDialogWindow::handleOnStartProjectButton_clicked()
     project_settings_->student_name_ = ui_->studentNameField->text();
     project_settings_->class_date_ = ui_->classesDateField->text();
     project_settings_->source_name_ = ui_->lightSourceField->text();
-    project_settings_->step_in_parallel_dir_ = ui_->stepParallelComboBox->currentText().toUInt();
-    project_settings_->step_in_meridian_dir_ = ui_->stepInMeridianComboBox->currentText().toUInt();
+
+    project_settings_->step_in_parallel_dir.value = ui_->stepParallelComboBox->currentText().toUInt();
+    project_settings_->step_in_parallel_dir.index = ui_->stepParallelComboBox->currentIndex();
+
+    project_settings_->step_in_meridian_dir.value = ui_->stepInMeridianComboBox->currentText().toUInt();
+    project_settings_->step_in_meridian_dir.index = ui_->stepInMeridianComboBox->currentIndex();
+
     project_settings_->radius_ = ui_->radiusField->text().toDouble();
     project_settings_->units.name = ui_->unitsComboBox->currentText();
     project_settings_->units.index = ui_->unitsComboBox->currentIndex();
