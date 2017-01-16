@@ -4,6 +4,12 @@
 #include <QString>
 
 
+typedef struct {
+    QString name;
+    unsigned index;
+} units_t;
+
+
 class ProjectSettings
 {
 public:
@@ -14,10 +20,10 @@ public:
     QString source_name_;
     unsigned step_in_parallel_dir_;
     unsigned step_in_meridian_dir_;
-    QString units_;
     double radius_;
     double units_scale_;
     bool initial_config;
+    units_t units;
 };
 
 #endif // PROJECTSETTINGS_H

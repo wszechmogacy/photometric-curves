@@ -110,7 +110,7 @@ void MainWindow::on_photometricCurveButton_clicked()
                 + " ("
                 + project_settings_.student_name_ + " " + project_settings_.class_date_
                 +")";
-        PolarGraphWindow *polar_graph = new PolarGraphWindow(graph_name, GraphType::curve, project_settings_.units_,vec);
+        PolarGraphWindow *polar_graph = new PolarGraphWindow(graph_name, GraphType::curve, project_settings_.units.name, vec);
         polar_graph->show();
     }
 
@@ -142,7 +142,7 @@ void MainWindow::on_sectionButton_clicked()
                 + " ("
                 + project_settings_.student_name_ + " " + project_settings_.class_date_
                 +")";
-        PolarGraphWindow *polar_graph = new PolarGraphWindow(graph_name, GraphType::section, project_settings_.units_,vec);
+        PolarGraphWindow *polar_graph = new PolarGraphWindow(graph_name, GraphType::section, project_settings_.units.name,vec);
         polar_graph->show();
     }
 }

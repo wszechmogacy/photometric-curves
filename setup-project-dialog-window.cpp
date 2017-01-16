@@ -53,6 +53,7 @@ SetupProjectDialogWindow::SetupProjectDialogWindow(ProjectSettings *proj, QWidge
         ui_->classesDateField->setText(project_settings_->class_date_);
         ui_->lightSourceField->setText(project_settings_->source_name_);
         ui_->radiusField->setText(QString::number(project_settings_->radius_));
+        ui_->unitsComboBox->setCurrentIndex(project_settings_->units.index);
     }
 }
 
@@ -69,13 +70,13 @@ void SetupProjectDialogWindow::handleOnStartProjectButton_clicked()
     project_settings_->step_in_parallel_dir_ = ui_->stepParallelComboBox->currentText().toUInt();
     project_settings_->step_in_meridian_dir_ = ui_->stepInMeridianComboBox->currentText().toUInt();
     project_settings_->radius_ = ui_->radiusField->text().toDouble();
-    QString unitsName =  ui_->unitsComboBox->currentText();
-    project_settings_->units_ = unitsName;
+    project_settings_->units.name = ui_->unitsComboBox->currentText();
+    project_settings_->units.index = ui_->unitsComboBox->currentIndex();
     project_settings_->initial_config = false;
 
     QPair<QString, double> each;
     foreach (each, units_items_) {
-        if (each.first == unitsName)
+        if (each.first == project_settings_->units.name)
             project_settings_->units_scale_ = each.second;
     }
 
