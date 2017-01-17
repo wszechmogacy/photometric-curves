@@ -27,6 +27,7 @@ private:
     void handleOnStartProjectButton_clicked();
     void putInitialValuesToProjectSettingsWindow();
     void putRuntimeValuesToProjectSettingsWindow();
+    void setNamesInProjectDialogWindow();
 };
 
 #endif // SETUPPROJECTDIALOGWINDOW_H
