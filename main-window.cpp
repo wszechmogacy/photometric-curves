@@ -48,14 +48,9 @@ MainWindow::MainWindow(QTranslator *translator, QWidget *parent) :
     ui_->setupUi(this);
     setWindowTitle(tr("Photometric Curves"));
 
-
-
     IntroductionDialogWindow intro(&project_settings_, translator);
     intro.exec();
     ui_->retranslateUi(this);
-   // QApplication::translate();
-    //retranslate();
-
 
     ui_->lumniousFluxButton->setText(tr("Luminous Flux"));
     ui_->photometricCurveButton->setText(tr("Photometric Curve"));

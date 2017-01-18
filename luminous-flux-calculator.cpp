@@ -15,7 +15,7 @@ LuminousFluxCalculator::LuminousFluxCalculator(double radius) :
 double LuminousFluxCalculator::calculate_meridian_chunck_length(int meridian_points_count)
 {
     const double half_meridian_length = 0.5 * ConstNumbers::pi * this->sphere_radius_;
-    return half_meridian_length / meridian_points_count;
+    return half_meridian_length / static_cast<double>(meridian_points_count);
 }
 
 double LuminousFluxCalculator::operator() (std::vector<Point> &data, double scale, int meridian_points_count)
@@ -32,7 +32,7 @@ double LuminousFluxCalculator::operator() (std::vector<Point> &data, double scal
         const double upper_circumference = 2.0 * ConstNumbers::pi * this->sphere_radius_ * qSin(qDegreesToRadians(static_cast<double>(upper_lattidtude)));
         const double lower_circumference = 2.0 * ConstNumbers::pi * this->sphere_radius_ * qSin(qDegreesToRadians(static_cast<double>(lower_lattidtude)));
 
-        area = (upper_circumference + lower_circumference) / parallels.size() * calculate_meridian_chunck_length(meridian_points_count) / 2;
+        area = (upper_circumference + lower_circumference) * calculate_meridian_chunck_length(meridian_points_count) / 2;
 
         const double upper_average = average_value_on_parallel(upper_lattidtude, data) * scale;
         const double lower_average = average_value_on_parallel(lower_lattidtude, data) * scale;
