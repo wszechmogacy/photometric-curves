@@ -204,8 +204,9 @@ QString MainWindow::prepare_data_to_save()
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-
-            textData += ui_->dataTable->item(i,j)->text();
+            auto txt = ui_->dataTable->item(i,j)->text();
+            txt.replace(',', '.');
+            textData += txt;
             textData += ", ";
         }
         textData += "\n";
