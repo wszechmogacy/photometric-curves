@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QModelIndexList>
+#include <QTranslator>
 
 #include <point.h>
 #include <project-settings.h>
@@ -17,7 +18,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QTranslator *translator, QWidget *parent = 0);
     ~MainWindow();
 
 private slots:
@@ -45,6 +46,7 @@ private:
     ProjectSettings project_settings_;
     unsigned rows_count_;
     unsigned columns_count_;
+    QTranslator *translator;
 };
 
 #endif // MAINWINDOW_H

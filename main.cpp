@@ -21,12 +21,12 @@ int main(int argc, char *argv[])
     fileName.append(language);
     fileName.append(".qm");
 
-    QTranslator translator;
-    translator.load(fileName);
-    a.installTranslator(&translator);
+    auto translator = new QTranslator();
+    translator->load(fileName);
+    a.installTranslator(translator);
     qDebug() << "lan: " << fileName;
 
-    MainWindow *w = new MainWindow();
+    MainWindow *w = new MainWindow(translator);
     if (w != nullptr)  w->show();
 
     return a.exec();

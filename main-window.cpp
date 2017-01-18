@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QPointF>
 #include <QString>
+#include <QTranslator>
 #include <QVector2D>
 #include <QWidget>
 #include <vector>
@@ -39,9 +40,10 @@ void MainWindow::setup_table_view(int columns_count, int rows_count)
     ui_->dataTable->setVerticalHeaderLabels(vertical_label);
 }
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QTranslator *translator, QWidget *parent) :
     QMainWindow(parent),
-    ui_(new Ui::MainWindow)
+    ui_(new Ui::MainWindow),
+    translator(translator)
 {
     ui_->setupUi(this);
     setWindowTitle(tr("Photometric Curves"));
@@ -54,7 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui_->draw3DplotButton->setText(tr("Photometric solid"));
     ui_->projectSettingsButton->setText(tr("Project Settings"));
 
-    IntroductionDialogWindow intro(&project_settings_);
+    IntroductionDialogWindow intro(&project_settings_, translator);
     intro.exec();
 
     if (project_settings_.step_in_parallel_dir.value == 0 || project_settings_.step_in_meridian_dir.value == 0) return;

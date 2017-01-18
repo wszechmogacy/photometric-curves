@@ -2,6 +2,7 @@
 #define INTRODUCTIONDIALOGWINDOW_H
 
 #include <QDialog>
+#include <QTranslator>
 
 #include <project-settings.h>
 
@@ -14,7 +15,7 @@ class IntroductionDialogWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit IntroductionDialogWindow(ProjectSettings *proj_settings, QWidget *parent = 0);
+    explicit IntroductionDialogWindow(ProjectSettings *proj_settings, QTranslator *translator, QWidget *parent = 0);
     ~IntroductionDialogWindow();
 
 private slots:
@@ -23,6 +24,7 @@ private slots:
 private:
     Ui::IntroductionDialogWindow *ui_;
     ProjectSettings *project_settings_;
+    QTranslator *translator;
 };
 
 #endif // INTRODUCTIONDIALOGWINDOW_H
