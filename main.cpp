@@ -4,12 +4,6 @@
 
 #include <main-window.h>
 
-void setPolishLanguage(QApplication &a)
-{
-    QTranslator translator;
-    translator.load("photometric-curves-pl.qm");
-    a.installTranslator(&translator);
-}
 
 int main(int argc, char *argv[])
 {

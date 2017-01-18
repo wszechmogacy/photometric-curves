@@ -48,6 +48,15 @@ MainWindow::MainWindow(QTranslator *translator, QWidget *parent) :
     ui_->setupUi(this);
     setWindowTitle(tr("Photometric Curves"));
 
+
+
+    IntroductionDialogWindow intro(&project_settings_, translator);
+    intro.exec();
+    ui_->retranslateUi(this);
+   // QApplication::translate();
+    //retranslate();
+
+
     ui_->lumniousFluxButton->setText(tr("Luminous Flux"));
     ui_->photometricCurveButton->setText(tr("Photometric Curve"));
     ui_->readFileButton->setText(tr("Read data"));
@@ -55,9 +64,6 @@ MainWindow::MainWindow(QTranslator *translator, QWidget *parent) :
     ui_->sectionButton->setText(tr("Section"));
     ui_->draw3DplotButton->setText(tr("Photometric solid"));
     ui_->projectSettingsButton->setText(tr("Project Settings"));
-
-    IntroductionDialogWindow intro(&project_settings_, translator);
-    intro.exec();
 
     if (project_settings_.step_in_parallel_dir.value == 0 || project_settings_.step_in_meridian_dir.value == 0) return;
 
