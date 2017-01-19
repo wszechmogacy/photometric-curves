@@ -181,7 +181,9 @@ std::vector<Point> MainWindow::get_table_data()
             if (column == columns_count_ - 2) prelast = valueName.toDouble();
         }
         if (columns_count_ > 2) {
-            table_data.emplace_back(ui_->dataTable->verticalHeaderItem(row)->text().toDouble(), 90.0, last + (last - prelast));
+            double val = last + (last - prelast);
+            if (val < 0.0) val = 0.0;
+            table_data.emplace_back(ui_->dataTable->verticalHeaderItem(row)->text().toDouble(), 90.0, val);
         }
     }
 

@@ -53,6 +53,8 @@ void SurfaceGraph::convert_point_on_meridian(std::vector<Point> data, unsigned i
              << QString::number(index)
              << QString::number(data[pos].lat_angle_deg_, 'g', 8)
              << QString::number(data[pos].lon_angle_deg_, 'g', 8)
+             << QString::number(data[pos].x_, 'g', 8)
+             << QString::number(data[pos].y_, 'g', 8)
              << QString::number(data[pos].z_, 'g', 8);
     index++;
 }
