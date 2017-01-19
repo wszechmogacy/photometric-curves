@@ -11,7 +11,6 @@ void SetupProjectDialogWindow::putInitialValuesToProjectSettingsWindow()
     ui_->classesDateField->setText("2017-01-28");
     ui_->lightSourceField->setText("Oprawa 1");
     ui_->radiusField->setText("0.200");
-    ui_->startProjectButton->setText(tr("Save settings"));
 }
 
 void SetupProjectDialogWindow::putRuntimeValuesToProjectSettingsWindow()
@@ -43,6 +42,7 @@ void SetupProjectDialogWindow::setNamesInProjectDialogWindow()
     ui_->stepInMeridianLabel->setText(tr("Step in meridian direction"));
     ui_->unitsLabel->setText(tr("Units"));
     ui_->radiusLabel->setText(tr("Radius of measured sphere"));
+    ui_->startProjectButton->setText(tr("Save settings"));
 
     const double luminous_flux_to_watts_ratio = 683.0;
     units_items_ = {

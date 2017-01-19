@@ -34,8 +34,6 @@ SurfaceGraph::SurfaceGraph(QString graph_name, Q3DSurface *surface, std::vector<
     axisZ->setTitleVisible(true);
     graph_->setAxisZ(axisZ);
 
-    graph_->setTitle("Wilk title");
-
 
 
     photo_layer_proxy_ = new QSurfaceDataProxy();

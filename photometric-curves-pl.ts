@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pl_PL" sourcelanguage="en_GB">
+<TS version="2.0" language="pl_PL" sourcelanguage="en_GB">
 <context>
     <name>IntroductionDialogWindow</name>
     <message>
@@ -43,8 +43,9 @@
     </message>
     <message>
         <location filename="luminous-flux-window.cpp" line="13"/>
-        <source>Luminous Flux = %1 lm</source>
-        <translation type="unfinished">Strumień świetlny= %1 lm</translation>
+        <source>Total Luminous Flux = %1 lm</source>
+        <oldsource>Luminous Flux = %1 lm</oldsource>
+        <translation type="unfinished">Całkowity strumień świetlny= %1 lm</translation>
     </message>
 </context>
 <context>
@@ -60,37 +61,37 @@
         <translation type="unfinished">Krzywe Fotometryczne</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="51"/>
+        <location filename="main-window.cpp" line="55"/>
         <source>Luminous Flux</source>
         <translation type="unfinished">Strumień Świetlny</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="52"/>
+        <location filename="main-window.cpp" line="56"/>
         <source>Photometric Curve</source>
         <translation type="unfinished">Krzywa Fotometryczna</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="53"/>
+        <location filename="main-window.cpp" line="57"/>
         <source>Read data</source>
         <translation type="unfinished">Importuj Dane</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="54"/>
+        <location filename="main-window.cpp" line="58"/>
         <source>Save to file</source>
         <translation type="unfinished">Eksportuj do pliku</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="55"/>
+        <location filename="main-window.cpp" line="59"/>
         <source>Section</source>
         <translation type="unfinished">Przekrój</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="56"/>
+        <location filename="main-window.cpp" line="60"/>
         <source>Photometric solid</source>
         <translation type="unfinished">Bryła fotometryczna</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="57"/>
+        <location filename="main-window.cpp" line="61"/>
         <source>Project Settings</source>
         <translation type="unfinished">Ustawienia Projektu</translation>
     </message>
@@ -117,14 +118,14 @@
         <translation type="unfinished">Przekrój </translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="220"/>
-        <location filename="main-window.cpp" line="237"/>
+        <location filename="main-window.cpp" line="221"/>
+        <location filename="main-window.cpp" line="238"/>
         <source>Open File</source>
         <translation type="unfinished">Otwórz Plik</translation>
     </message>
     <message>
-        <location filename="main-window.cpp" line="220"/>
-        <location filename="main-window.cpp" line="237"/>
+        <location filename="main-window.cpp" line="221"/>
+        <location filename="main-window.cpp" line="238"/>
         <source>CSV Files (*.csv)</source>
         <translation type="unfinished">Plik (*.CSV)</translation>
     </message>
@@ -179,12 +180,12 @@
     <message>
         <location filename="polar-graph-window.cpp" line="134"/>
         <source>line</source>
-        <translation type="unfinished">estymata</translation>
+        <translation type="unfinished">obrys</translation>
     </message>
     <message>
         <location filename="polar-graph-window.cpp" line="133"/>
         <source>smooth line</source>
-        <translation type="unfinished">obrys</translation>
+        <translation type="unfinished">estymata</translation>
     </message>
 </context>
 <context>
@@ -211,7 +212,7 @@
     </message>
     <message>
         <location filename="setup-project-dialog-window.ui" line="56"/>
-        <location filename="setup-project-dialog-window.cpp" line="38"/>
+        <location filename="setup-project-dialog-window.cpp" line="37"/>
         <source>Date of classes</source>
         <translation type="unfinished">Data</translation>
     </message>
@@ -242,25 +243,25 @@
     </message>
     <message>
         <location filename="setup-project-dialog-window.ui" line="143"/>
-        <location filename="setup-project-dialog-window.cpp" line="42"/>
+        <location filename="setup-project-dialog-window.cpp" line="41"/>
         <source>Step in parallel direction</source>
         <translation type="unfinished">Krok równlegle do płaszczyzny</translation>
     </message>
     <message>
         <location filename="setup-project-dialog-window.ui" line="161"/>
-        <location filename="setup-project-dialog-window.cpp" line="43"/>
+        <location filename="setup-project-dialog-window.cpp" line="42"/>
         <source>Step in meridian direction</source>
         <translation type="unfinished">Krok prostopadle do płaszczyzny</translation>
     </message>
     <message>
         <location filename="setup-project-dialog-window.ui" line="175"/>
-        <location filename="setup-project-dialog-window.cpp" line="44"/>
+        <location filename="setup-project-dialog-window.cpp" line="43"/>
         <source>Units</source>
         <translation type="unfinished">Jednostki</translation>
     </message>
     <message>
         <location filename="setup-project-dialog-window.ui" line="189"/>
-        <location filename="setup-project-dialog-window.cpp" line="45"/>
+        <location filename="setup-project-dialog-window.cpp" line="44"/>
         <source>Radius of measured sphere</source>
         <translation type="unfinished">Promień mierzonej półsfery</translation>
     </message>
@@ -275,34 +276,39 @@
         <translation type="unfinished">Zacznij Projekt</translation>
     </message>
     <message>
-        <location filename="setup-project-dialog-window.cpp" line="31"/>
+        <location filename="setup-project-dialog-window.cpp" line="30"/>
         <source>Project Settings</source>
         <translation type="unfinished">Ustawienia Projektu</translation>
     </message>
     <message>
-        <location filename="setup-project-dialog-window.cpp" line="36"/>
+        <location filename="setup-project-dialog-window.cpp" line="35"/>
         <source>Classes information</source>
         <translation type="unfinished">Zajęcia</translation>
     </message>
     <message>
-        <location filename="setup-project-dialog-window.cpp" line="37"/>
+        <location filename="setup-project-dialog-window.cpp" line="36"/>
         <source>Students&apos; names</source>
         <translation type="unfinished">Nazwiska studenów</translation>
     </message>
     <message>
-        <location filename="setup-project-dialog-window.cpp" line="39"/>
+        <location filename="setup-project-dialog-window.cpp" line="38"/>
         <source>Measured light source</source>
         <translation type="unfinished">Mierzone źródło światła</translation>
     </message>
     <message>
-        <location filename="setup-project-dialog-window.cpp" line="40"/>
+        <location filename="setup-project-dialog-window.cpp" line="39"/>
         <source>Source name</source>
         <translation type="unfinished">Źródło światła</translation>
     </message>
     <message>
-        <location filename="setup-project-dialog-window.cpp" line="41"/>
+        <location filename="setup-project-dialog-window.cpp" line="40"/>
         <source>Measurement settings</source>
         <translation type="unfinished">Ustawienia pomiarów</translation>
+    </message>
+    <message>
+        <location filename="setup-project-dialog-window.cpp" line="45"/>
+        <source>Save settings</source>
+        <translation type="unfinished">Zapisz ustawienia</translation>
     </message>
 </context>
 <context>
@@ -326,11 +332,6 @@
         <location filename="surface-window.cpp" line="66"/>
         <source>Rotate horizontally</source>
         <oldsource>Rotate horizontQString graph_name,ally</oldsource>
-        <translation type="unfinished">Obróć poziomo</translation>
-    </message>
-    <message>
-        <location filename="surface-window.cpp" line="66"/>
-        <source>Rotate horizontally</source>
         <translation type="unfinished">Obróć poziomo</translation>
     </message>
     <message>
